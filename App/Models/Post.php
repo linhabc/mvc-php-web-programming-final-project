@@ -27,4 +27,8 @@ class Post extends \Core\Model
             echo $e->getMessage();
         }
     }
+
+    // getOne(id)
+    // deleteOne(id)
+    // updateOne(id)
 }
