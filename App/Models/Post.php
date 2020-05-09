@@ -28,7 +28,8 @@ class Post extends \Core\Model
         }
     }
 
+    // create( -, -, -,)
     // getOne(id)
-    // deleteOne(id)
     // updateOne(id)
+    // deleteOne(id)
 }
