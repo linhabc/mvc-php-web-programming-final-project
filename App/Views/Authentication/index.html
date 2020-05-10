@@ -37,8 +37,8 @@
             <form id="register" class="input-group">
                 <input type="text" class="input-field" placeholder="Username" required />
                 <input type="email" class="input-field" placeholder="Email" required />
-                <input type="password" class="input-field" placeholder="Password" id="myPass" required /><br /><br />
-                <input type="checkbox" onclick="showPass()" />Show Password<br />
+                <input type="password" class="input-field" placeholder="Password" id="myPass0" required /><br /><br />
+                <input type="checkbox" onclick="showPass0()" />Show Password<br />
                 <input type="checkbox" class="check-box" required /> I agree to the
                 <a href="https://www.cambridgeopencentre.org/asp_pages/registrationterms.asp" target="_blank">
             terms & conditions</a
@@ -69,6 +69,15 @@
     <script>
       function showPass () {
         var x = document.getElementById('myPass')
+        if (x.type === 'password') {
+          x.type = 'text'
+        } else {
+          x.type = 'password'
+        }
+      }
+
+      function showPass0 () {
+        var x = document.getElementById('myPass0')
         if (x.type === 'password') {
           x.type = 'text'
         } else {
