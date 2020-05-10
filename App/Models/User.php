@@ -38,7 +38,7 @@ class User extends \Core\Model
         try {
             $db = static::getDB();
 
-            $stmt = $db->prepare('INSERT INTO user (email, password) Value (:email, :password)');
+            $stmt = $db->prepare('INSERT INTO user (email, password) Values (:email, :password)');
             $stmt->bindParam(':email', $p1);
             $stmt->bindParam(':email', $p2);
 
