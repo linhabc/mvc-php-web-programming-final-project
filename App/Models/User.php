@@ -45,7 +45,7 @@ class User extends \Core\Model
             // $p1 = $email;
             // $p2 = $password;
             
-            $sql = "INSERT INTO MyGuests (email, password) VALUES ($email, $password)";
+            $sql = "INSERT INTO user (email, password) VALUES ($email, $password)";
 
             $stmt->execute($sql);
 
