@@ -6,13 +6,23 @@ use PDO;
 
 class User extends \Core\Model
 {
+    public $id;
+    public $name;
+    public $description;
+
+    public function __construct($id, $name, $description)
+    {
+        $this->id = $id;
+        $this->name = $name;
+        $this->description = $description;
+    }
 
     public static function getOne($id)
     {
         try {
             $db = static::getDB();
 
-            $stmt = $db->query('SELECT id, name, description FROM topic WHERE id = $id');
+            $stmt = $db->query("SELECT id, name, description FROM topic WHERE id = $id");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;
@@ -27,17 +37,16 @@ class User extends \Core\Model
         try {
             $db = static::getDB();
 
-            $stmt = $db->prepare("INSERT INTO topic (name,description) VALUES (:name,:description)");
+            // $stmt = $db->prepare("INSERT INTO topic (name,description) VALUES (:name,:description)");
 
-            $stmt->bindParam(':name', $p1);
-            $stmt->bindParam(':description', $p2);
+            // $stmt->bindParam(':name', $p1);
+            // $stmt->bindParam(':description', $p2);
 
-            $p1 = $name;
-            $p2 = $description;
+            // $p1 = $name;
+            // $p2 = $description;
 
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            return $results;
+            $sql = "INSERT INTO topic (name,description) VALUES (:name,:description)";
+            $stmt->execute($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -46,19 +55,14 @@ class User extends \Core\Model
 
     public static function updateOne($id, $name, $description)
     {
-        //$host = 'localhost';
-        //$dbname = 'mvc';
-        //$username = 'root';
-        //$password = 'secret';
 
         try {
-            //$db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
             $db = static::getDB();
 
-            $stmt = $db->query('UPDATE topic SET name = $name, description = $description WHERE id = $id');
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // $stmt = $db->query('UPDATE topic SET name = $name, description = $description WHERE id = $id');
 
-            return $results;
+            $sql = "UPDATE topic SET name = $name, description = $description WHERE id = $id";
+            $stmt->execute($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -67,19 +71,18 @@ class User extends \Core\Model
 
     public static function deleteOne($id)
     {
-        //$host = 'localhost';
-        //$dbname = 'mvc';
-        //$username = 'root';
-        //$password = 'secret';
 
         try {
             //$db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
             $db = static::getDB();
 
-            $stmt = $db->query('DELETE FROM topic WHERE id = $id');
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // $stmt = $db->query('DELETE FROM topic WHERE id = $id');
+            // $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            return $results;
+            // return $results;
+
+            $sql = "DELETE FROM topic WHERE id = $id";
+            $stmt->execute($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
