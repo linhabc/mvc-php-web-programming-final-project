@@ -11,7 +11,8 @@ class User extends \Core\Model
     public $password;
     public $role;
 
-    public function __construct($id, $email, $password, $role){
+    public function __construct($id, $email, $password, $role)
+    {
         $this->id = $id;
         $this->email = $email;
         $this->password = $password;
@@ -23,7 +24,7 @@ class User extends \Core\Model
         try {
             $db = static::getDB();
 
-            $stmt = $db->query(`SELECT id, email, userName, password, role FROM user WHERE id = $id`);
+            $stmt = $db->query('SELECT id, email, userName, password, role FROM user WHERE id = $id');
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;

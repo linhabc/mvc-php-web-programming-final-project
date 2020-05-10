@@ -22,16 +22,18 @@ class User extends \Core\Model
         }
     }
 
-    public static function create($id, $name, $description)
+    public static function create($name, $description)
     {
         try {
             $db = static::getDB();
 
-            $stmt = $db->prepare('INSERT INTO topic (id,name,description) VALUES (:id,:name,:description)');
+            $stmt = $db->prepare("INSERT INTO topic (name,description) VALUES (:name,:description)");
 
-            $stmt->bindParam(':id', $id);
-            $stmt->bindParam(':name', $name);
-            $stmt->bindParam(':description', $description);
+            $stmt->bindParam(':name', $p1);
+            $stmt->bindParam(':description', $p2);
+
+            $p1 = $name;
+            $p2 = $description;
 
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
