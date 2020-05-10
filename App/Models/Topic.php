@@ -45,7 +45,7 @@ class User extends \Core\Model
             // $p1 = $name;
             // $p2 = $description;
 
-            $sql = "INSERT INTO topic (name,description) VALUES (:name,:description)";
+            $sql = "INSERT INTO topic (name,description) VALUES ($name, $description)";
             $stmt->execute($sql);
 
         } catch (PDOException $e) {
