@@ -19,7 +19,7 @@ class User extends \Core\Model
         $this->role = $role;
     }
 
-    public static function getOne($id)
+    public static function getUser($id)
     {
         try {
             $db = static::getDB();
@@ -48,6 +48,20 @@ class User extends \Core\Model
             
             $sql = "INSERT INTO user (email, password) VALUES ($email, $password)";
 
+            $stmt->execute($sql);
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function deleteUser($id)
+    {
+
+        try {
+            $db = static::getDB();
+
+            $sql = "DELETE FROM user WHERE id = $id";
             $stmt->execute($sql);
 
         } catch (PDOException $e) {
