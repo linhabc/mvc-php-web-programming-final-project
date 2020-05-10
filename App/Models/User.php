@@ -23,7 +23,7 @@ class User extends \Core\Model
         try {
             $db = static::getDB();
 
-            $stmt = $db->query(`SELECT id, email, userName, password, role FROM user WHERE id = $id`);
+            $stmt = $db->query("SELECT id, email, userName, password, role FROM user WHERE id = $id");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;
@@ -38,14 +38,16 @@ class User extends \Core\Model
         try {
             $db = static::getDB();
 
-            $stmt = $db->prepare('INSERT INTO user (email, password) Values (:email, :password)');
-            $stmt->bindParam(':email', $p1);
-            $stmt->bindParam(':password', $p2);
+            // $stmt = $db->prepare('INSERT INTO user (email, password) Values (:email, :password)');
+            // $stmt->bindParam(':email', $p1);
+            // $stmt->bindParam(':password', $p2);
 
-            $p1 = $email;
-            $p2 = $password;
+            // $p1 = $email;
+            // $p2 = $password;
+            
+            $sql = "INSERT INTO MyGuests (email, password) VALUES ($email, $password)";
 
-            $stmt->execute();
+            $stmt->execute($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
