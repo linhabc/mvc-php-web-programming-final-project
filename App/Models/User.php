@@ -18,7 +18,7 @@ class User extends \Core\Model
             //$db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
             $db = static::getDB();
 
-            $stmt = $db->query(`SELECT id, email, userName, password, role FROM user WHERE user = $id`);
+            $stmt = $db->query('SELECT id, email, userName, password, role FROM user WHERE id = $id');
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;
