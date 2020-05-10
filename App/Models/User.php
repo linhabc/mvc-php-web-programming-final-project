@@ -6,19 +6,24 @@ use PDO;
 
 class User extends \Core\Model
 {
+    public $id;
+    public $email;
+    public $password;
+    public $role;
+
+    public function __construct($id, $email, $password, $role){
+        $this->id = $id;
+        $this->email = $email;
+        $this->password = $password;
+        $this->role = $role;
+    }
 
     public static function getOne($id)
     {
-        //$host = 'localhost';
-        //$dbname = 'mvc';
-        //$username = 'root';
-        //$password = 'secret';
-
         try {
-            //$db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
             $db = static::getDB();
 
-            $stmt = $db->query('SELECT id, email, userName, password, role FROM user WHERE id = $id');
+            $stmt = $db->query(`SELECT id, email, userName, password, role FROM user WHERE id = $id`);
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;
@@ -28,8 +33,23 @@ class User extends \Core\Model
         }
     }
 
-    // create( -, -, -,)
-    // getOne(id)
-    // updateOne(id)
-    // deleteOne(id)
+    public static function createUser($email, $password)
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->prepare('INSERT INTO user (email, password) Values (:email, :password)');
+            $stmt->bindParam(':email', $p1);
+            $stmt->bindParam(':password', $p2);
+
+            $p1 = $email;
+            $p2 = $password;
+
+            $stmt->execute();
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
 }

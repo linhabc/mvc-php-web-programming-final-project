@@ -9,13 +9,7 @@ class User extends \Core\Model
 
     public static function getOne($id)
     {
-        //$host = 'localhost';
-        //$dbname = 'mvc';
-        //$username = 'root';
-        //$password = 'secret';
-
         try {
-            //$db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
             $db = static::getDB();
 
             $stmt = $db->query('SELECT id, name, description FROM topic WHERE id = $id');
@@ -30,13 +24,7 @@ class User extends \Core\Model
 
     public static function create($id, $name, $description)
     {
-        //$host = 'localhost';
-        //$dbname = 'mvc';
-        //$username = 'root';
-        //$password = 'secret';
-
         try {
-            //$db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
             $db = static::getDB();
 
             $stmt = $db->prepare('INSERT INTO topic (id,name,description) VALUES (:id,:name,:description)');
