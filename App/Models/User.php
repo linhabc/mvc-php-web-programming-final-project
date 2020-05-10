@@ -40,7 +40,7 @@ class User extends \Core\Model
 
             $stmt = $db->prepare('INSERT INTO user (email, password) Values (:email, :password)');
             $stmt->bindParam(':email', $p1);
-            $stmt->bindParam(':email', $p2);
+            $stmt->bindParam(':password', $p2);
 
             $p1 = $email;
             $p2 = $password;
