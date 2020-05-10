@@ -39,7 +39,12 @@ class User extends \Core\Model
             //$db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
             $db = static::getDB();
 
-            $stmt = $db->query('INSERT INTO topic ('id','name','description') VALUES ('$id','$name','$description')');
+            $stmt = $db->prepare('INSERT INTO topic (id,name,description) VALUES (:id,:name,:description)');
+
+            $stmt->bindParam (':id',$id);
+            $stmt->bindParam (':name',$name);
+            $stmt->bindParam (':description',$description);
+
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;
