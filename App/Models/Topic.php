@@ -4,7 +4,7 @@ namespace App\Models;
 
 use PDO;
 
-class User extends \Core\Model
+class Topic extends \Core\Model
 {
     public $id;
     public $name;
@@ -17,7 +17,7 @@ class User extends \Core\Model
         $this->description = $description;
     }
 
-    public static function getOne($id)
+    public static function getTopic($id)
     {
         try {
             $db = static::getDB();
@@ -32,7 +32,7 @@ class User extends \Core\Model
         }
     }
 
-    public static function create($name, $description)
+    public static function createTopic($name, $description)
     {
         try {
             $db = static::getDB();
@@ -53,7 +53,7 @@ class User extends \Core\Model
         }
     }
 
-    public static function updateOne($id, $name, $description)
+    public static function updateTopic($id, $name, $description)
     {
 
         try {
@@ -69,7 +69,7 @@ class User extends \Core\Model
         }
     }
 
-    public static function deleteOne($id)
+    public static function deleteTopic($id)
     {
 
         try {
