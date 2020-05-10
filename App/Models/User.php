@@ -11,7 +11,8 @@ class User extends \Core\Model
     public $password;
     public $role;
 
-    public function __construct($id, $email, $password, $role){
+    public function __construct($id, $email, $password, $role)
+    {
         $this->id = $id;
         $this->email = $email;
         $this->password = $password;
