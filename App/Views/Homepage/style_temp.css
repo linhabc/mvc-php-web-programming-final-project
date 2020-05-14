@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+header {
+    position: fixed;
+    background: #22242A;
+    padding: 20px;
+    width: 100%;
+    height: 30px;
+}
+
+.left h3 {
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.left span {
+    color: brown;
+}
+
+.logout-button {
+    padding: 5px;
+    background: ghostwhite;
+    text-decoration: none;
+    float: right;
+    margin-top: -30px;
+    margin-right: 40px;
+    border-radius: 2px;
+    font-size: 15px;
+    font-weight: 600;
+    color: burlywood;
+    transition: 0.5s;
+}
+
+.logout-button hover {
+    background: #0B87A6;
+}
+
+.side-bar {
+    background: rgb(54, 52, 52);
+    margin-top: 70px;
+    padding-top: 30px;
+    position: fixed;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    transition: 0.5s;
+    transition-property: left;
+}
+
+.side-bar h4 {
+    color: azure;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+.side-bar a {
+    color: #fff;
+    display: block;
+    width: 100%;
+    line-height: 60px;
+    text-decoration: none;
+    padding-left: 40px;
+    box-sizing: border-box;
+    transition: 0.5s;
+    transition-property: background;
+}
+
+.side-bar a:hover {
+    background: #19B3D3;
+}
+
+.side-bar i {
+    padding-right: 10px;
+}
+
+.side-bar span {
+    font-weight: bold;
+    color: #ff6600;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.content {
+    margin-left: 250px;
+    background: url(bg.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    transition: 0.5s;
+}
