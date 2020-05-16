@@ -85,9 +85,10 @@ header {
 
 .side-bar i {
   padding-right: 10px;
+  vertical-align: text-bottom;
 }
 
-.side-bar span {
+.side-bar a.navLink {
   font-weight: bold;
   color: #ff6600;
   font-family: "Comic Sans MS", cursive, sans-serif;
