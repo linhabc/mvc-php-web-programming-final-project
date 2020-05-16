@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Homepage</title>
+    <!-- <link rel="stylesheet" href="./css/Homepage/style.css" /> -->
+    <link rel="stylesheet" href="index.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="index.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <div class="left">
+        <h3>Test <span>Yourself</span></h3>
+      </div>
+
+      <div class="right">
+        <a href="#" class="logout-button">Logout</a>
+      </div>
+    </header>
+
+    <div class="side-bar">
+      <center>
+        <h4>Admin page</h4>
+      </center>
+      <a
+        class="navLink active"
+        href="#"
+        onclick="return handleSideBarButton(event)"
+        ><i class="material-icons">dashboard</i><span>Dashboard</span></a
+      >
+      <a class="navLink" href="#" onclick="return handleSideBarButton(event)"
+        ><i class="material-icons">account_box</i><span>Manage user</span></a
+      >
+      <a class="navLink" href="#" onclick="return handleSideBarButton(event)"
+        ><i class="material-icons">chrome_reader_mode</i
+        ><span>Manage question</span></a
+      >
+      <a class="navLink" href="#" onclick="return handleSideBarButton(event)"
+        ><i class="material-icons">dns</i><span>Manage topic</span></a
+      >
+      <a class="navLink" href="#" onclick="return handleSideBarButton(event)"
+        ><i class="material-icons">dvr</i><span>Manage test</span></a
+      >
+      <a class="navLink" href="#" onclick="return handleSideBarButton(event)"
+        ><i class="material-icons">feedback</i><span>Manage comment</span></a
+      >
+    </div>
+
+    <div class="content"></div>
+  </body>
+</html>
