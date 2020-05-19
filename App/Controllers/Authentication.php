@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use \Core\View;
 
-class Home extends \Core\Controller
+class Authentication extends \Core\Controller
 {
 
     protected function before()

@@ -95,10 +95,11 @@ header {
 }
 
 .content {
+  padding-top: 70px;
   margin-left: 250px;
-  background: url(../../images/bgAdmin.jpg) no-repeat;
-  background-position: center;
-  background-size: cover;
-  height: 100vh;
+  /* background: url(../../images/bgAdmin.jpg) no-repeat; */
+  /* background-position: center; */
+  /* background-size: cover; */
+  /* height: 100vh; */
   transition: 0.5s;
 }
