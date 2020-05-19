@@ -96,7 +96,7 @@ header {
 
 .content {
   margin-left: 250px;
-  background: url(bg.jpg) no-repeat;
+  background: url(../../images/bgAdmin.jpg) no-repeat;
   background-position: center;
   background-size: cover;
   height: 100vh;
