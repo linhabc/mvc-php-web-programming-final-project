@@ -11,12 +11,6 @@ use App\Models\Test;
 
 class Admin extends \Core\Controller
 {
-
-    /**
-     * Before filter
-     *
-     * @return void
-     */
     protected function before()
     {
         // Make sure an admin user is logged in for example

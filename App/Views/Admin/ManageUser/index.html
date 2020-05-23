@@ -2,8 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Homepage</title>
-    <link rel="stylesheet" href="css/Admin/style.css" />
+    <title>Manage User</title>
+    <link rel="stylesheet" href="css//style.css" />
+    <link rel="stylesheet" href="css/ManageUser/style.css" />
+
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -57,16 +59,39 @@
     </div>
 
     <div class="content" id="content">
-      <ul>
-        {% for user in users %}
+      <div class="grid-container">
+        <div class="user-table">
+          <h2 style="margin: 0px;">
+            User Table
+          </h2>
+          <table>
+            <tr>
+              <th>ID</th>
+              <th>Email</th>
+              <th>User Name</th>
+              <th>Role</th>
+              <th>Delete</th>
+            </tr>
+            {% for user in users %}
 
-        <h2>{{ user.id }}</h2>
-        <p>{{ user.email }}</p>
-        <p>{{ user.userName }}</p>
-        <p>{{ user.role }}</p>
-
-        {% endfor %}
-      </ul>
+            <tr>
+              <td>{{ user.id }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.userName }}</td>
+              <td>{{ user.role }}</td>
+              <td>
+                <button onclick="">Delete</button>
+              </td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+        <div class="add-user">
+          <h2 style="margin: 0px;">
+            Add User
+          </h2>
+        </div>
+      </div>
     </div>
   </body>
 </html>

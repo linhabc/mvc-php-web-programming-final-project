@@ -1,0 +1,99 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+header {
+  position: fixed;
+  background: #c8c8c8;
+  padding: 20px;
+  width: 100%;
+  height: 30px;
+}
+
+.left h3 {
+  color: black;
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.left span {
+  color: brown;
+}
+
+.logout-button {
+  padding: 10px;
+  background: ghostwhite;
+  text-decoration: none;
+  float: right;
+  margin-top: -30px;
+  margin-right: 40px;
+  border-radius: 2px;
+  font-size: 15px;
+  font-weight: 600;
+  color: black;
+  transition: 0.5s;
+}
+
+.logout-button hover {
+  background: #0b87a6;
+}
+
+.side-bar {
+  background-color: #f1f1f1;
+  margin-top: 70px;
+  padding-top: 30px;
+  position: fixed;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  transition: 0.5s;
+  transition-property: left;
+}
+
+.side-bar h4 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+.side-bar a {
+  color: #fff;
+  display: block;
+  width: 100%;
+  line-height: 60px;
+  text-decoration: none;
+  padding-left: 20px;
+  box-sizing: border-box;
+  transition: 0.5s;
+  transition-property: background;
+}
+
+.side-bar a:hover {
+  background: #ddd;
+}
+
+.side-bar a.active {
+  background: #ccc;
+}
+
+.side-bar i {
+  padding-right: 10px;
+  vertical-align: text-bottom;
+}
+
+.side-bar a.navLink {
+  font-weight: bold;
+  color: #ff6600;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.content {
+  padding-top: 70px;
+  margin-left: 250px;
+  transition: 0.5s;
+}

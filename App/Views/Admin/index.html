@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Homepage</title>
+    <link rel="stylesheet" href="css//style.css" />
     <link rel="stylesheet" href="css/Admin/style.css" />
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -57,10 +58,20 @@
     </div>
 
     <div class="content" id="content">
-      <h2>Total user: {{ users|length }}</h2>
-      <h2>Total question: {{ questions|length }}</h2>
-      <h2>Total Topic: {{ topics|length }}</h2>
-      <h2>Total Test: {{ tests|length }}</h2>
+      <div class="grid-container">
+        <div class="grid-item" id="user">
+          <h2>User: {{ users|length }}</h2>
+        </div>
+        <div class="grid-item" id="question">
+          <h2>Question: {{ questions }}</h2>
+        </div>
+        <div class="grid-item" id="topic">
+          <h2>Topic: {{ topics }}</h2>
+        </div>
+        <div class="grid-item" id="test">
+          <h2>Test: {{ tests }}</h2>
+        </div>
+      </div>
     </div>
   </body>
 </html>
