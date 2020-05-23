@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use \Core\View;
+use App\Models\User;
+
 
 class ManageUser extends \Core\Controller
 {
@@ -20,6 +22,10 @@ class ManageUser extends \Core\Controller
 
     public function indexAction()
     {
-        View::renderTemplate('Admin/ManageUser/index.html');
+        $users = User::getAll();
+
+        View::renderTemplate('Admin/ManageUser/index.html', [
+            'users' => $users,
+        ]);
     }
 }

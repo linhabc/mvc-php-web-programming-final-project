@@ -19,12 +19,29 @@ class User extends \Core\Model
         $this->role = $role;
     }
 
+    public static function getAll()
+    {
+
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query('SELECT * FROM User ORDER BY id');
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+
     public static function getUser($id)
     {
         try {
             $db = static::getDB();
 
-            $stmt = $db->query("SELECT id, email, userName, password, role FROM user WHERE id = $id");
+            $stmt = $db->query("SELECT id, email, userName, password, role FROM User WHERE id = $id");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;
@@ -46,7 +63,7 @@ class User extends \Core\Model
             // $p1 = $email;
             // $p2 = $password;
             
-            $sql = "INSERT INTO user (email, password) VALUES ($email, $password)";
+            $sql = "INSERT INTO User (email, password) VALUES ($email, $password)";
 
             $stmt->execute($sql);
 

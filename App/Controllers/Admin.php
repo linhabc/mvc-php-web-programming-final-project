@@ -3,6 +3,11 @@
 namespace App\Controllers;
 
 use \Core\View;
+use App\Models\User;
+use App\Models\Question;
+use App\Models\Topic;
+use App\Models\Test;
+
 
 class Admin extends \Core\Controller
 {
@@ -20,6 +25,10 @@ class Admin extends \Core\Controller
 
     public function indexAction()
     {
-        View::renderTemplate('Admin/index.html');
+        $users = User::getAll();
+
+        View::renderTemplate('Admin/index.html', [
+            'users' => $users,
+        ]);
     }
 }
