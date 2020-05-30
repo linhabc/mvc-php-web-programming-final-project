@@ -64,4 +64,20 @@ class Result extends \Core\Model
         }
     }
 
+    public static function updateResult($userId, $testId, $score, $rating, $create_at)
+    {
+
+        try {
+            $db = static::getDB();
+
+            // $stmt = $db->query('UPDATE topic SET name = $name, description = $description WHERE id = $id');
+
+            $sql = "UPDATE result SET userId = $userId, testId = $testId, score = $score, rating = $rating,create_at = $create_at  WHERE id = $id";
+            $stmt->execute($sql);
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
 }
