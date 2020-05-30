@@ -72,7 +72,7 @@ class Result extends \Core\Model
 
             // $stmt = $db->query('UPDATE topic SET name = $name, description = $description WHERE id = $id');
 
-            $sql = "UPDATE result SET userId = $userId, testId = $testId, score = $score, rating = $rating,create_at = $create_at  WHERE id = $id";
+            $sql = "UPDATE result SET score = $score, rating = $rating,create_at = $create_at  WHERE userId = $userId AND testId = $testId";
             $stmt->execute($sql);
 
         } catch (PDOException $e) {
