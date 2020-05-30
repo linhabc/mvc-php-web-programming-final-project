@@ -36,12 +36,12 @@ class Result extends \Core\Model
         }
     }
 
-    public static function createResult($testId, $score, $rating, $create_at)
+    public static function createResult($userId, $testId, $score, $rating, $create_at)
     {
         try {
             $db = static::getDB();
            
-            $sql = "INSERT INTO result (testId, score, rating, create_at) VALUES ($testId, $score, $rating, $create_at)";
+            $sql = "INSERT INTO result (userId, testId, score, rating, create_at) VALUES ($userId, $testId, $score, $rating, $create_at)";
 
             $stmt->execute($sql);
 
