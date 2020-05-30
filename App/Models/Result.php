@@ -70,8 +70,6 @@ class Result extends \Core\Model
         try {
             $db = static::getDB();
 
-            // $stmt = $db->query('UPDATE topic SET name = $name, description = $description WHERE id = $id');
-
             $sql = "UPDATE result SET score = $score, rating = $rating,create_at = $create_at  WHERE userId = $userId AND testId = $testId";
             $stmt->execute($sql);
 
