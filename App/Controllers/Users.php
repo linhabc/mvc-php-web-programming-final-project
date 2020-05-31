@@ -18,6 +18,12 @@ class Users extends \Core\Controller
 
     public function indexAction()
     {
-        echo 'User admin index';
+        //echo 'User admin index';
+        $users = User::getAll();
+        //$users = User::getUser($id);
+
+        View::renderTemplate('User/index.html', [
+            'users' => $users,
+        ]);
     }
 }
