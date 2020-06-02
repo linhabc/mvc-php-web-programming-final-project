@@ -2,12 +2,8 @@
 
 namespace App\Controllers;
 
-use \Core\View;
 use App\Models\User;
-use App\Models\Question;
-use App\Models\Topic;
-use App\Models\Test;
-
+use \Core\View;
 
 class Admin extends \Core\Controller
 {

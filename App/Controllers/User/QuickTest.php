@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\User;
 
-use App\Models\User;
+use App\Models\Question;
 use \Core\View;
 
-class Users extends \Core\Controller
+class QuickTest extends \Core\Controller
 {
 
     /**
@@ -21,12 +21,11 @@ class Users extends \Core\Controller
 
     public function indexAction()
     {
-        //echo 'User admin index';
-        $users = User::getAll();
-        //$users = User::getUser($id);
 
-        View::render('User/index.html', [
-            'users' => $users,
+        $questions = Question::getRandomQuestion(10);
+
+        View::render('User/DoQuickTest/index.html', [
+            'questions' => $questions,
         ]);
     }
 }

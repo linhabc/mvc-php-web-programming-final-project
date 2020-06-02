@@ -16,7 +16,8 @@ class Question extends \Core\Model
     public $c;
     public $d;
 
-    public function __construct($id, $topicId, $userId, $question, $answer, $a, $b, $c, $d){
+    public function __construct($id, $topicId, $userId, $question, $answer, $a, $b, $c, $d)
+    {
         $this->id = $id;
         $this->topicId = $topicId;
         $this->userId = $userId;
@@ -65,6 +66,26 @@ class Question extends \Core\Model
 
             $sql = "DELETE FROM question WHERE id = $id";
             $stmt->execute($sql);
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function getRandomQuestion($numberOfQuestions)
+    {
+        try {
+            $db = static::getDB();
+
+            $sql = "SELECT * FROM question
+                    ORDER BY RAND()
+                    LIMIT $numberOfQuestions;";
+
+            $stmt = $db->query($sql);
+
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
 
         } catch (PDOException $e) {
             echo $e->getMessage();
