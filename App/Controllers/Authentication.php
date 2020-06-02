@@ -21,6 +21,6 @@ class Authentication extends \Core\Controller
     public function indexAction()
     {
 
-        View::renderTemplate('Authentication/index.html');
+        View::render('Authentication/index.html');
     }
 }
