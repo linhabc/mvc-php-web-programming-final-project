@@ -72,18 +72,22 @@
               <th>Role</th>
               <th>Delete</th>
             </tr>
-            {% for user in users %}
 
-            <tr>
-              <td>{{ user.id }}</td>
-              <td>{{ user.email }}</td>
-              <td>{{ user.userName }}</td>
-              <td>{{ user.role }}</td>
-              <td>
-                <button onclick="">Delete</button>
-              </td>
-            </tr>
-            {% endfor %}
+          <?php
+
+          foreach ($users as $user)
+            echo "<tr>
+                    <td> $user[id] </td>
+                    <td> $user[email] </td>
+                    <td> $user[userName] </td>
+                    <td> $user[role] </td>
+                    <td>
+                      <button onclick=''>Delete</button>
+                    </td>
+                  </tr>
+                "
+          ?>
+
           </table>
         </div>
         <div class="add-user">

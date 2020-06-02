@@ -60,16 +60,25 @@
     <div class="content" id="content">
       <div class="grid-container">
         <div class="grid-item" id="user">
-          <h2>User: {{ users|length }}</h2>
+          <h2>
+            User:
+            <?php $length = count($users); echo "$length"; ?>
+          </h2>
         </div>
         <div class="grid-item" id="question">
-          <h2>Question: {{ questions }}</h2>
-        </div>
-        <div class="grid-item" id="topic">
-          <h2>Topic: {{ topics }}</h2>
+          <h2>
+            Question:
+          </h2>
         </div>
         <div class="grid-item" id="test">
-          <h2>Test: {{ tests }}</h2>
+          <h2>
+            Test:
+          </h2>
+        </div>
+        <div class="grid-item" id="topic">
+          <h2>
+            Topic:
+          </h2>
         </div>
       </div>
     </div>

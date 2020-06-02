@@ -18,7 +18,7 @@ class ManageUser extends \Core\Controller
     {
         $users = User::getAll();
 
-        View::renderTemplate('Admin/ManageUser/index.html', [
+        View::render('Admin/ManageUser/index.html', [
             'users' => $users,
         ]);
     }

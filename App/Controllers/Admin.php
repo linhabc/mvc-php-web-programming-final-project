@@ -21,7 +21,7 @@ class Admin extends \Core\Controller
     {
         $users = User::getAll();
 
-        View::renderTemplate('Admin/index.html', [
+        View::render('Admin/index.html', [
             'users' => $users,
         ]);
     }
