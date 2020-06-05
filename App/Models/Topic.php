@@ -17,6 +17,21 @@ class Topic extends \Core\Model
         $this->description = $description;
     }
 
+    public static function getAllTopic()
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT id, name, description FROM topic");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public static function getTopic($id)
     {
         try {
