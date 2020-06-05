@@ -22,7 +22,7 @@ class Users extends \Core\Controller
         $users = User::getAll();
         //$users = User::getUser($id);
 
-        View::renderTemplate('User/index.html', [
+        View::render('User/index.html', [
             'users' => $users,
         ]);
     }

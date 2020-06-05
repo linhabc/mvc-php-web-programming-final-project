@@ -12,7 +12,7 @@ class Posts extends \Core\Controller
     {
         $posts = Post::getAll();
 
-        View::renderTemplate('Posts/index.html', [
+        View::render('Posts/index.html', [
             'posts' => $posts,
         ]);
     }

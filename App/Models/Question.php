@@ -16,7 +16,8 @@ class Question extends \Core\Model
     public $c;
     public $d;
 
-    public function __construct($id, $topicId, $userId, $question, $answer, $a, $b, $c, $d){
+    public function __construct($id, $topicId, $userId, $question, $answer, $a, $b, $c, $d)
+    {
         $this->id = $id;
         $this->topicId = $topicId;
         $this->userId = $userId;
@@ -26,6 +27,21 @@ class Question extends \Core\Model
         $this->b = $b;
         $this->c = $c;
         $this->d = $d;
+    }
+
+    public static function getAllQuestion()
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT * FROM question");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
     }
 
     public static function getQuestion($id)
