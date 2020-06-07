@@ -32,6 +32,21 @@ class Topic extends \Core\Model
         }
     }
 
+    public static function getTopicName()
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT id,name FROM topic");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public static function getTopic($id)
     {
         try {

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Question;
+use App\Models\Topic;
 use \Core\View;
 
 class ManageQuestion extends \Core\Controller
@@ -16,9 +17,11 @@ class ManageQuestion extends \Core\Controller
     public function indexAction()
     {
         $questions = Question::getAllQuestion();
+        $topic_name = Topic::getTopicName();
 
         View::render('Admin/ManageQuestion/index.html', [
             'questions' => $questions,
+            'topic_name' => $topic_name,
         ]);
     }
 }

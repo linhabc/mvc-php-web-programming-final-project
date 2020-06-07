@@ -12,12 +12,28 @@ class Test extends \Core\Model
     public $name;
     public $description;
 
-    public function __construct($id, $topicId, $userId, $name, $description){
+    public function __construct($id, $topicId, $userId, $name, $description)
+    {
         $this->id = $id;
         $this->topicId = $topicId;
         $this->userId = $userId;
         $this->name = $name;
         $this->description = $description;
+    }
+
+    public static function getAllTest()
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT * FROM test");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
     }
 
     public static function getTest($id)
