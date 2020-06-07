@@ -1,0 +1,29 @@
+.grid-container {
+  display: grid;
+  grid-template: auto / auto auto auto auto;
+  grid-gap: 20px;
+  /* background-color: #2196f3; */
+  padding: 25px;
+}
+
+.grid-item {
+  padding: 20px;
+  border: 1px solid #ccc;
+  color: white;
+}
+
+#user {
+  background-color: #d42b4c;
+}
+
+#question {
+  background-color: #53dc69;
+}
+
+#topic {
+  background-color: #3675d0;
+}
+
+#test {
+  background-color: #423f3f;
+}
