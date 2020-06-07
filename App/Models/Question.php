@@ -66,7 +66,7 @@ class Question extends \Core\Model
 
             $sql = "INSERT INTO question (topicId, userId, question, answer, a, b, c, d) VALUES ($id, $topicId, $userId, $question, $answer, $a, $b, $c, $d)";
 
-            $stmt->execute($sql);
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -80,7 +80,7 @@ class Question extends \Core\Model
             $db = static::getDB();
 
             $sql = "DELETE FROM question WHERE id = $id";
-            $stmt->execute($sql);
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -94,7 +94,27 @@ class Question extends \Core\Model
             $db = static::getDB();
 
             $sql = "UPDATE question SET topicId = $topicId, userId = $userId, question = $question, answer = $answer, a = $a, b = $b, c = $c, d = $d WHERE id = $id";
-            $stmt->execute($sql);
+            $db->exec($sql);
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function getRandomQuestion($numberOfQuestions)
+    {
+        try {
+            $db = static::getDB();
+
+            $sql = "SELECT * FROM question
+                    ORDER BY RAND()
+                    LIMIT $numberOfQuestions;";
+
+            $stmt = $db->query($sql);
+
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
 
         } catch (PDOException $e) {
             echo $e->getMessage();

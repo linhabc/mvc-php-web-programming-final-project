@@ -58,7 +58,7 @@ class Test extends \Core\Model
 
             $sql = "INSERT INTO test (topic_id, user_id, name, description) VALUES ($id, $topicId, $name, $description)";
 
-            $stmt->execute($sql);
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -74,7 +74,7 @@ class Test extends \Core\Model
             // $stmt = $db->query('UPDATE topic SET name = $name, description = $description WHERE id = $id');
 
             $sql = "UPDATE test SET topic_id = $topic_id, user_id = $user_id, name = $name, description = $description  WHERE id = $id";
-            $stmt->execute($sql);
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -88,7 +88,7 @@ class Test extends \Core\Model
             $db = static::getDB();
 
             $sql = "DELETE FROM test WHERE id = $id";
-            $stmt->execute($sql);
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();

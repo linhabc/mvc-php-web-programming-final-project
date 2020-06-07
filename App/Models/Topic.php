@@ -76,7 +76,7 @@ class Topic extends \Core\Model
             // $p2 = $description;
 
             $sql = "INSERT INTO topic (name,description) VALUES ($name, $description)";
-            $stmt->execute($sql);
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -92,7 +92,7 @@ class Topic extends \Core\Model
             // $stmt = $db->query('UPDATE topic SET name = $name, description = $description WHERE id = $id');
 
             $sql = "UPDATE topic SET name = $name, description = $description WHERE id = $id";
-            $stmt->execute($sql);
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -112,7 +112,7 @@ class Topic extends \Core\Model
             // return $results;
 
             $sql = "DELETE FROM topic WHERE id = $id";
-            $stmt->execute($sql);
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();

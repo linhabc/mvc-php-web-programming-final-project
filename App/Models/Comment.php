@@ -4,7 +4,7 @@ namespace App\Models;
 
 use PDO;
 
-class Test extends \Core\Model
+class Comment extends \Core\Model
 {
     public $id;
     public $testId;
@@ -12,7 +12,8 @@ class Test extends \Core\Model
     public $content;
     public $create_at;
 
-    public function __construct($id, $testId, $userId, $content, $create_at){
+    public function __construct($id, $testId, $userId, $content, $create_at)
+    {
         $this->id = $id;
         $this->testId = $testId;
         $this->userId = $userId;
@@ -42,7 +43,7 @@ class Test extends \Core\Model
 
             $sql = "INSERT INTO comment (testId, userId, content, create_at) VALUES ($testId, $userId, $content, $create_at)";
 
-            $stmt->execute($sql);
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -58,7 +59,7 @@ class Test extends \Core\Model
             // $stmt = $db->query('UPDATE topic SET name = $name, description = $description WHERE id = $id');
 
             $sql = "UPDATE comment SET testId = $testId, userId = $userId, content = $content, create_at = $create_at  WHERE id = $id";
-            $stmt->execute($sql);
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -72,7 +73,7 @@ class Test extends \Core\Model
             $db = static::getDB();
 
             $sql = "DELETE FROM comment WHERE id = $id";
-            $stmt->execute($sql);
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -84,7 +85,7 @@ class Test extends \Core\Model
         try {
             $db = static::getDB();
 
-            $stmt = $db->query("SELECT * FROM comment");
+            $stmt = $db->query("SELECT comment.id, user.username as u_name,test.name as t_name, comment.content, comment.create_at  FROM comment INNER JOIN user on comment.user_id = user.id INNER JOIN test on comment.test_id = test.id");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;
