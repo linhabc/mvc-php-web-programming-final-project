@@ -20,9 +20,11 @@ $router = new Core\Router();
 
 // Add the routes
 $router->add('', ['controller' => 'Authentication', 'action' => 'index']);
+$router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);
+$router->add('user/{controller}/{action}', ['namespace' => 'User']);
 $router->add('{controller}/{action}');
 $router->add('{controller}/{id:\d+}/{action}');
-$router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);
+
 
 if (array_key_exists('QUERY_STRING', $_SERVER)) {
     $router->dispatch($_SERVER['QUERY_STRING']);
