@@ -21,4 +21,19 @@ class ManageUser extends \Core\Controller
             'users' => $users,
         ]);
     }
+
+    public function deleteAction(){
+        // print_r($_GET);
+
+        $id = $_GET['id'];
+
+
+        User::deleteUser($id);
+
+        $users = User::getAll();
+
+        View::render('Admin/ManageUser/index.html', [
+            'users' => $users,
+        ]);
+    }
 }

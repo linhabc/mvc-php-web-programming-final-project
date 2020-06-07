@@ -56,18 +56,19 @@
           </tr>
 
           <?php
-
-          foreach ($users as $user)
-            echo "<tr>
+          foreach ($users as $user){
+              $id = $user['id'];
+              echo "<tr>
                     <td> $user[id] </td>
                     <td> $user[email] </td>
                     <td> $user[userName] </td>
                     <td> $user[role] </td>
                     <td>
-                      <button onclick=''>Delete</button>
+                      <button onclick='location.href = \"?ManageUser/delete&id={$id}\"'>Delete</button>
                     </td>
                   </tr>
-                "
+                ";
+            }
           ?>
 
         </table>
