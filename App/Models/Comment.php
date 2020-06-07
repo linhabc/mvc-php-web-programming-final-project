@@ -4,7 +4,7 @@ namespace App\Models;
 
 use PDO;
 
-class Test extends \Core\Model
+class Comment extends \Core\Model
 {
     public $id;
     public $testId;
@@ -85,7 +85,7 @@ class Test extends \Core\Model
         try {
             $db = static::getDB();
 
-            $stmt = $db->query("SELECT * FROM comment");
+            $stmt = $db->query("SELECT comment.id, user.username as u_name,test.name as t_name, comment.content, comment.create_at  FROM comment INNER JOIN user on comment.user_id = user.id INNER JOIN test on comment.test_id = test.id");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;
