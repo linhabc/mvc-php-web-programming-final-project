@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Manage Topic</title>
+    <link rel="stylesheet" href="css//style.css" />
+    <link rel="stylesheet" href="css/ManageUser/style.css" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script src="js/Admin/index.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="left">
+            <h3>Test <span>Yourself</span></h3>
+        </div>
+
+        <div class="right">
+            <a href="?Authentication/index" class="logout-button">Logout</a>
+        </div>
+    </header>
+
+    <div class="side-bar">
+        <center>
+            <h4>Admin page</h4>
+        </center>
+        <a class="navLink" href="?Admin/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">dashboard</i><span>Dashboard</span></a>
+        <a class="navLink" href="?ManageUser/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">account_box</i><span>Manage user</span></a>
+        <a class="navLink" href="?ManageQuestion/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">chrome_reader_mode</i><span>Manage question</span></a>
+        <a class="navLink" href="?ManageTopic/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">dns</i><span>Manage topic</span></a>
+        <a class="navLink active" href="?ManageTest/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">dvr</i><span>Manage test</span></a>
+        <a class="navLink" href="?ManageComment/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">feedback</i><span>Manage comment</span></a>
+    </div>
+
+    <div class="content" id="content">
+        <div class="grid-container">
+            <div class="test-table">
+                <h2 style="margin: 0px;">
+                    Tests Table
+                </h2>
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Topic</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <?php
+                    
+                        foreach ($tests as $test)
+                            echo "
+                                <td> $test[id] </td>
+                                foreach ($topics as $topic)
+                                    echo "<td>$topic[name]</td>"
+                                <td>$test[name]</td>
+                                <td> $test[description]</td>
+
+                                <td>
+                                    <button onclick=''>Delete</button>
+                                </td>
+                          
+                            "
+                        ?>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div class="add-topic">
+                <h2 style="margin: 0px;">
+                    Add Topics
+                </h2>
+
+                <table style="text-align: left;" class="noborder">
+                    <tr>
+                        <th><label for="topic">Topic: </label></th>
+                        <td><input type="text" id="topic_detail" name="topic_detail" required></td>
+                    </tr>
+
+                    <tr>
+                        <th><label for="description">Description: </label></th>
+                        <td><textarea id="des" name="des" required></textarea></td>
+                    </tr>
+
+
+                    <tr>
+                        <th></th>
+                        <td><button type="submit" class="btn" id="add_user" name="add-user">Add</button></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</body>

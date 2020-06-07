@@ -63,12 +63,12 @@
               foreach ($questions as $quest)
                 echo "<tr>
                         <td> $quest[id] </td>
-                        <td> $quest[question] </td>
-                        <td> $quest[a] </td>
-                        <td> $quest[b] </td>
-                        <td> $quest[c] </td>
-                        <td> $quest[d] </td>
-                        <td> $quest[answer]</td>
+                        <td style='word-wrap: break-word; max-width: 150px;'> $quest[question] </td>
+                        <td style='word-wrap: break-word; max-width: 150px;'> $quest[a] </td>
+                        <td style='word-wrap: break-word; max-width: 150px;'> $quest[b] </td>
+                        <td style='word-wrap: break-word; max-width: 150px;'> $quest[c] </td>
+                        <td style='word-wrap: break-word; max-width: 150px;'> $quest[d] </td>
+                        <td style='word-wrap: break-word; max-width: 150px;'> $quest[answer]</td>
                         <td>
                           <button onclick=''>Delete</button>
                         </td>
@@ -89,6 +89,22 @@
                         <th><label for="question">Question: </label></th>
                         <td><textarea id="question_detail" name="question_detail" required></textarea></td>
                     </tr>
+
+
+                    <tr>
+                        <th><label for='topic'>Topic: </label></th>
+                        <td>
+                            <select name='topic' id='topic'>
+                                <?php
+                                foreach ($topic_name as $top_name)
+                                echo "                           
+                                    <option>$top_name[name]</option>
+                                "
+                                ?>
+                            </select>
+                        </td>
+                    </tr>
+
 
                     <tr>
                         <th><label for="answer_a">Answer A: </label></th>
