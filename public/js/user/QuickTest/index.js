@@ -1,10 +1,18 @@
-import {getHttpObject} from '../index.js'
+// import {getHttpObject} from '../index.js'
 
-function checkResult() {
-    httpObject = getHTTPObject(); 
-    if (httpObject != null) { 
-        httpObject.open("POST", "?user/QuickTest/checkResult", true); 
-        httpObject.send(null); 
-        httpObject.onreadystatechange=setOutput; 
-    }
+// function checkResult() {
+//     httpObject = getHTTPObject(); 
+//     if (httpObject != null) { 
+//         httpObject.open("POST", "?user/QuickTest/checkResult", true); 
+//         httpObject.send(null); 
+//         httpObject.onreadystatechange=setOutput; 
+//     }
+// }
+
+// function setOutput() {
+//     alert("Set output ahihi")
+// }
+
+function test() {
+    alert("AHihi")
 }
