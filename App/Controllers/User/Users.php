@@ -7,9 +7,6 @@ use App\Models\Topic;
 use App\Models\User;
 use \Core\View;
 
-use App\Models\User;
-use \Core\View;
-
 class Users extends \Core\Controller
 {
     protected function before()
