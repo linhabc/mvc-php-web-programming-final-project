@@ -86,4 +86,18 @@ class User extends \Core\Model
         }
     }
 
+    public static function updateUser($id, $email, $password, $role)
+    {
+
+        try {
+            $db = static::getDB();
+
+            $sql = "UPDATE user SET email = $email, password = $password, role = $role WHERE id = $id";
+            $stmt->execute($sql);
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
 }
