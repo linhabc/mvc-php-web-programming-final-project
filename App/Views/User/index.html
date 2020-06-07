@@ -5,9 +5,9 @@
   <meta charset="utf-8" />
   <title>Homepage</title>
   <link rel="stylesheet" href="css//style.css" />
-  <link rel="stylesheet" href="css/Admin/style.css" />
+  <link rel="stylesheet" href="css/User/style.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-  <script src="js/Admin/index.js"></script>
+  <script src="js/User/index.js"></script>
 </head>
 
 <body>
@@ -23,35 +23,38 @@
 
   <div class="side-bar">
     <center>
-      <h4>Admin page</h4>
+      <h4>User page</h4>
     </center>
-    <a class="navLink active" href="?Admin/index" onclick="return handleSideBarButton(event)"><i
+    <a class="navLink active" href="?User/index" onclick="return handleSideBarButton(event)"><i
         class="material-icons">dashboard</i><span>Dashboard</span></a>
-    <a class="navLink" href="?ManageUser/index" onclick="return handleSideBarButton(event)"><i
-        class="material-icons">account_box</i><span>Manage user</span></a>
-    <a class="navLink" href="?ManageQuestion/index" onclick="return handleSideBarButton(event)"><i
-        class="material-icons">chrome_reader_mode</i><span>Manage question</span></a>
-    <a class="navLink" href="?ManageTopic/index" onclick="return handleSideBarButton(event)"><i
-        class="material-icons">dns</i><span>Manage topic</span></a>
-    <a class="navLink" href="?ManageTest/index" onclick="return handleSideBarButton(event)"><i
-        class="material-icons">dvr</i><span>Manage test</span></a>
-    <a class="navLink" href="?ManageComment/index" onclick="return handleSideBarButton(event)"><i
-        class="material-icons">feedback</i><span>Manage comment</span></a>
+    <a class="navLink" href="?DoQuickTest/index" onclick="return handleSideBarButton(event)"><i
+        class="material-icons">account_box</i><span>Doing Quick Test</span></a>
+
+        <!-- Bổ sung đường dẫn vào Doing Group Test dưới đây -->
+    <a class="navLink" href="" onclick="return handleSideBarButton(event)"><i
+        class="material-icons">chrome_reader_mode</i><span>Doing Group Test</span></a>
+
+    <a class="navLink" href="?CreateGroupTest/index" onclick="return handleSideBarButton(event)"><i
+        class="material-icons">dns</i><span>Create Group Test</span></a>
+    <a class="navLink" href="?ManageGroupTest/index" onclick="return handleSideBarButton(event)"><i
+        class="material-icons">dvr</i><span>Manage Group Test</span></a>
+    <a class="navLink" href="?History/index" onclick="return handleSideBarButton(event)"><i
+        class="material-icons">dvr</i><span>History</span></a>
   </div>
 
   <div class="content" id="content">
     <div class="grid-container">
       <div class="grid-item" id="user">
-        <h2>User: {{ users|length }}</h2>
+        <!-- <h2>User: {{ users|length }}</h2> -->
       </div>
       <div class="grid-item" id="question">
-        <h2>Question: {{ questions }}</h2>
+        <!-- <h2>Question: {{ questions }}</h2> -->
       </div>
       <div class="grid-item" id="topic">
-        <h2>Topic: {{ topics }}</h2>
+        <!-- <h2>Topic: {{ topics }}</h2> -->
       </div>
       <div class="grid-item" id="test">
-        <h2>Test: {{ tests }}</h2>
+        <!-- <h2>Test: {{ tests }}</h2> -->
       </div>
     </div>
   </div>
