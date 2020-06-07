@@ -78,4 +78,19 @@ class Test extends \Core\Model
             echo $e->getMessage();
         }
     }
+
+    public static function getAll()
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT * FROM test");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 }
