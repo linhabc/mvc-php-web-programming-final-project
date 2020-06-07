@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\User;
+use \Core\View;
+
 class Users extends \Core\Controller
 {
 

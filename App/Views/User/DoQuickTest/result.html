@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="css/DoQuickTest/style.css" />
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <script src="js/DoQuickTest/index.js"></script>
+    <script src="js/user/QuickTest/index.js"></script>
+    <script src="js/user/index.js"></script>
 </head>
 
 <body>
@@ -42,33 +43,16 @@
     </div>
 
     <div class="content" id="content">
-        <h2 style="text-align: center;">Quick Test</h2>
+        <h2 style="text-align: center;">Result</h2>
 
-        <div style="padding-left: 20px;">
-            <form action="?user/QuickTest/result" method="POST">
-                <?php 
-                    # var_dump($questions);
-    
-                    foreach ($questions as $index =>$question) {
-                        echo "<br>";
-                        # var_dump($question);
-    
-                        $qNo = (int)$index + 1;
-                        echo "<br><div> Q" . $qNo . ":&nbsp;&nbsp;&nbsp;&nbsp;" . $question['question'] . "</div>";
-    
-                        echo "<input type='radio' id='a' name='" . $question["id"] . "' value='a'>&nbsp;" . $question["a"];
-                        echo "<br><input type='radio' id='b' name='" . $question["id"] . "' value='a'>&nbsp;" . $question["b"];
-                        echo "<br><input type='radio' id='c' name='" . $question["id"] . "' value='a'>&nbsp;" . $question["c"];
-                        echo "<br><input type='radio' id='d' name='" . $question["id"] . "' value='a'>&nbsp;" . $question["d"];
-                    }
-                ?>
+        <?php 
+        var_dump($_POST);
 
-                <br></br>
-                <input type="submit" value="Submit">
-            </form>
-
-        </div>
-
+        foreach($_POST as $questionId => $answer) {
+            echo "$questionId : $answer";
+            echo "<br>";
+        }
+        ?>
     </div>
 </body>
 

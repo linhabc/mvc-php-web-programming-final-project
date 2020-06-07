@@ -61,7 +61,7 @@
               echo "<tr>
                     <td> $user[id] </td>
                     <td> $user[email] </td>
-                    <td> $user[userName] </td>
+                    <td> $user[username] </td>
                     <td> $user[role] </td>
                     <td>
                       <button onclick='location.href = \"?ManageUser/delete&id={$id}\"'>Delete</button>
@@ -79,27 +79,29 @@
           Add Admin
         </h2>
 
-        <table style="text-align: left;" class="noborder">
-          <tr>
-            <th><label for="email">Email: </label></th>
-            <td><input type="email" id="email" name="email" required></td>
-          </tr>
+        <form action="?ManageUser/add" method="post">
+          <table style="text-align: left;" class="noborder">
+            <tr>
+              <th><label for="email">Email: </label></th>
+              <td><input type="email" id="email" name="email" required></td>
+            </tr>
 
-          <tr>
-            <th><label for="username">Username: </label></th>
-            <td><input type="text" id="username" name="username" required></td>
-          </tr>
+            <tr>
+              <th><label for="username">Username: </label></th>
+              <td><input type="text" id="username" name="username" required></td>
+            </tr>
 
-          <tr>
-            <th><label for="password">Password: </label></th>
-            <td><input type="password" data-minlength="6" name="password" id="password" required></td>
-          </tr>
+            <tr>
+              <th><label for="password">Password: </label></th>
+              <td><input type="password" data-minlength="6" name="password" id="password" required></td>
+            </tr>
 
-          <tr>
-            <th></th>
-            <td><button type="submit" class="btn" id="add_user" name="add-user">Add</button></td>
-          </tr>
-        </table>
+            <tr>
+              <th></th>
+              <td><button type="submit" class="btn" id="add_user" name="add-user">Add</button></td>
+            </tr>
+          </table>
+        </form>
 
       </div>
     </div>

@@ -36,4 +36,18 @@ class ManageUser extends \Core\Controller
             'users' => $users,
         ]);
     }
+
+    public function addAction(){
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        User::createUser($email, $username, $password);
+
+        $users = User::getAll();
+
+        View::render('Admin/ManageUser/index.html', [
+            'users' => $users,
+        ]);
+    }
 }

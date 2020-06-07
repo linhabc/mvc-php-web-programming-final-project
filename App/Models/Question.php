@@ -100,4 +100,24 @@ class Question extends \Core\Model
             echo $e->getMessage();
         }
     }
+
+    public static function getRandomQuestion($numberOfQuestions)
+    {
+        try {
+            $db = static::getDB();
+
+            $sql = "SELECT * FROM question
+                    ORDER BY RAND()
+                    LIMIT $numberOfQuestions;";
+
+            $stmt = $db->query($sql);
+
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 }
