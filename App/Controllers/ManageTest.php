@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\Test;
-use App\Models\Topic;
 use \Core\View;
 
 class ManageTest extends \Core\Controller
@@ -17,11 +16,9 @@ class ManageTest extends \Core\Controller
     public function indexAction()
     {
         $tests = Test::getAllTest();
-        $topics = Topic::getTopicName();
 
         View::render('Admin/ManageTest/index.html', [
             'tests' => $tests,
-            'topics' => $topics,
         ]);
     }
 }

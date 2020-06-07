@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Manage Topic</title>
+    <title>Manage Test</title>
     <link rel="stylesheet" href="css//style.css" />
     <link rel="stylesheet" href="css/ManageUser/style.css" />
 
@@ -60,10 +60,9 @@
                         foreach ($tests as $test)
                             echo "
                                 <td> $test[id] </td>
-                                foreach ($topics as $topic)
-                                    echo "<td>$topic[name]</td>"
-                                <td>$test[name]</td>
-                                <td> $test[description]</td>
+                                <td>$test[to_name]</td>
+                                <td>$test[te_name]</td>
+                                <td> $test[te_des]</td>
 
                                 <td>
                                     <button onclick=''>Delete</button>

@@ -26,7 +26,7 @@ class Test extends \Core\Model
         try {
             $db = static::getDB();
 
-            $stmt = $db->query("SELECT * FROM test");
+            $stmt = $db->query("SELECT test.id,topic.name as to_name, test.name as te_name,test.description as te_des FROM test INNER JOIN topic ON test.topic_id = topic.id");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;
@@ -89,21 +89,6 @@ class Test extends \Core\Model
 
             $sql = "DELETE FROM test WHERE id = $id";
             $stmt->execute($sql);
-
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
-
-    public static function getAll()
-    {
-        try {
-            $db = static::getDB();
-
-            $stmt = $db->query("SELECT * FROM test");
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            return $results;
 
         } catch (PDOException $e) {
             echo $e->getMessage();
