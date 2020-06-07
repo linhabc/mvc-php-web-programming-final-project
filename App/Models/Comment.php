@@ -7,26 +7,25 @@ use PDO;
 class Test extends \Core\Model
 {
     public $id;
-    public $topicId;
+    public $testId;
     public $userId;
-    public $name;
-    public $description;
+    public $content;
+    public $create_at;
 
-    public function __construct($id, $topicId, $userId, $name, $description)
-    {
+    public function __construct($id, $testId, $userId, $content, $create_at){
         $this->id = $id;
-        $this->topicId = $topicId;
+        $this->testId = $testId;
         $this->userId = $userId;
-        $this->name = $name;
-        $this->description = $description;
+        $this->content = $content;
+        $this->create_at = $create_at;
     }
 
-    public static function getAllTest()
+    public static function getComment($id)
     {
         try {
             $db = static::getDB();
 
-            $stmt = $db->query("SELECT * FROM test");
+            $stmt = $db->query("SELECT * FROM comment WHERE id = $id");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;
@@ -36,27 +35,12 @@ class Test extends \Core\Model
         }
     }
 
-    public static function getTest($id)
+    public static function createCommment($testId, $userId, $content, $create_at)
     {
         try {
             $db = static::getDB();
 
-            $stmt = $db->query("SELECT * FROM test WHERE id = $id");
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            return $results;
-
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
-
-    public static function createTest($topicId, $userId, $name, $description)
-    {
-        try {
-            $db = static::getDB();
-
-            $sql = "INSERT INTO test (topic_id, user_id, name, description) VALUES ($id, $topicId, $name, $description)";
+            $sql = "INSERT INTO comment (testId, userId, content, create_at) VALUES ($testId, $userId, $content, $create_at)";
 
             $stmt->execute($sql);
 
@@ -65,7 +49,7 @@ class Test extends \Core\Model
         }
     }
 
-    public static function updateTest($id, $topicId, $userId, $name, $description)
+    public static function updateComment($id, $testId, $userId, $content, $create_at)
     {
 
         try {
@@ -73,7 +57,7 @@ class Test extends \Core\Model
 
             // $stmt = $db->query('UPDATE topic SET name = $name, description = $description WHERE id = $id');
 
-            $sql = "UPDATE test SET topic_id = $topic_id, user_id = $user_id, name = $name, description = $description  WHERE id = $id";
+            $sql = "UPDATE comment SET testId = $testId, userId = $userId, content = $content, create_at = $create_at  WHERE id = $id";
             $stmt->execute($sql);
 
         } catch (PDOException $e) {
@@ -81,13 +65,13 @@ class Test extends \Core\Model
         }
     }
 
-    public static function deleteTest($id)
+    public static function deleteComment($id)
     {
 
         try {
             $db = static::getDB();
 
-            $sql = "DELETE FROM test WHERE id = $id";
+            $sql = "DELETE FROM comment WHERE id = $id";
             $stmt->execute($sql);
 
         } catch (PDOException $e) {
@@ -100,7 +84,7 @@ class Test extends \Core\Model
         try {
             $db = static::getDB();
 
-            $stmt = $db->query("SELECT * FROM test");
+            $stmt = $db->query("SELECT * FROM comment");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;

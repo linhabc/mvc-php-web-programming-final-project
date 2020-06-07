@@ -6,14 +6,16 @@ use PDO;
 
 class Result extends \Core\Model
 {
+    public $id;
     public $userId;
     public $testId;
     public $score;
     public $rating;
     public $create_at;
 
-    public function __construct($userId, $testId, $score, $rating, $create_at)
+    public function __construct($id, $userId, $testId, $score, $rating, $create_at)
     {
+        $this->id = $id;
         $this->userId = $userId;
         $this->testId = $testId;
         $this->score = $score;
@@ -21,12 +23,12 @@ class Result extends \Core\Model
         $this->create_at = $create_at;
     }
 
-    public static function getResult($userId, $testId)
+    public static function getResult($id)
     {
         try {
             $db = static::getDB();
 
-            $stmt = $db->query("SELECT userId, testId, score, rating, create_at FROM result WHERE userId = $userId AND testId = $testId");
+            $stmt = $db->query("SELECT * FROM result WHERE id = $id");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;
@@ -50,13 +52,13 @@ class Result extends \Core\Model
         }
     }
 
-    public static function deleteResult($userId, $testId)
+    public static function deleteResult($id)
     {
 
         try {
             $db = static::getDB();
 
-            $sql = "DELETE FROM result WHERE userId = $userId AND testId = $testId";
+            $sql = "DELETE FROM result WHERE id = $id";
             $stmt->execute($sql);
 
         } catch (PDOException $e) {
@@ -64,14 +66,29 @@ class Result extends \Core\Model
         }
     }
 
-    public static function updateResult($userId, $testId, $score, $rating, $create_at)
+    public static function updateResult($id, $userId, $testId, $score, $rating, $create_at)
     {
 
         try {
             $db = static::getDB();
 
-            $sql = "UPDATE result SET score = $score, rating = $rating,create_at = $create_at  WHERE userId = $userId AND testId = $testId";
+            $sql = "UPDATE result SET userId = $userId, testId = $testId, score = $score, rating = $rating,create_at = $create_at  WHERE id = $id";
             $stmt->execute($sql);
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function getAll()
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT * FROM result");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
 
         } catch (PDOException $e) {
             echo $e->getMessage();

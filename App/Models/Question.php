@@ -86,4 +86,18 @@ class Question extends \Core\Model
             echo $e->getMessage();
         }
     }
+
+    public static function updateQuestion($id, $topicId, $userId, $question, $answer, $a, $b, $c, $d)
+    {
+
+        try {
+            $db = static::getDB();
+
+            $sql = "UPDATE question SET topicId = $topicId, userId = $userId, question = $question, answer = $answer, a = $a, b = $b, c = $c, d = $d WHERE id = $id";
+            $stmt->execute($sql);
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 }
