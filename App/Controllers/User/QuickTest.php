@@ -28,4 +28,21 @@ class QuickTest extends \Core\Controller
             'questions' => $questions,
         ]);
     }
+
+    public function resultAction()
+    {
+        // $questions = Question::getRandomQuestion(10);
+
+        View::render('User/DoQuickTest/result.html', [
+            // 'questions' => $questions,
+        ]);
+    }
+
+    public function checkResultAction()
+    {
+        echo ("-----");
+        echo ($_POST);
+        echo ("-----");
+    }
+
 }
