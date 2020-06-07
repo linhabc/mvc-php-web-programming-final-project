@@ -12,7 +12,8 @@ class Test extends \Core\Model
     public $content;
     public $create_at;
 
-    public function __construct($id, $testId, $userId, $content, $create_at){
+    public function __construct($id, $testId, $userId, $content, $create_at)
+    {
         $this->id = $id;
         $this->testId = $testId;
         $this->userId = $userId;
@@ -42,7 +43,7 @@ class Test extends \Core\Model
 
             $sql = "INSERT INTO comment (testId, userId, content, create_at) VALUES ($testId, $userId, $content, $create_at)";
 
-            $stmt->execute($sql);
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -58,7 +59,7 @@ class Test extends \Core\Model
             // $stmt = $db->query('UPDATE topic SET name = $name, description = $description WHERE id = $id');
 
             $sql = "UPDATE comment SET testId = $testId, userId = $userId, content = $content, create_at = $create_at  WHERE id = $id";
-            $stmt->execute($sql);
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -72,7 +73,7 @@ class Test extends \Core\Model
             $db = static::getDB();
 
             $sql = "DELETE FROM comment WHERE id = $id";
-            $stmt->execute($sql);
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
