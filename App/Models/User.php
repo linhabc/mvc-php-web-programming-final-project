@@ -51,6 +51,22 @@ class User extends \Core\Model
         }
     }
 
+    public static function createAdmin($email, $username, $password)
+    {
+        try {
+            $db = static::getDB();
+            
+            $sql = "INSERT INTO user (id, email, username, password, role) VALUES (NULL, '$email', '$username', '$password', 'Admin')";
+            // $sql = "INSERT INTO user (id, email, username, password) VALUES (NULL, 'b@gmail.com', 'aloalo', '123')";
+
+
+            $db->exec($sql);
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public static function createUser($email, $username, $password)
     {
         try {

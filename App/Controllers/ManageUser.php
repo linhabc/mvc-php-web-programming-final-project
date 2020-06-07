@@ -42,7 +42,7 @@ class ManageUser extends \Core\Controller
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        User::createUser($email, $username, $password);
+        User::createAdmin($email, $username, $password);
 
         $users = User::getAll();
 
