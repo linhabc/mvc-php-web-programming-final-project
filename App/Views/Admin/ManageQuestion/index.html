@@ -60,7 +60,8 @@
 
                     <?php
     
-              foreach ($questions as $quest)
+              foreach ($questions as $quest) {
+              $id = $quest['id'];
                 echo "<tr>
                         <td> $quest[id] </td>
                         <td style='word-wrap: break-word; max-width: 150px;'> $quest[question] </td>
@@ -70,74 +71,78 @@
                         <td style='word-wrap: break-word; max-width: 150px;'> $quest[d] </td>
                         <td style='word-wrap: break-word; max-width: 150px;'> $quest[answer]</td>
                         <td>
-                          <button onclick=''>Delete</button>
+                          <button onclick='location.href = \"?ManageQuestion/delete&id={$id}\"'>Delete</button>
                         </td>
                       </tr>
-                    "
+                    ";
+                }
               ?>
 
                 </table>
             </div>
+
 
             <div class="add-question">
                 <h2 style="margin: 0px;">
                     Add Question
                 </h2>
 
-                <table style="text-align: left;" class="noborder">
-                    <tr>
-                        <th><label for="question">Question: </label></th>
-                        <td><textarea id="question_detail" name="question_detail" required></textarea></td>
-                    </tr>
+                <form action="?ManageQuestion/add" method="post">
+                    <table style="text-align: left;" class="noborder">
+                        <tr>
+                            <th><label for="question">Question: </label></th>
+                            <td><textarea id="question_detail" name="question_detail" required></textarea></td>
+                        </tr>
 
 
-                    <tr>
-                        <th><label for='topic'>Topic: </label></th>
-                        <td>
-                            <select name='topic' id='topic'>
-                                <?php
+                        <tr>
+                            <th><label for='topic'>Topic: </label></th>
+                            <td>
+                                <select name='topic' id='topic'>
+                                    <?php
                                 foreach ($topic_name as $top_name)
                                 echo "                           
-                                    <option>$top_name[name]</option>
+                                    <option value=$top_name[id]>$top_name[name]</option>
                                 "
                                 ?>
-                            </select>
-                        </td>
-                    </tr>
+                                </select>
+                            </td>
+                        </tr>
 
 
-                    <tr>
-                        <th><label for="answer_a">Answer A: </label></th>
-                        <td><textarea id="answer_a" name="answer_a" required></textarea></td>
-                    </tr>
+                        <tr>
+                            <th><label for="answer_a">Answer A: </label></th>
+                            <td><textarea id="answer_a" name="answer_a" required></textarea></td>
+                        </tr>
 
-                    <tr>
-                        <th><label for="answer_b">Answer B: </label></th>
-                        <td><textarea id="answer_b" name="answer_b" required></textarea></td>
-                    </tr>
+                        <tr>
+                            <th><label for="answer_b">Answer B: </label></th>
+                            <td><textarea id="answer_b" name="answer_b" required></textarea></td>
+                        </tr>
 
-                    <tr>
-                        <th><label for="answer_c">Answer C: </label></th>
-                        <td><textarea id="answer_c" name="answer_c" required></textarea></td>
-                    </tr>
+                        <tr>
+                            <th><label for="answer_c">Answer C: </label></th>
+                            <td><textarea id="answer_c" name="answer_c" required></textarea></td>
+                        </tr>
 
-                    <tr>
-                        <th><label for="answer_d">Answer D: </label></th>
-                        <td><textarea id="answer_d" name="answer_d" required></textarea></td>
-                    </tr>
+                        <tr>
+                            <th><label for="answer_d">Answer D: </label></th>
+                            <td><textarea id="answer_d" name="answer_d" required></textarea></td>
+                        </tr>
 
-                    <tr>
-                        <th><label for="correct_answer">Correct answer: </label></th>
-                        <td><textarea id="correct_answer" name="correct_answer" required></textarea></td>
-                    </tr>
+                        <tr>
+                            <th><label for="correct_answer">Correct answer: </label></th>
+                            <td><textarea id="correct_answer" name="correct_answer" required></textarea></td>
+                        </tr>
 
-                    <tr>
-                        <th></th>
-                        <td><button type="submit" class="btn" id="add_user" name="add-user">Add</button></td>
-                    </tr>
-                </table>
-
+                        <tr>
+                            <th></th>
+                            <td><button type="submit" class="btn" id="add_user" name="add-user">Add</button></td>
+                        </tr>
+                    </table>
+                </form>
             </div>
+
         </div>
     </div>
 </body>

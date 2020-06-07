@@ -59,7 +59,8 @@
 
                     <?php
                     
-                        foreach ($comments as $comment)
+                        foreach ($comments as $comment) {
+                        $id = $comment['id'];
                             echo "
                             <tr>
                                 <td> $comment[id] </td>
@@ -69,10 +70,11 @@
                                 <td>$comment[create_at]</td>
 
                                 <td>
-                                    <button onclick=''>Delete</button>
+                                    <button onclick='location.href = \"?ManageComment/delete&id={$id}\"'>Delete</button>
                                 </td>
                             </tr>
-                            "
+                            ";
+                        }
                         ?>
 
 

@@ -36,6 +36,20 @@ class Test extends \Core\Model
         }
     }
 
+    public static function deleteTest($id)
+    {
+
+        try {
+            $db = static::getDB();
+
+            $sql = "DELETE FROM test WHERE id = $id";
+            $db->exec($sql);
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public static function getTest($id)
     {
         try {
@@ -81,17 +95,4 @@ class Test extends \Core\Model
         }
     }
 
-    public static function deleteTest($id)
-    {
-
-        try {
-            $db = static::getDB();
-
-            $sql = "DELETE FROM test WHERE id = $id";
-            $db->exec($sql);
-
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
 }

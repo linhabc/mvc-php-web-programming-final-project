@@ -21,4 +21,18 @@ class ManageComment extends \Core\Controller
             'comments' => $comments,
         ]);
     }
+
+    public function deleteAction()
+    {
+
+        $id = $_GET['id'];
+
+        Comment::deleteComment($id);
+
+        $comments = Comment::getAll();
+
+        View::render('Admin/ManageComment/index.html', [
+            'comments' => $comments,
+        ]);
+    }
 }

@@ -64,22 +64,8 @@ class Question extends \Core\Model
         try {
             $db = static::getDB();
 
-            $sql = "INSERT INTO question (topicId, userId, question, answer, a, b, c, d) VALUES ($id, $topicId, $userId, $question, $answer, $a, $b, $c, $d)";
+            $sql = "INSERT INTO question (topicId, userId, question, answer, a, b, c, d) VALUES ('$topicId', '$userId', '$question', '$answer', '$a', '$b', '$c', '$d')";
 
-            $db->exec($sql);
-
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
-
-    public static function deleteQuestion($id)
-    {
-
-        try {
-            $db = static::getDB();
-
-            $sql = "DELETE FROM question WHERE id = $id";
             $db->exec($sql);
 
         } catch (PDOException $e) {
@@ -94,6 +80,20 @@ class Question extends \Core\Model
             $db = static::getDB();
 
             $sql = "UPDATE question SET topicId = $topicId, userId = $userId, question = $question, answer = $answer, a = $a, b = $b, c = $c, d = $d WHERE id = $id";
+            $db->exec($sql);
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function deleteQuestion($id)
+    {
+
+        try {
+            $db = static::getDB();
+
+            $sql = "DELETE FROM question WHERE id = $id";
             $db->exec($sql);
 
         } catch (PDOException $e) {
