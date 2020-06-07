@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-use App\Models\User;
+use App\Models\Topic;
 use \Core\View;
 
-class ManageUser extends \Core\Controller
+class ManageTopic extends \Core\Controller
 {
     protected function before()
     {
@@ -15,10 +15,10 @@ class ManageUser extends \Core\Controller
 
     public function indexAction()
     {
-        $users = User::getAll();
+        $topics = Topic::getAllTopic();
 
-        View::render('Admin/ManageUser/index.html', [
-            'users' => $users,
+        View::render('Admin/ManageTopic/index.html', [
+            'topics' => $topics,
         ]);
     }
 }

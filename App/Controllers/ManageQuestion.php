@@ -4,10 +4,9 @@ namespace App\Controllers;
 
 use App\Models\Question;
 use App\Models\Topic;
-use App\Models\User;
 use \Core\View;
 
-class Admin extends \Core\Controller
+class ManageQuestion extends \Core\Controller
 {
     protected function before()
     {
@@ -17,14 +16,12 @@ class Admin extends \Core\Controller
 
     public function indexAction()
     {
-        $users = User::getAll();
         $questions = Question::getAllQuestion();
-        $topics = Topic::getAllTopic();
+        $topic_name = Topic::getTopicName();
 
-        View::render('Admin/index.html', [
-            'users' => $users,
+        View::render('Admin/ManageQuestion/index.html', [
             'questions' => $questions,
-            'topics' => $topics,
+            'topic_name' => $topic_name,
         ]);
     }
 }

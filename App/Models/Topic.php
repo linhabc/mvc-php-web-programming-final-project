@@ -17,6 +17,36 @@ class Topic extends \Core\Model
         $this->description = $description;
     }
 
+    public static function getAllTopic()
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT id, name, description FROM topic");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function getTopicName()
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT id,name FROM topic");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public static function getTopic($id)
     {
         try {
@@ -46,7 +76,7 @@ class Topic extends \Core\Model
             // $p2 = $description;
 
             $sql = "INSERT INTO topic (name,description) VALUES ($name, $description)";
-            $stmt->execute($sql);
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -62,7 +92,7 @@ class Topic extends \Core\Model
             // $stmt = $db->query('UPDATE topic SET name = $name, description = $description WHERE id = $id');
 
             $sql = "UPDATE topic SET name = $name, description = $description WHERE id = $id";
-            $stmt->execute($sql);
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -82,7 +112,7 @@ class Topic extends \Core\Model
             // return $results;
 
             $sql = "DELETE FROM topic WHERE id = $id";
-            $stmt->execute($sql);
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();

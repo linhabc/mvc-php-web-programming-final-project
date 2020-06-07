@@ -29,6 +29,21 @@ class Question extends \Core\Model
         $this->d = $d;
     }
 
+    public static function getAllQuestion()
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT * FROM question");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public static function getQuestion($id)
     {
         try {
@@ -51,7 +66,7 @@ class Question extends \Core\Model
 
             $sql = "INSERT INTO question (topicId, userId, question, answer, a, b, c, d) VALUES ($id, $topicId, $userId, $question, $answer, $a, $b, $c, $d)";
 
-            $stmt->execute($sql);
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -65,7 +80,21 @@ class Question extends \Core\Model
             $db = static::getDB();
 
             $sql = "DELETE FROM question WHERE id = $id";
-            $stmt->execute($sql);
+            $db->exec($sql);
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function updateQuestion($id, $topicId, $userId, $question, $answer, $a, $b, $c, $d)
+    {
+
+        try {
+            $db = static::getDB();
+
+            $sql = "UPDATE question SET topicId = $topicId, userId = $userId, question = $question, answer = $answer, a = $a, b = $b, c = $c, d = $d WHERE id = $id";
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();

@@ -12,12 +12,28 @@ class Test extends \Core\Model
     public $name;
     public $description;
 
-    public function __construct($id, $topicId, $userId, $name, $description){
+    public function __construct($id, $topicId, $userId, $name, $description)
+    {
         $this->id = $id;
         $this->topicId = $topicId;
         $this->userId = $userId;
         $this->name = $name;
         $this->description = $description;
+    }
+
+    public static function getAllTest()
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT test.id,topic.name as to_name, test.name as te_name,test.description as te_des FROM test INNER JOIN topic ON test.topic_id = topic.id");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
     }
 
     public static function getTest($id)
@@ -42,7 +58,7 @@ class Test extends \Core\Model
 
             $sql = "INSERT INTO test (topic_id, user_id, name, description) VALUES ($id, $topicId, $name, $description)";
 
-            $stmt->execute($sql);
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -58,7 +74,7 @@ class Test extends \Core\Model
             // $stmt = $db->query('UPDATE topic SET name = $name, description = $description WHERE id = $id');
 
             $sql = "UPDATE test SET topic_id = $topic_id, user_id = $user_id, name = $name, description = $description  WHERE id = $id";
-            $stmt->execute($sql);
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -72,7 +88,7 @@ class Test extends \Core\Model
             $db = static::getDB();
 
             $sql = "DELETE FROM test WHERE id = $id";
-            $stmt->execute($sql);
+            $db->exec($sql);
 
         } catch (PDOException $e) {
             echo $e->getMessage();

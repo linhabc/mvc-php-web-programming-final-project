@@ -12,10 +12,6 @@
   color: white;
 }
 
-.grid-item:hover {
-  opacity: 0.5;
-}
-
 #user {
   background-color: #d42b4c;
 }
