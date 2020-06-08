@@ -17,8 +17,6 @@ class ManageComment extends \Core\Controller
     {
         $comments = Comment::getAll();
 
-        print_r($comments);
-
         View::render('Admin/ManageComment/index.html', [
             'comments' => $comments,
         ]);
