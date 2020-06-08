@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quick Test</title>
+
+    <link rel="stylesheet" href="css//style.css" />
+    <link rel="stylesheet" href="css/DoQuickTest/style.css" />
+</head>
+
+<body class="body-test overflow scroll bar">
+    <div class="header-test">
+        <nav>
+            <div>
+                <span class="title">Quick Test</span>
+            </div>
+
+            <div class="header-test-timer">
+                <span id="timer">10 : 59</span>
+            </div>
+        </nav>
+
+        <div id="status" class="status"></div>
+    </div>
+
+    <div id="result"></div>
+
+    <div class="test-content">
+        <div class="testing-left">
+            <?php
+            #var_dump($questions);
+
+            for ($i = 0; $i < count($questions); $i++) {
+                if (isset($questions[$i]->student_answer)) {
+                    echo '<a href="#question-' . ($i + 1) . '" class="menu-link">Question ' . ($i + 1) . ' <span class="tick" id="tick-' . ($i + 1) . '">✓</span></a>';
+                } else {
+                    echo '<a href="#question-' . ($i + 1) . '" class="menu-link">Question ' . ($i + 1) . ' <span class="tick" id="tick-' . ($i + 1) . '"></span></a>';
+                }
+            }
+            ?>
+        </div>
+
+        <div class="testing-right" id="testing-right">
+            <?php
+            # var_dump($questions);
+    
+            foreach ($questions as $index =>$question) {
+                echo "<br>";
+    
+                $qNo = (int)$index + 1;
+                echo "<br><div> Q" . $qNo . ":&nbsp;&nbsp;&nbsp;&nbsp;" . $question->question . "</div>";
+    
+                echo "<label><input type='radio' id='a' name='" . $question->id . "' value='a'>&nbsp;" . $question->a . "</label>";
+                echo "<br><label><input type='radio' id='b' name='" . $question->id . "' value='b'>&nbsp;" . $question->b . "</label>";
+                echo "<br><label><input type='radio' id='c' name='" . $question->id . "' value='c'>&nbsp;" . $question->c . "</label>";
+                echo "<br><label><input type='radio' id='d' name='" . $question->id . "' value='d'>&nbsp;" . $question->d . "</label>";
+            }
+    
+            ?>
+        </div>
+
+        <!-- <a id="btnSubmit" href="index.php?action=accept_test" class="btnSubmit"
+            onclick="return confirm('Xác nhận nộp bài?')"
+            style="width: 300px;margin-left: 40%;margin-bottom: 20px;">Nộp</a> -->
+        <a id="btnSubmit" class="btnSubmit" style="width: 300px;margin-left: 40%;margin-bottom: 20px;">Nộp</a>
+    </div>
+
+    <div id="dom-target" style="display: none;">
+        <?php
+            $output = "42"; // Again, do some operation, get the output.
+            echo htmlspecialchars($output); /* You have to escape because the result
+                                               will not be valid HTML otherwise. */
+        ?>
+    </div>
+
+    <script>
+        let myAnswers = new Map();
+
+        var container, inputs, index;
+
+        container = document.getElementById('testing-right');
+
+        inputs = container.getElementsByTagName('input');
+        for (index = 0; index < inputs.length; ++index) {
+            // var radioBtn = inputs[index]
+            // console.log(inputs[index].value)
+            // console.log(radioBtn.value)
+            myAnswers.set(inputs[index].name, null)
+
+            inputs[index].addEventListener('click', function () {
+                // console.log(this)
+                console.log(this.name + " - " + this.value)
+
+                myAnswers.set(this.name, this.value)
+
+                console.log(myAnswers)
+            })
+
+        }
+
+        console.log(myAnswers);
+
+        console.log('questions: -----------------');
+        var div = document.getElementById("dom-target");
+        var myData = div.textContent;
+        console.log("_" + myData + "_");
+        console.log('questions: -----------------');
+
+        function UserAction() {
+            console.log(myAnswers);
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    alert("Correct answer(s): " + this.responseText);
+                }
+            };
+            xhttp.open("POST", "?user/QuickTest/checkResult&id=123", true);
+            xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.send(JSON.stringify({ 'answer': [...myAnswers] }));
+        }
+
+        document.getElementById("btnSubmit").addEventListener('click', UserAction);
+    </script>
+</body>

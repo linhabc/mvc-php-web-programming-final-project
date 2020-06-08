@@ -1,0 +1,97 @@
+.body-test {
+    overflow: hidden;
+    font-family: 'roboto-light' !important;
+    color: #676a6c;
+    background: #f3f3f4;
+    background: white;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+
+.header-test {
+    overflow: hidden;
+    background-color: #0080FF;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+}
+
+.header-test-title {
+    float: left !important;
+    padding-left: 20px;
+}
+
+.header-test-timer {
+    float: right !important;
+    padding-left: 10px;
+}
+
+
+.test-content {
+    position: relative;
+    margin-top: 50px;
+    margin-bottom: 5px !important;
+    height: auto;
+    min-height: 505px;
+    background: white;
+}
+
+.testing-left {
+    width: 120px;
+    overflow-y: auto;
+    display: inline-block;
+    position: fixed;
+    transition: 0.5s;
+    height: calc(100% - 65px);
+    background: white;
+    border: 2px solid #02796e;
+    box-sizing: inherit;
+}
+
+.testing-left .menu-link {
+    display: block;
+    color: #039be5;
+    padding-left: 15px;
+    padding-bottom: 3px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'roboto-light' !important;
+    text-decoration: none;
+}
+
+.testing-left .menu-link .tick {
+    float: right;
+    color: green;
+    margin-right: 15px;
+}
+
+.testing-right {
+    display: inline-block;
+    float: right;
+    overflow-y: auto;
+    width: calc(100% - 125px);
+    padding-top: 5px;
+}
+
+nav .nav-wrapper{position:relative;height:100%}
+
+.btnSubmit {
+    background-color: #29b4a7;
+    text-decoration-color: white;
+    text-decoration: none;
+    border-radius: 2px;
+    height: 36px;
+    line-height: 36px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 300px;
+    padding: 20px;
+    margin-left: 40%;
+    margin-bottom: 20px;
+}
+
+
+.btnSubmit:hover {
+    background-color: #2bbbad;
+}

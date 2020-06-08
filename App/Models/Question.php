@@ -15,19 +15,21 @@ class Question extends \Core\Model
     public $b;
     public $c;
     public $d;
+    public $student_anwser;
 
-    public function __construct($id, $topicId, $userId, $question, $answer, $a, $b, $c, $d)
-    {
-        $this->id = $id;
-        $this->topicId = $topicId;
-        $this->userId = $userId;
-        $this->question = $question;
-        $this->answer = $answer;
-        $this->a = $a;
-        $this->b = $b;
-        $this->c = $c;
-        $this->d = $d;
-    }
+    // public function __construct($id, $topicId, $userId, $question, $answer, $a, $b, $c, $d)
+    // {
+    //     $this->id = $id;
+    //     $this->topicId = $topicId;
+    //     $this->userId = $userId;
+    //     $this->question = $question;
+    //     $this->answer = $answer;
+    //     $this->a = $a;
+    //     $this->b = $b;
+    //     $this->c = $c;
+    //     $this->d = $d;
+    //     $this->$student_anwser = "";
+    // }
 
     public static function getAllQuestion()
     {
@@ -112,7 +114,50 @@ class Question extends \Core\Model
 
             $stmt = $db->query($sql);
 
+            // $results = $stmt->fetchAll(PDO::FETCH_CLASS, "App\Models\Question");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function getRandomQuestion2($numberOfQuestions)
+    {
+        try {
+            $db = static::getDB();
+
+            $sql = "SELECT * FROM question
+                    ORDER BY RAND()
+                    LIMIT $numberOfQuestions;";
+
+            $stmt = $db->query($sql);
+
+            $results = $stmt->fetchAll(PDO::FETCH_CLASS, "App\Models\Question");
+            // $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function getQuestionsByIds($ids)
+    {
+        try {
+            $db = static::getDB();
+
+            $questionmarks = str_repeat("?,", count($ids) - 1) . "?";
+            $sql = "SELECT * FROM question
+                    WHERE id IN ($questionmarks);";
+
+            $stmt = $db->prepare($sql);
+            $stmt->execute($ids);
+            $results = $stmt->fetchAll(PDO::FETCH_CLASS, "App\Models\Question");
+            // $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;
 
