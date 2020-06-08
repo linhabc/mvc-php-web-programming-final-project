@@ -64,7 +64,7 @@
                     <td> $user[username] </td>
                     <td> $user[role] </td>
                     <td>
-                      <button onclick='location.href = \"?ManageUser/delete&id={$id}\"'>Delete</button>
+                      <button onclick='confirmDelete($id)'>Delete</button>
                     </td>
                   </tr>
                 ";
@@ -106,6 +106,15 @@
       </div>
     </div>
   </div>
+
+  <script>
+    function confirmDelete(id) {
+      var r = confirm("Are you sure want to delete?");
+      if (r == true) {
+        location.href = `?ManageUser/delete&id=${id}`;
+      } 
+    }
+    </script>
 </body>
 
 </html>
