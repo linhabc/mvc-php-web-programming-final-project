@@ -71,7 +71,7 @@
                         <td style='word-wrap: break-word; max-width: 150px;'> $quest[d] </td>
                         <td style='word-wrap: break-word; max-width: 150px;'> $quest[answer]</td>
                         <td>
-                          <button onclick='location.href = \"?ManageQuestion/delete&id={$id}\"'>Delete</button>
+                          <button onclick='confirmDelete($id)'>Delete</button>
                         </td>
                       </tr>
                     ";
@@ -142,7 +142,17 @@
                     </table>
                 </form>
             </div>
-
         </div>
     </div>
+
+    <script>
+        function confirmDelete(id) {
+            var r = confirm("Are you sure you want to delete?");
+            if (r == true) {
+                location.href = `?ManageQuestion/delete&id=${id}`;
+            }
+        }
+    </script>
 </body>
+
+</html>
