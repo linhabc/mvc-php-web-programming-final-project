@@ -35,6 +35,20 @@ class User extends \Core\Model
         }
     }
 
+    public static function login($email, $password)
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT id, email, username, password, role FROM user WHERE email = '$email' and password = '$password'");
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $result;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 
     public static function getUser($id)
     {
@@ -73,9 +87,6 @@ class User extends \Core\Model
             $db = static::getDB();
             
             $sql = "INSERT INTO user (id, email, username, password) VALUES (NULL, '$email', '$username', '$password')";
-            // $sql = "INSERT INTO user (id, email, username, password) VALUES (NULL, 'b@gmail.com', 'aloalo', '123')";
-
-
             $db->exec($sql);
 
         } catch (PDOException $e) {

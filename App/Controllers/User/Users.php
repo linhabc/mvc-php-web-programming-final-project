@@ -15,7 +15,7 @@ class Users extends \Core\Controller
         // return false;
     }
 
-    public function indexAction()
+    public static function indexAction()
     {
         $users = User::getAll();
         $questions = Question::getAllQuestion();
