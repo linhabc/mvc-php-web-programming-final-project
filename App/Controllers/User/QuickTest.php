@@ -93,6 +93,8 @@ class QuickTest extends \Core\Controller
             // } else {
             //     $nInCorrectAnswers--;
             // }
+            $questions[$index]->student_anwser = ((array) $answer)['1'];
+
             if (!isset(((array) $answer)['1'])) {
                 $nIsNotSet++;
                 $nInCorrectAnswers--;
@@ -105,12 +107,17 @@ class QuickTest extends \Core\Controller
 
         // echo json_encode($data);
 
-        // echo json_encode($data["answer"] . size());
+        echo json_encode(array(
+            "total_questions" => count($answers),
+            "correct_answers" => $nCorrectAnswers,
+            "finished_at" => time(),
+            "answers" => $questions,
+        ));
 
-        View::render('User/DoQuickTest/result.html', [
-            // 'data' => ((array) $data->answer),
-            'data' => ($answers),
-        ]);
+        // View::render('User/DoQuickTest/result.html', [
+        //     // 'data' => ((array) $data->answer),
+        //     'data' => ($answers),
+        // ]);
         // echo $nCorrectAnswers;
     }
 

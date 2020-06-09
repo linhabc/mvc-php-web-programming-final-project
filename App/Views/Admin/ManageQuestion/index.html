@@ -98,7 +98,8 @@
                             <td style='word-wrap: break-word; max-width: 150px;'> $quest[d] </td>
                             <td style='word-wrap: break-word; max-width: 150px;'> $quest[answer]</td>
                             <td>
-                            <button onclick='confirmDelete($id)'>Delete</button>
+                                <button type=\"submit\">Edit</button>
+                                <button onclick='confirmDelete($id)'>Delete</button>
                             </td>
                         </tr>
                         ";
@@ -177,6 +178,12 @@
             if (r == true) {
                 location.href = `?ManageQuestion/delete&id=${id}`;
             }
+        }
+    </script>
+
+    <script>
+        function alertSuccess() {
+            alert('Edit success!');
         }
     </script>
 </body>
