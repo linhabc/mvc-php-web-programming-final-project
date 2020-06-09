@@ -7,42 +7,45 @@
     <title>Quick Test</title>
 
     <link rel="stylesheet" href="css//style.css" />
-    <link rel="stylesheet" href="css/DoQuickTest/style.css" />
+    <link rel="stylesheet" href="css/User/DoQuickTest/style.css" />
 </head>
 
-<body class="body-test overflow scroll bar">
-    <div class="header-test">
-        <nav>
+<body>
+    <div id="header">
+        <div>
             <div>
                 <span class="title">Quick Test</span>
             </div>
 
-            <div class="header-test-timer">
+            <div class="">
                 <span id="timer">10 : 59</span>
             </div>
-        </nav>
 
-        <div id="status" class="status"></div>
+        </div>
     </div>
 
-    <div id="result"></div>
-
-    <div class="test-content">
-        <div class="testing-left">
+    <div id="leftcol">
+      <div id="question-shorcut">
+        <div>
             <?php
             #var_dump($questions);
 
             for ($i = 0; $i < count($questions); $i++) {
                 if (isset($questions[$i]->student_answer)) {
-                    echo '<a href="#question-' . ($i + 1) . '" class="menu-link">Question ' . ($i + 1) . ' <span class="tick" id="tick-' . ($i + 1) . '">✓</span></a>';
+                    echo '<a href="#question-' . ($i + 1) . '" class="question-link">Question ' . ($i + 1) . '&nbsp; <span class="tick" id="tick-' . ($i + 1) . '">✓</span></a><br>';
                 } else {
-                    echo '<a href="#question-' . ($i + 1) . '" class="menu-link">Question ' . ($i + 1) . ' <span class="tick" id="tick-' . ($i + 1) . '"></span></a>';
+                    echo '<a href="#question-' . ($i + 1) . '" class="question-link">Question ' . ($i + 1) . '&nbsp; <span class="tick" id="tick-' . ($i + 1) . '"></span></a><br>';
                 }
             }
             ?>
         </div>
+      </div>
+    </div>
 
-        <div class="testing-right" id="testing-right">
+    <div id="rightcol">
+        <div id="questions-area">
+            <div id="result"></div>
+
             <?php
             # var_dump($questions);
     
@@ -50,32 +53,33 @@
                 echo "<br>";
     
                 $qNo = (int)$index + 1;
-                echo "<br><div> Q" . $qNo . ":&nbsp;&nbsp;&nbsp;&nbsp;" . $question->question . "</div>";
+                echo "<br><div id=question-" . $qNo ."> Q" . $qNo . ":&nbsp;&nbsp;&nbsp;&nbsp;" . $question->question . "</div>";
     
-                echo "<label><input type='radio' id='a' name='" . $question->id . "' value='a'>&nbsp;" . $question->a . "</label>";
-                echo "<br><label><input type='radio' id='b' name='" . $question->id . "' value='b'>&nbsp;" . $question->b . "</label>";
-                echo "<br><label><input type='radio' id='c' name='" . $question->id . "' value='c'>&nbsp;" . $question->c . "</label>";
-                echo "<br><label><input type='radio' id='d' name='" . $question->id . "' value='d'>&nbsp;" . $question->d . "</label>";
+                echo "<label class = 'answer' id='" . $question->id ."-a'><input type='radio' class = 'radio-btn' id='" . $qNo ."' name='" . $question->id . "' value='a'>&nbsp;" . $question->a . "</label>";
+                echo "<br><label class = 'answer' id='" . $question->id ."-b'><input type='radio' class = 'radio-btn' id='" . $qNo ."' name='" . $question->id . "' value='b'>&nbsp;" . $question->b . "</label>";
+                echo "<br><label class = 'answer' id='" . $question->id ."-c'><input type='radio' class = 'radio-btn' id='" . $qNo ."' name='" . $question->id . "' value='c'>&nbsp;" . $question->c . "</label>";
+                echo "<br><label class = 'answer' id='" . $question->id ."-d'><input type='radio' class = 'radio-btn' id='" . $qNo ."' name='" . $question->id . "' value='d'>&nbsp;" . $question->d . "</label>";
             }
     
             ?>
         </div>
 
-        <!-- <a id="btnSubmit" href="index.php?action=accept_test" class="btnSubmit"
-            onclick="return confirm('Xác nhận nộp bài?')"
-            style="width: 300px;margin-left: 40%;margin-bottom: 20px;">Nộp</a> -->
-        <a id="btnSubmit" class="btnSubmit" style="width: 300px;margin-left: 40%;margin-bottom: 20px;">Nộp</a>
-    </div>
+        <div>
+            <a id="btnSubmit" class="btnSubmit">Submit</a>
+        </div>
+        
+    
+    </div> 
 
-    <div id="dom-target" style="display: none;">
+    <!-- <div id="dom-target" style="display: none;">
         <?php
             $output = "42"; // Again, do some operation, get the output.
             echo htmlspecialchars($output); /* You have to escape because the result
                                                will not be valid HTML otherwise. */
         ?>
-    </div>
+    </div> -->
 
-    <script>
+    <!-- <script>
         let myAnswers = new Map();
 
         var container, inputs, index;
@@ -102,11 +106,11 @@
 
         console.log(myAnswers);
 
-        console.log('questions: -----------------');
-        var div = document.getElementById("dom-target");
-        var myData = div.textContent;
-        console.log("_" + myData + "_");
-        console.log('questions: -----------------');
+        // console.log('questions: -----------------');
+        // var div = document.getElementById("dom-target");
+        // var myData = div.textContent;
+        // console.log("_" + myData + "_");
+        // console.log('questions: -----------------');
 
         function UserAction() {
             console.log(myAnswers);
@@ -125,7 +129,7 @@
         }
 
         document.getElementById("btnSubmit").addEventListener('click', UserAction);
-
+        
         function showResult(resultResponse) {
             const result = JSON.parse(resultResponse)
             const total_questions = result['total_questions'];
@@ -135,7 +139,11 @@
             alert(total_questions + "-" + correct_answers + "-" + answers.length);
 
             document.getElementById('result').innerHTML =
-                "<span> Scores: </span><span> Correct: </span ><span>Finished at: </span>";
+                "<span> Scores: </span><span> Correct:"+ correct_answers+" </span ><span>Finished at: </span>";
         }
-    </script>
+    </script> -->
 </body>
+
+<script src="js/user/QuickTest/index.js"></script>
+
+</html>

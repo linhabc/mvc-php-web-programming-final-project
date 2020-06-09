@@ -110,6 +110,7 @@ class QuickTest extends \Core\Controller
         echo json_encode(array(
             "total_questions" => count($answers),
             "correct_answers" => $nCorrectAnswers,
+            "finished_at" => time(),
             "answers" => $questions,
         ));
 
