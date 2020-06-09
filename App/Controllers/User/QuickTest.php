@@ -71,6 +71,9 @@ class QuickTest extends \Core\Controller
         $data = json_decode($request_body);
 
         $answers = (array) $data->answer;
+
+        usort($answers, array($this, 'cmp'));
+
         $ids = array();
 
         foreach ($answers as $answer) {
@@ -104,11 +107,21 @@ class QuickTest extends \Core\Controller
 
         // echo json_encode($data["answer"] . size());
 
-        // View::render('User/DoQuickTest/result.html', [
-        //     // 'data' => ((array) $data->answer),
-        //     'data' => ($nCorrectAnswers),
-        // ]);
-        echo $nCorrectAnswers;
+        View::render('User/DoQuickTest/result.html', [
+            // 'data' => ((array) $data->answer),
+            'data' => ($answers),
+        ]);
+        // echo $nCorrectAnswers;
+    }
+
+    public function cmp($answer_1, $answer_2)
+    {
+        $id1 = (int) ((array) $answer_1)['0'];
+        $id2 = (int) ((array) $answer_2)['0'];
+        if ($id1 == $id2) {
+            return 0;
+        }
+        return ($id1 < $id2) ? -1 : 1;
     }
 
 }
