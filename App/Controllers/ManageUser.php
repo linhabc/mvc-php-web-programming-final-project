@@ -22,13 +22,43 @@ class ManageUser extends \Core\Controller
         ]);
     }
 
-    public function deleteAction(){
+    public function deleteAction()
+    {
         // print_r($_GET);
 
         $id = $_GET['id'];
 
-
         User::deleteUser($id);
+
+        $users = User::getAll();
+
+        View::render('Admin/ManageUser/index.html', [
+            'users' => $users,
+        ]);
+    }
+
+    public function addAction()
+    {
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        User::createAdmin($email, $username, $password);
+
+        $users = User::getAll();
+
+        View::render('Admin/ManageUser/index.html', [
+            'users' => $users,
+        ]);
+    }
+
+    public function editAction()
+    {
+        $id = $_GET['id'];
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+
+        User::editAdmin($id, $email, $username);
 
         $users = User::getAll();
 

@@ -21,4 +21,18 @@ class ManageTest extends \Core\Controller
             'tests' => $tests,
         ]);
     }
+
+    public function deleteAction()
+    {
+
+        $id = $_GET['id'];
+
+        Test::deleteTest($id);
+
+        $tests = Test::getAllTest();
+
+        View::render('Admin/ManageTest/index.html', [
+            'tests' => $tests,
+        ]);
+    }
 }

@@ -54,51 +54,39 @@
                         <th>Description</th>
                         <th>Action</th>
                     </tr>
-                    <tr>
-                        <?php
+
+                    <?php
                     
-                        foreach ($tests as $test)
+                        foreach ($tests as $test) {
+                        $id = $test['id'];
                             echo "
+                            <tr>
                                 <td> $test[id] </td>
                                 <td>$test[to_name]</td>
                                 <td>$test[te_name]</td>
                                 <td> $test[te_des]</td>
 
                                 <td>
-                                    <button onclick=''>Delete</button>
+                                    <button onclick='confirmDelete($id)'>Delete</button>
                                 </td>
-                          
-                            "
-                        ?>
-                    </tr>
+                            </tr>
+                            ";
+                        }
+                    ?>
 
                 </table>
-            </div>
-
-            <div class="add-topic">
-                <h2 style="margin: 0px;">
-                    Add Topics
-                </h2>
-
-                <table style="text-align: left;" class="noborder">
-                    <tr>
-                        <th><label for="topic">Topic: </label></th>
-                        <td><input type="text" id="topic_detail" name="topic_detail" required></td>
-                    </tr>
-
-                    <tr>
-                        <th><label for="description">Description: </label></th>
-                        <td><textarea id="des" name="des" required></textarea></td>
-                    </tr>
-
-
-                    <tr>
-                        <th></th>
-                        <td><button type="submit" class="btn" id="add_user" name="add-user">Add</button></td>
-                    </tr>
-                </table>
-
             </div>
         </div>
     </div>
+
+    <script>
+        function confirmDelete(id) {
+            var r = confirm("Are you sure you want to delete?");
+            if (r == true) {
+                location.href = `?ManageTest/delete&id=${id}`;
+            }
+        }
+    </script>
 </body>
+
+</html>

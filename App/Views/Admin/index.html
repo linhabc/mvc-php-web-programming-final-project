@@ -53,9 +53,10 @@
           <?php $length = count($questions); echo "$length"; ?>
         </h2>
       </div>
-      <div class=" grid-item" id="test">
+      <div class=" grid-item" id="test" onclick="location.href = '?ManageTest/index'">
         <h2>
           Test:
+          <?php $length = count($tests); echo "$length"; ?>
         </h2>
       </div>
       <div class="grid-item" id="topic" onclick="location.href = '?ManageTopic/index'">

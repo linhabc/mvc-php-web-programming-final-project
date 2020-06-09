@@ -21,4 +21,31 @@ class ManageTopic extends \Core\Controller
             'topics' => $topics,
         ]);
     }
+
+    public function deleteAction()
+    {
+
+        $id = $_GET['id'];
+
+        Topic::deleteTopic($id);
+
+        $topics = Topic::getAllTopic();
+
+        View::render('Admin/ManageTopic/index.html', [
+            'topics' => $topics,
+        ]);
+    }
+
+    public function addAction(){
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+
+        Topic::createTopic($name, $description);
+
+        $topics = Topic::getAllTopic();
+
+        View::render('Admin/ManageTopic/index.html', [
+            'topics' => $topics,
+        ]);
+    }
 }

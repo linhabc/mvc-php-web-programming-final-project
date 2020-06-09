@@ -37,7 +37,7 @@ class Topic extends \Core\Model
         try {
             $db = static::getDB();
 
-            $stmt = $db->query("SELECT id,name FROM topic");
+            $stmt = $db->query("SELECT id, name FROM topic");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;
@@ -67,15 +67,7 @@ class Topic extends \Core\Model
         try {
             $db = static::getDB();
 
-            // $stmt = $db->prepare("INSERT INTO topic (name,description) VALUES (:name,:description)");
-
-            // $stmt->bindParam(':name', $p1);
-            // $stmt->bindParam(':description', $p2);
-
-            // $p1 = $name;
-            // $p2 = $description;
-
-            $sql = "INSERT INTO topic (name,description) VALUES ($name, $description)";
+            $sql = "INSERT INTO topic (name, description) VALUES ('$name', '$description')";
             $db->exec($sql);
 
         } catch (PDOException $e) {
@@ -89,8 +81,6 @@ class Topic extends \Core\Model
         try {
             $db = static::getDB();
 
-            // $stmt = $db->query('UPDATE topic SET name = $name, description = $description WHERE id = $id');
-
             $sql = "UPDATE topic SET name = $name, description = $description WHERE id = $id";
             $db->exec($sql);
 
@@ -103,13 +93,7 @@ class Topic extends \Core\Model
     {
 
         try {
-            //$db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
             $db = static::getDB();
-
-            // $stmt = $db->query('DELETE FROM topic WHERE id = $id');
-            // $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            // return $results;
 
             $sql = "DELETE FROM topic WHERE id = $id";
             $db->exec($sql);
