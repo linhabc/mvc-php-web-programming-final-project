@@ -12,6 +12,8 @@ class Result extends \Core\Model
     public $score;
     public $rating;
     public $create_at;
+    // Thêm trường thời gian làm bài
+    // public $time;
 
     public function __construct($id, $userId, $testId, $score, $rating, $create_at)
     {
