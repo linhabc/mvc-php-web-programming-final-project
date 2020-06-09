@@ -30,19 +30,21 @@
         <center>
             <h4>User page</h4>
         </center>
-        <a class="navLink" href="#x" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">dashboard</i><span>Dashboard</span></a>
-        <a class="navLink" href="#" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">account_box</i><span>Manage user</span></a>
-        <a class="navLink" href="#" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">chrome_reader_mode</i><span>Manage question</span></a>
-        <a class="navLink" href="#" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">dns</i><span>Manage topic</span></a>
-        <a class="navLink" href="#" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">dvr</i><span>Manage test</span></a>
-        <a class="navLink" href="#" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">feedback</i><span>Manage comment</span></a>
-        <a class="navLink active" href="#"><i class="material-icons">menu_book</i><span>Quick Test</span></a>
+        <a class="navLink" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">dashboard</i><span>Dashboard</span></a>
+        <a class="navLink active" href="?user/QuickTest/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">account_box</i><span>Doing Quick Test</span></a>
+    
+            <!-- Bổ sung đường dẫn vào Doing Group Test dưới đây -->
+        <a class="navLink" href="" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">chrome_reader_mode</i><span>Doing Group Test</span></a>
+    
+        <a class="navLink" href="?user/CreateGroupTest/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">dns</i><span>Create Group Test</span></a>
+        <a class="navLink" href="?user/ManageGroupTest/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">dvr</i><span>Manage Group Test</span></a>
+        <a class="navLink" href="?user/History/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">dvr</i><span>History</span></a>
     </div>
 
     <div class="content" id="content">
