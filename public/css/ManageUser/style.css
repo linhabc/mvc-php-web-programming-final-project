@@ -21,6 +21,10 @@ table {
   border: none;
 }
 
+.email-class {
+  width: 200px;
+}
+
 .btn {
   box-shadow: inset 0px 1px 0px 0px #97c4fe;
   background: linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);

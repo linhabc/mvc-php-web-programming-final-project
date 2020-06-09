@@ -43,10 +43,37 @@
     <div class="content" id="content">
         <div class="grid-container">
             <div class="question-table">
-                <h2 style="margin: 0px;">
+                <h2 style="margin: 0px; margin-bottom: 20px;">
                     Questions Table
                 </h2>
-                <table>
+
+                <form action="?ManageQuestion/index" method="post">
+                    <label>Choose the topic: </label>
+                    <select name='topic-name' id='topic-name'>
+                        <?php
+                        if($selected_field == 'all')
+                            echo "<option value=\"all\" selected>All topic</option>";
+                        else
+                            echo "<option value=\"all\">All topic</option>";
+
+                        foreach ($topic_name as $top_name){
+                            if($selected_field == $top_name['id']){
+                                echo "                           
+                                <option value=$top_name[id] selected>$top_name[name]</option>
+                                ";
+                            } else {
+                                echo "                           
+                                <option value=$top_name[id]>$top_name[name]</option>
+                                ";
+                            }
+                        }
+
+                        ?>
+                    </select>
+                    <button style="margin-left: 20px;" type="submit">Select</button>
+                </form>
+
+                <table style="margin-top: 20px;">
                     <tr>
                         <th>ID</th>
                         <th>Question</th>
@@ -60,24 +87,23 @@
 
                     <?php
     
-              foreach ($questions as $quest) {
-              $id = $quest['id'];
-                echo "<tr>
-                        <td> $quest[id] </td>
-                        <td style='word-wrap: break-word; max-width: 150px;'> $quest[question] </td>
-                        <td style='word-wrap: break-word; max-width: 150px;'> $quest[a] </td>
-                        <td style='word-wrap: break-word; max-width: 150px;'> $quest[b] </td>
-                        <td style='word-wrap: break-word; max-width: 150px;'> $quest[c] </td>
-                        <td style='word-wrap: break-word; max-width: 150px;'> $quest[d] </td>
-                        <td style='word-wrap: break-word; max-width: 150px;'> $quest[answer]</td>
-                        <td>
-                          <button onclick='confirmDelete($id)'>Delete</button>
-                        </td>
-                      </tr>
-                    ";
-                }
-              ?>
-
+                        foreach ($questions as $quest) {
+                        $id = $quest['id'];
+                        echo "<tr>
+                            <td> $quest[id] </td>
+                            <td style='word-wrap: break-word; max-width: 150px;'> $quest[question] </td>
+                            <td style='word-wrap: break-word; max-width: 150px;'> $quest[a] </td>
+                            <td style='word-wrap: break-word; max-width: 150px;'> $quest[b] </td>
+                            <td style='word-wrap: break-word; max-width: 150px;'> $quest[c] </td>
+                            <td style='word-wrap: break-word; max-width: 150px;'> $quest[d] </td>
+                            <td style='word-wrap: break-word; max-width: 150px;'> $quest[answer]</td>
+                            <td>
+                            <button onclick='confirmDelete($id)'>Delete</button>
+                            </td>
+                        </tr>
+                        ";
+                        }
+                        ?>
                 </table>
             </div>
 
@@ -100,11 +126,11 @@
                             <td>
                                 <select name='topic' id='topic'>
                                     <?php
-                                foreach ($topic_name as $top_name)
-                                echo "                           
-                                    <option value=$top_name[id]>$top_name[name]</option>
-                                "
-                                ?>
+                                    foreach ($topic_name as $top_name)
+                                    echo "                           
+                                        <option value=$top_name[id]>$top_name[name]</option>
+                                    "
+                                    ?>
                                 </select>
                             </td>
                         </tr>

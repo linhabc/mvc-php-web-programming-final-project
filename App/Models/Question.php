@@ -44,6 +44,21 @@ class Question extends \Core\Model
         }
     }
 
+    public static function getQuestionByTopic($topicId)
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT question.id, question.question, question.a,question.b,question.c,question.d,question.answer FROM question, topic where question.topicId = $topicId AND question.topicId = topic.id");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public static function getQuestion($id)
     {
         try {
