@@ -115,7 +115,8 @@
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     alert("Correct answer(s): " + this.responseText);
-                    document.getElementById('result').innerHTML = this.responseText;
+                    showResult(this.responseText);
+                    // document.getElementById('result').innerHTML = this.responseText;
                 }
             };
             xhttp.open("POST", "?user/QuickTest/checkResult&id=123", true);
@@ -124,5 +125,17 @@
         }
 
         document.getElementById("btnSubmit").addEventListener('click', UserAction);
+
+        function showResult(resultResponse) {
+            const result = JSON.parse(resultResponse)
+            const total_questions = result['total_questions'];
+            const correct_answers = result['correct_answers'];
+            const answers = result['answers'];
+
+            alert(total_questions + "-" + correct_answers + "-" + answers.length);
+
+            document.getElementById('result').innerHTML =
+                "<span> Scores: </span><span> Correct: </span ><span>Finished at: </span>";
+        }
     </script>
 </body>
