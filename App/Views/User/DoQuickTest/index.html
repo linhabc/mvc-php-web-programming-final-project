@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    <script>alert($questions)</script>
     <header>
         <div class="left">
             <h3>Test <span>Yourself</span></h3>
@@ -49,7 +50,7 @@
         <div style="padding-left: 20px;">
             <form action="?user/QuickTest/result" method="POST">
                 <?php 
-                    # var_dump($questions);
+                    var_dump($questions);
     
                     foreach ($questions as $index =>$question) {
                         echo "<br>";

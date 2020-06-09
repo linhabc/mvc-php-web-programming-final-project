@@ -60,8 +60,8 @@
               $id = $user['id'];
               echo "<tr>
                     <td> $user[id] </td>
-                    <td> $user[email] </td>
-                    <td> $user[username] </td>
+                    <td contenteditable=\"true\"> <input class=\"noborder email-class\" type=\"text\" name=\"email\" value=\"$user[email]\"></td>
+                    <td contenteditable=\"true\"> <input class=\"noborder\" type=\"text\" name=\"username\" value=\"$user[username]\"></td>
                     <td> $user[role] </td>
                     <td>
                       <button onclick=>Edit</button>

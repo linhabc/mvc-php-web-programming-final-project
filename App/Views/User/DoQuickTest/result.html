@@ -8,8 +8,11 @@
     <link rel="stylesheet" href="css/DoQuickTest/style.css" />
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <script src="js/user/QuickTest/index.js"></script>
+    <script type="text/javascript" src="js/user/QuickTest/index.js"></script>
     <script src="js/user/index.js"></script>
+
+    <script> checkResult() </script>
+    <!-- <script> alert("ahydywd") </script> -->
 </head>
 
 <body>
@@ -45,14 +48,33 @@
     <div class="content" id="content">
         <h2 style="text-align: center;">Result</h2>
 
-        <?php 
+        <!-- <?php 
         var_dump($_POST);
 
         foreach($_POST as $questionId => $answer) {
             echo "$questionId : $answer";
             echo "<br>";
         }
+        ?> -->
+
+        <?php
+            #$data = array(1, 2);
+            #echo '<pre>';
+            #var_dump($questions);
+            #echo '</pre>';
+            
+            echo '<pre>';
+            var_dump($data);
+            echo '</pre>';
+
+            #try {
+            #    echo $data[0];
+            #} catch (Exception $e) {
+            #    echo 'Caught exception: ' . $e->getMessage() . "\n";
+            #} -->
         ?>
+
+        <button onclick="test">Click me</button>
     </div>
 </body>
 
