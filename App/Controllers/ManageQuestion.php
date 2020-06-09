@@ -62,6 +62,7 @@ class ManageQuestion extends \Core\Controller
         View::render('Admin/ManageQuestion/index.html', [
             'questions' => $questions,
             'topic_name' => $topic_name,
+            'selected_field' => 'all',
         ]);
     }
 
@@ -83,6 +84,7 @@ class ManageQuestion extends \Core\Controller
         View::render('Admin/ManageQuestion/index.html', [
             'questions' => $questions,
             'topic_name' => $topic_name,
+            'selected_field' => 'all',
         ]);
     }
 }
