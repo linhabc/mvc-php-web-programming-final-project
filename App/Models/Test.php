@@ -11,6 +11,7 @@ class Test extends \Core\Model
     public $userId;
     public $name;
     public $description;
+    public $duration;
 
     public function __construct($id, $topicId, $userId, $name, $description)
     {
@@ -26,7 +27,7 @@ class Test extends \Core\Model
         try {
             $db = static::getDB();
 
-            $stmt = $db->query("SELECT test.id,topic.name as to_name, test.name as te_name,test.description as te_des FROM test INNER JOIN topic ON test.topic_id = topic.id");
+            $stmt = $db->query("SELECT test.id,topic.name as to_name, test.name as te_name,test.description as te_des, test.duration as te_duration FROM test INNER JOIN topic ON test.topic_id = topic.id");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;
@@ -65,12 +66,12 @@ class Test extends \Core\Model
         }
     }
 
-    public static function createTest($topicId, $userId, $name, $description)
+    public static function createTest($topicId, $userId, $name, $description, $duration)
     {
         try {
             $db = static::getDB();
 
-            $sql = "INSERT INTO test (topic_id, user_id, name, description) VALUES ($id, $topicId, $name, $description)";
+            $sql = "INSERT INTO test (topic_id, user_id, name, description, duration) VALUES ('$topicId', '$userId', '$name', '$description', '$duration')";
 
             $db->exec($sql);
 
@@ -79,7 +80,7 @@ class Test extends \Core\Model
         }
     }
 
-    public static function updateTest($id, $topicId, $userId, $name, $description)
+    public static function updateTest($id, $topicId, $userId, $name, $description, $duration)
     {
 
         try {
@@ -87,8 +88,23 @@ class Test extends \Core\Model
 
             // $stmt = $db->query('UPDATE topic SET name = $name, description = $description WHERE id = $id');
 
-            $sql = "UPDATE test SET topic_id = $topic_id, user_id = $user_id, name = $name, description = $description  WHERE id = $id";
+            $sql = "UPDATE test SET topic_id = $topic_id, user_id = $user_id, name = $name, description = $description, duration = $duration  WHERE id = $id";
             $db->exec($sql);
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function getTestByUserId($userId)
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT * FROM test WHERE user_id = $userId");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
 
         } catch (PDOException $e) {
             echo $e->getMessage();

@@ -12,7 +12,11 @@
   color: white;
 }
 
-#user {
+.grid-item:hover {
+  opacity: 0.5;
+}
+
+#comment {
   background-color: #d42b4c;
 }
 
