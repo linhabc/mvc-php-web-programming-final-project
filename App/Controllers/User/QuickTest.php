@@ -35,8 +35,25 @@ class QuickTest extends \Core\Controller
 
         $questions = Question::getRandomQuestion2($nQuestions);
 
+        $min = 2;
+        $sec = 16;
+
+        if ($min < 10) {
+            $minute = '0' . (string) $min;
+        } else {
+            $minute = (string) $min;
+        }
+
+        if ($sec < 10) {
+            $second = '0' . (string) $sec;
+        } else {
+            $second = (string) $sec;
+        }
+
         View::render('User/DoQuickTest/do-test.html', [
             'questions' => $questions,
+            'minute' => $minute,
+            'second' => $second,
         ]);
     }
 

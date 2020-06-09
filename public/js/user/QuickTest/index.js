@@ -51,13 +51,19 @@ for (index = 0; index < shorcuts.length; ++index) {
 // console.log("_" + myData + "_");
 // console.log('questions: -----------------');
 
-function UserAction() {
+function submit() {
+    clearInterval(cdID);
+
+    var timeUsed = (init_min*60 + init_sec) - ((min >= 0 ? min : 0)*60 + (sec >= 0 ? sec : 0))
+
+    console.log('timeUsed in seconds: ' + timeUsed);
+
     console.log(myAnswers);
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            alert("Correct answer(s): " + this.responseText);
+            // alert("Correct answer(s): " + this.responseText);
             showResult(this.responseText);
             // document.getElementById('result').innerHTML = this.responseText;
         }
@@ -67,7 +73,18 @@ function UserAction() {
     xhttp.send(JSON.stringify({ 'answer': [...myAnswers] }));
 }
 
-document.getElementById("btnSubmit").addEventListener('click', UserAction);
+document.getElementById("btnSubmit").addEventListener('click', submit);
+
+var duration = document.getElementById('timer').textContent;
+console.log(duration);
+var time = duration.split(' : ');
+console.log(time);
+var min = time[0] - 0;
+var sec = time[1] - 0;
+var init_min = min;
+var init_sec = sec;
+console.log(min + " - " + sec);
+countdown();
 
 function showResult(resultResponse) {
     const result = JSON.parse(resultResponse)
@@ -79,7 +96,7 @@ function showResult(resultResponse) {
     // alert(total_questions + "-" + correct_answers + "-" + answers.length);
 
     document.getElementById('result').innerHTML =
-        "<span> Scores: " + correct_answers/total_questions + "</span><br><span> Correct: "+ correct_answers+ " / " + total_questions + " </span><br><span>Finished at: "+ getDateFromTimestamp(finishedAt) +"</span><br><a href='#'>BACK</a>";
+        "<span> Score: " + correct_answers/total_questions + "</span><br><span> Correct: "+ correct_answers+ " / " + total_questions + " </span><br><span>Finished at: "+ getDateFromTimestamp(finishedAt) +"</span><br><a href='#'>BACK</a>";
 
     window.scrollTo(0, 0); 
 
@@ -110,4 +127,31 @@ function disableAllRadioButton() {
     for (i = 0; i < x.length; i++) {
         x[i].disabled = true;
     }
+}
+
+function countdown() {
+    cdID = setInterval(function () {
+        if (sec == 0) {
+            min--;
+            sec = 60;
+        }
+        sec--;
+        if (min < 10) {
+            min_text = '0' + min;
+        } else {
+            min_text = min;
+        }
+        if (sec < 10)
+            sec_text = '0' + sec;
+        else
+            sec_text = sec;
+
+        if (min < 0) {
+            alert('Hết giờ, hệ thống sẽ tự động nộp bài!');
+            submit();
+        }
+        
+        document.getElementById('timer').innerHTML = min_text + ' : ' + sec_text;
+        
+    }, 1000);
 }
