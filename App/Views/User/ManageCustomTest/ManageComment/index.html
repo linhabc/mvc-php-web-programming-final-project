@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Manage Comment</title>
+    <link rel="stylesheet" href="css//style.css" />
+    <link rel="stylesheet" href="css/User/ManageCustomTest/ManageComment/style.css" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script src="js/User/index.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="left">
+            <h3>Test <span>Yourself</span></h3>
+        </div>
+
+        <div class="right">
+            <a href="?Authentication/index" class="logout-button">Logout</a>
+        </div>
+    </header>
+
+    <div class="side-bar">
+        <center>
+          <h4>User page</h4>
+        </center>
+        <a class="navLink" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">dashboard</i><span>Back</span></a>
+        <a class="navLink" href="?user/ManageTest/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">dns</i><span>Manage Test</span></a>
+        <a class="navLink active" href="?user/ManageComment/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">dvr</i><span>Manage Comment</span></a>
+        <a class="navLink" href="?user/ManageUser/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">dvr</i><span>Manage User</span></a>
+      </div>
+
+    <div class="content" id="content">
+        <div class="grid-container">
+            <div class="comment-table">
+                <h2 style="margin: 0px;">
+                    Comments Table
+                </h2>
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Test name</th>
+                        <th>Content</th>
+                        <th>Created at</th>
+                        <th>Action</th>
+                    </tr>
+
+
+                    <?php
+                    
+                        foreach ($comments as $comment) {
+                        $id = $comment['id'];
+                            echo "
+                            <tr>
+                                <td> $comment[id] </td>
+                                <td>$comment[u_name]</td>
+                                <td>$comment[t_name]</td>
+                                <td> $comment[content]</td>
+                                <td>$comment[create_at]</td>
+
+                                <td>
+                                    <button onclick='confirmDelete($id)'>Delete</button>
+                                </td>
+                            </tr>
+                            ";
+                        }
+                        ?>
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function confirmDelete(id) {
+            var r = confirm("Are you sure you want to delete?");
+            if (r == true) {
+                location.href = `?user/ManageComment/delete&id=${id}`;
+            }
+        }
+    </script>
+</body>
+
+</html>
