@@ -36,11 +36,27 @@ class ManageTopic extends \Core\Controller
         ]);
     }
 
-    public function addAction(){
+    public function addAction()
+    {
         $name = $_POST['name'];
         $description = $_POST['description'];
 
         Topic::createTopic($name, $description);
+
+        $topics = Topic::getAllTopic();
+
+        View::render('Admin/ManageTopic/index.html', [
+            'topics' => $topics,
+        ]);
+    }
+
+    public function editAction()
+    {
+        $id = $_POST['id'];
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+
+        Topic::editTopic($id, $name, $description);
 
         $topics = Topic::getAllTopic();
 

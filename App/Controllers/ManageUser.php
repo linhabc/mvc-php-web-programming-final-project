@@ -54,7 +54,7 @@ class ManageUser extends \Core\Controller
 
     public function editAction()
     {
-        $id = $_GET['id'];
+        $id = $_POST['id'];
         $email = $_POST['email'];
         $username = $_POST['username'];
 

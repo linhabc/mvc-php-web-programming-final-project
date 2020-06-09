@@ -59,15 +59,19 @@
                   foreach ($topics as $topic)
                    {
                         $id = $topic['id'];
-                        echo "<tr>
-                            <td> $topic[id] </td>
-                            <td> $topic[name] </td>
-                            <td> $topic[description] </td>
+                        echo "
+                        <form action=\"?ManageTopic/edit\" method=\"post\" onsubmit=\"alertSuccess()\">
+                            <tr>
+                                <td><input style=\"text-align: center;\" class=\"noborder id-class\" type=\"text\" name=\"id\" value=\"$topic[id]\"></td>
+                                <td contenteditable=\"true\"><input style=\"text-align: center;\" class=\"noborder topic-name\" type=\"text\" name=\"name\" value=\"$topic[name]\"</td>
+                                <td contenteditable=\"true\"><input style=\"text-align: center;\" class=\"noborder email-class\" type=\"textarea\" name=\"description\" value=\"$topic[description]\" </td>
 
-                            <td>
-                              <button onclick='confirmDelete($id)'>Delete</button>
-                            </td>
-                          </tr>
+                                <td>
+                                    <button type=\"submit\">Edit</button>
+                                    <button onclick='confirmDelete($id)'>Delete</button>
+                                </td>
+                            </tr>
+                        </form>
                         ";
                     }
                   ?>
@@ -82,7 +86,7 @@
                 <form action="?ManageTopic/add" method="post">
                     <table style="text-align: left;" class="noborder">
                         <tr>
-                            <th><label for="topic">Topic: </label></th>
+                            <th><label for="topic">Topic name: </label></th>
                             <td><input type="text" id="topic_detail" name="name" required></td>
                         </tr>
 
@@ -108,6 +112,12 @@
             if (r == true) {
                 location.href = `?ManageTopic/delete&id=${id}`;
             }
+        }
+    </script>
+
+    <script>
+        function alertSuccess() {
+            alert('Edit success!');
         }
     </script>
 </body>
