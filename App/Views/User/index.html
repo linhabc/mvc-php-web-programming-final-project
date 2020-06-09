@@ -27,7 +27,7 @@
     </center>
     <a class="navLink active" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
         class="material-icons">dashboard</i><span>Dashboard</span></a>
-    <a class="navLink" href="?DoQuickTest/index" onclick="return handleSideBarButton(event)"><i
+    <a class="navLink" href="?user/QuickTest/index" onclick="return handleSideBarButton(event)"><i
         class="material-icons">account_box</i><span>Doing Quick Test</span></a>
 
         <!-- Bổ sung đường dẫn vào Doing Group Test dưới đây -->
@@ -36,35 +36,36 @@
 
     <a class="navLink" href="?user/CreateGroupTest/index" onclick="return handleSideBarButton(event)"><i
         class="material-icons">dns</i><span>Create Group Test</span></a>
-    <a class="navLink" href="?ManageGroupTest/index" onclick="return handleSideBarButton(event)"><i
+    <a class="navLink" href="?user/ManageGroupTest/index" onclick="return handleSideBarButton(event)"><i
         class="material-icons">dvr</i><span>Manage Group Test</span></a>
-    <a class="navLink" href="?History/index" onclick="return handleSideBarButton(event)"><i
+    <a class="navLink" href="?user/History/index" onclick="return handleSideBarButton(event)"><i
         class="material-icons">dvr</i><span>History</span></a>
   </div>
 
   <div class="content" id="content">
     <div class="grid-container">
-      <div class="grid-item" id="user" onclick="location.href = '?ManageUser/index'">
-        <h2>
-          User:
-          <?php $length = count($users); echo "$length"; ?>
-        </h2>
-      </div>
       <div class="grid-item" id="question" onclick="location.href = '?ManageQuestion/index'">
         <h2>
           Question:
           <?php $length = count($questions); echo "$length"; ?>
         </h2>
       </div>
-      <div class=" grid-item" id="test">
+      <div class=" grid-item" id="test" onclick="location.href = '?ManageTest/index'">
         <h2>
           Test:
+          <?php $length = count($tests); echo "$length"; ?>
         </h2>
       </div>
       <div class="grid-item" id="topic" onclick="location.href = '?ManageTopic/index'">
         <h2>
           Topic:
           <?php $length = count($topics); echo "$length"; ?>
+        </h2>
+      </div>
+      <div class="grid-item" id="comment" onclick="location.href = '?ManageComment/index'">
+        <h2>
+          Comment:
+          <?php $length = count($comments); echo "$length"; ?>
         </h2>
       </div>
     </div>

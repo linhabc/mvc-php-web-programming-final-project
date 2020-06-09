@@ -75,13 +75,13 @@ class Topic extends \Core\Model
         }
     }
 
-    public static function updateTopic($id, $name, $description)
+    public static function editTopic($id, $name, $description)
     {
-
         try {
             $db = static::getDB();
 
-            $sql = "UPDATE topic SET name = $name, description = $description WHERE id = $id";
+            $sql = "UPDATE topic SET name = '$name', description = '$description' where id = $id";
+
             $db->exec($sql);
 
         } catch (PDOException $e) {

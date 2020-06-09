@@ -6,7 +6,7 @@ use App\Models\Test;
 use App\Models\Topic;
 use \Core\View;
 
-class CreateGroupTest extends \Core\Controller
+class ManageGroupTest extends \Core\Controller
 {
     protected function before()
     {
@@ -20,7 +20,7 @@ class CreateGroupTest extends \Core\Controller
         $tests = Test::getTestByUserId($userId);
         $topic_name = Topic::getTopicName();
 
-        View::render('User/CreateGroupTest/index.html', [
+        View::render('User/ManageGroupTest/index.html', [
             'tests' => $tests,
             'topic_name' => $topic_name,
         ]);
@@ -35,26 +35,7 @@ class CreateGroupTest extends \Core\Controller
 
         $tests = Test::getTestByUserId($userId);
 
-        View::render('User/CreateGroupTest/index.html', [
-            'tests' => $tests,
-            'topic_name' => $topic_name,
-        ]);
-    }
-
-    public function addAction()
-    {
-        $userId = -1;
-        $name = $_POST['name_detail'];
-        $topic_id = $_POST['topic'];
-        $duration = $_POST['duration'];
-        $description = $_POST['description'];
-
-        Test::createTest($topic_id, -1, $name, $description, $duration);
-
-        $topic_name = Topic::getTopicName();
-        $tests = Test::getTestByUserId($userId);
-
-        View::render('User/CreateGroupTest/index.html', [
+        View::render('User/ManageGroupTest/index.html', [
             'tests' => $tests,
             'topic_name' => $topic_name,
         ]);

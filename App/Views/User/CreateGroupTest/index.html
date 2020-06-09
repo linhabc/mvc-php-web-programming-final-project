@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Manage Test</title>
+    <title>Manage Question</title>
     <link rel="stylesheet" href="css//style.css" />
-    <link rel="stylesheet" href="css/ManageUser/style.css" />
+    <link rel="stylesheet" href="css/User/CreateGroupTest/style.css" />
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <script src="js/Admin/index.js"></script>
+    <script src="js/User/index.js"></script>
 </head>
 
 <body>
@@ -24,20 +24,23 @@
 
     <div class="side-bar">
         <center>
-            <h4>Admin page</h4>
+            <h4>User page</h4>
         </center>
-        <a class="navLink" href="?Admin/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">dashboard</i><span>Dashboard</span></a>
-        <a class="navLink" href="?ManageUser/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">account_box</i><span>Manage user</span></a>
-        <a class="navLink" href="?ManageQuestion/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">chrome_reader_mode</i><span>Manage question</span></a>
-        <a class="navLink" href="?ManageTopic/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">dns</i><span>Manage topic</span></a>
-        <a class="navLink active" href="?ManageTest/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">dvr</i><span>Manage test</span></a>
-        <a class="navLink" href="?ManageComment/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">feedback</i><span>Manage comment</span></a>
+        <a class="navLink" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">dashboard</i><span>Dashboard</span></a>
+        <a class="navLink" href="?user/QuickTest/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">account_box</i><span>Doing Quick Test</span></a>
+    
+            <!-- Bổ sung đường dẫn vào Doing Group Test dưới đây -->
+        <a class="navLink" href="" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">chrome_reader_mode</i><span>Doing Group Test</span></a>
+    
+        <a class="navLink active" href="?user/CreateGroupTest/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">dns</i><span>Create Group Test</span></a>
+        <a class="navLink" href="?user/ManageGroupTest/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">dvr</i><span>Manage Group Test</span></a>
+        <a class="navLink" href="?user/History/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">dvr</i><span>History</span></a>
     </div>
 
     <div class="content" id="content">
@@ -51,54 +54,91 @@
                         <th>ID</th>
                         <th>Topic</th>
                         <th>Name</th>
+                        <th>Duration</th>
                         <th>Description</th>
                         <th>Action</th>
                     </tr>
-                    <tr>
-                        <?php
+
+                    <?php
                     
-                        foreach ($tests as $test)
+                        foreach ($tests as $test) {
+                        $id = $test['id'];
                             echo "
+                            <tr>
                                 <td> $test[id] </td>
                                 <td>$test[to_name]</td>
                                 <td>$test[te_name]</td>
+                                <td>$test[te_duration]</td>
                                 <td> $test[te_des]</td>
 
                                 <td>
-                                    <button onclick=''>Delete</button>
+                                    <button onclick='confirmDelete($id)'>Delete</button>
                                 </td>
-                          
-                            "
-                        ?>
-                    </tr>
+                            </tr>
+                            ";
+                        }
+                    ?>
 
                 </table>
             </div>
 
-            <div class="add-topic">
+
+            <div class="create-test">
                 <h2 style="margin: 0px;">
-                    Add Topics
+                    Create Group Test
                 </h2>
 
-                <table style="text-align: left;" class="noborder">
-                    <tr>
-                        <th><label for="topic">Topic: </label></th>
-                        <td><input type="text" id="topic_detail" name="topic_detail" required></td>
-                    </tr>
-
-                    <tr>
-                        <th><label for="description">Description: </label></th>
-                        <td><textarea id="des" name="des" required></textarea></td>
-                    </tr>
+                <form action="?user/CreateGroupTest/add" method="post">
+                    <table style="text-align: left;" class="noborder">
+                        <tr>
+                            <th><label for="name">Name: </label></th>
+                            <td><textarea id="name_detail" name="name_detail" required></textarea></td>
+                        </tr>
 
 
-                    <tr>
-                        <th></th>
-                        <td><button type="submit" class="btn" id="add_user" name="add-user">Add</button></td>
-                    </tr>
-                </table>
+                        <tr>
+                            <th><label for='topic'>Topic: </label></th>
+                            <td>
+                                <select name='topic' id='topic'>
+                                    <?php
+                                foreach ($topic_name as $top_name)
+                                echo "                           
+                                    <option value=$top_name[id]>$top_name[name]</option>
+                                "
+                                ?>
+                                </select>
+                            </td>
+                        </tr>
 
+
+                        <tr>
+                            <th><label for="duration">Duration: </label></th>
+                            <td><textarea id="duration" name="duration" required></textarea></td>
+                        </tr>
+
+                        <tr>
+                            <th><label for="description">Description: </label></th>
+                            <td><textarea id="description" name="description" required></textarea></td>
+                        </tr>
+                        
+                        <tr>
+                            <th></th>
+                            <td><button type="submit" class="btn" id="add_test" name="add-test">Add</button></td>
+                        </tr>
+                    </table>
+                </form>
             </div>
         </div>
     </div>
+
+    <script>
+        function confirmDelete(id) {
+            var r = confirm("Are you sure you want to delete?");
+            if (r == true) {
+                location.href = `?user/CreateGroupTest/delete&id=${id}`;
+            }
+        }
+    </script>
 </body>
+
+</html>

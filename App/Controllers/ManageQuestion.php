@@ -10,19 +10,43 @@ class ManageQuestion extends \Core\Controller
 {
     protected function before()
     {
-        // Make sure an admin user is logged in for example
+        // Make sure an admin user is loged in for example
         // return false;
     }
 
     public function indexAction()
     {
-        $questions = Question::getAllQuestion();
         $topic_name = Topic::getTopicName();
+        if (array_key_exists('topic-name', $_POST)) {
+            $topic_id = $_POST['topic-name'];
 
-        View::render('Admin/ManageQuestion/index.html', [
-            'questions' => $questions,
-            'topic_name' => $topic_name,
-        ]);
+            if ($topic_id == "all") {
+                $questions = Question::getAllQuestion();
+
+                View::render('Admin/ManageQuestion/index.html', [
+                    'questions' => $questions,
+                    'topic_name' => $topic_name,
+                    'selected_field' => 'all',
+                ]);
+            } else {
+                $question = Question::getQuestionByTopic($topic_id);
+
+                View::render('Admin/ManageQuestion/index.html', [
+                    'questions' => $question,
+                    'topic_name' => $topic_name,
+                    'selected_field' => $topic_id,
+                ]);
+            }
+
+        } else {
+            $questions = Question::getAllQuestion();
+
+            View::render('Admin/ManageQuestion/index.html', [
+                'questions' => $questions,
+                'topic_name' => $topic_name,
+                'selected_field' => 'all',
+            ]);
+        }
     }
 
     public function deleteAction()
