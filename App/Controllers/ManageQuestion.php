@@ -19,7 +19,6 @@ class ManageQuestion extends \Core\Controller
         $topic_name = Topic::getTopicName();
         if (array_key_exists('topic-name', $_POST)) {
             $topic_id = $_POST['topic-name'];
-            // print_r($topic_id);
 
             if ($topic_id == "all") {
                 $questions = Question::getAllQuestion();

@@ -1,6 +1,6 @@
 table, th, td {
   padding: 15px;
-  border: 1px solid black;
+  border: 1px solid #000000;
 }
 
 table {
@@ -23,6 +23,22 @@ table {
 
 .email-class {
   width: 200px;
+  font-size: 11pt;
+}
+
+.id-class {
+  width: 15px;
+  background-color: white;
+  pointer-events: none;
+}
+
+.username-class {
+  width: 150px;
+  font-size: 11pt;
+}
+
+.topic-name {
+  width: 100px;
 }
 
 .btn {

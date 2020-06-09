@@ -58,16 +58,19 @@
           <?php
           foreach ($users as $user){
               $id = $user['id'];
-              echo "<tr>
-                    <td> $user[id] </td>
-                    <td contenteditable=\"true\"> <input class=\"noborder email-class\" type=\"text\" name=\"email\" value=\"$user[email]\"></td>
-                    <td contenteditable=\"true\"> <input class=\"noborder\" type=\"text\" name=\"username\" value=\"$user[username]\"></td>
+              echo "
+              <form action=\"?ManageUser/edit\" method=\"post\" onsubmit=\"alertSuccess()\">
+                <tr>
+                    <td><input style=\"text-align: center;\" class=\"noborder id-class\" type=\"text\" name=\"id\" value=\"$user[id]\"></td>
+                    <td contenteditable=\"true\"><input class=\"noborder email-class\" type=\"text\" name=\"email\" value=\"$user[email]\"></td>
+                    <td contenteditable=\"true\"><input style=\"text-align: center;\" class=\"noborder username-class\" type=\"text\" name=\"username\" value=\"$user[username]\"></td>
                     <td> $user[role] </td>
                     <td>
-                      <button onclick=>Edit</button>
+                      <button type=\"submit\">Edit</button>
                       <button onclick='confirmDelete($id)'>Delete</button>
                     </td>
                   </tr>
+                </form>
                 ";
             }
           ?>
@@ -116,6 +119,13 @@
       }
     }
   </script>
+
+  <script>
+    function alertSuccess() {
+      alert('Edit success!');
+    }
+  </script>
+
 </body>
 
 </html>
