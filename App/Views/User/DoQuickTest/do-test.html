@@ -24,11 +24,10 @@
                     ?>
                 </span>
             </div>
-
         </div>
     </div>
 
-    <div id="leftcol">
+    <div id="left-col">
       <div id="question-shorcut">
         <div>
             <?php
@@ -46,7 +45,7 @@
       </div>
     </div>
 
-    <div id="rightcol">
+    <div id="right-col">
         <div id="questions-area">
             <div id="result"></div>
 
@@ -54,22 +53,22 @@
             # var_dump($questions);
     
             foreach ($questions as $index =>$question) {
-                echo "<br>";
-    
                 $qNo = (int)$index + 1;
-                echo "<br><div id=question-" . $qNo ."> Q" . $qNo . ":&nbsp;&nbsp;&nbsp;&nbsp;" . $question->question . "</div>";
+                echo "<br><div class= 'question' id=question-" . $qNo ."> Q" . $qNo . ":&nbsp;&nbsp;&nbsp;&nbsp;" . $question->question . "</div>";
     
                 echo "<label class = 'answer' id='" . $question->id ."-a'><input type='radio' class = 'radio-btn' id='" . $qNo ."' name='" . $question->id . "' value='a'>&nbsp;" . $question->a . "</label>";
                 echo "<br><label class = 'answer' id='" . $question->id ."-b'><input type='radio' class = 'radio-btn' id='" . $qNo ."' name='" . $question->id . "' value='b'>&nbsp;" . $question->b . "</label>";
                 echo "<br><label class = 'answer' id='" . $question->id ."-c'><input type='radio' class = 'radio-btn' id='" . $qNo ."' name='" . $question->id . "' value='c'>&nbsp;" . $question->c . "</label>";
                 echo "<br><label class = 'answer' id='" . $question->id ."-d'><input type='radio' class = 'radio-btn' id='" . $qNo ."' name='" . $question->id . "' value='d'>&nbsp;" . $question->d . "</label>";
+                echo "<hr />";
             }
     
             ?>
         </div>
+        <div class="clear-fix"></div>
 
-        <div>
-            <a id="btnSubmit" class="btnSubmit">Submit</a>
+        <div id="btnSubmit">
+            <a  class="btnSubmit">Submit</a>
         </div>
         
     
