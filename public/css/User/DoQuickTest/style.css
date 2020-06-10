@@ -33,16 +33,18 @@ body {
   height: cal;
 }
 
+.title,
+#timer {
+  font-size: 20px;
+  padding: 10px;
+}
+
 #content {
   padding-left: 10px;
   background: #fff;
   float: left;
   width: 59%;
   height: 100%;
-}
-
-.clear-fix {
-  overflow: auto;
 }
 
 #questions-area {
@@ -102,6 +104,8 @@ body {
 .question {
   padding-left: 10px;
   padding-right: 10px;
+  padding-bottom: 20px;
+  font-size: 20px;
 }
 
 .question-link {
@@ -111,7 +115,11 @@ body {
 }
 
 .answer {
-  /* background-color: #2196F3; */
   padding-left: 10px;
   padding-right: 10px;
+  font-size: 18px;
+}
+
+.flex-container {
+  display: flex;
 }

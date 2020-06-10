@@ -12,10 +12,7 @@
 
 <body>
     <div id="header">
-        <div>
-            <div>
-                <span class="title">Quick Test</span>
-            </div>
+            <div class="title" >Quick Test</div>
 
             <div class="">
                 <span id="timer">
@@ -24,7 +21,6 @@
                     ?>
                 </span>
             </div>
-        </div>
     </div>
 
     <div id="left-col">
@@ -65,86 +61,19 @@
     
             ?>
         </div>
-        <div class="clear-fix"></div>
 
-        <div id="btnSubmit">
-            <a  class="btnSubmit">Submit</a>
+        <div class="flex-container">
+            <div style="flex: 1;"></div>
+            <div id="btnSubmit">
+                <a  class="btnSubmit">Submit</a>
+            </div>
         </div>
+
+        
         
     
     </div> 
 
-    <!-- <div id="dom-target" style="display: none;">
-        <?php
-            $output = "42"; // Again, do some operation, get the output.
-            echo htmlspecialchars($output); /* You have to escape because the result
-                                               will not be valid HTML otherwise. */
-        ?>
-    </div> -->
-
-    <!-- <script>
-        let myAnswers = new Map();
-
-        var container, inputs, index;
-
-        container = document.getElementById('testing-right');
-
-        inputs = container.getElementsByTagName('input');
-        for (index = 0; index < inputs.length; ++index) {
-            // var radioBtn = inputs[index]
-            // console.log(inputs[index].value)
-            // console.log(radioBtn.value)
-            myAnswers.set(inputs[index].name, null)
-
-            inputs[index].addEventListener('click', function () {
-                // console.log(this)
-                console.log(this.name + " - " + this.value)
-
-                myAnswers.set(this.name, this.value)
-
-                console.log(myAnswers)
-            })
-
-        }
-
-        console.log(myAnswers);
-
-        // console.log('questions: -----------------');
-        // var div = document.getElementById("dom-target");
-        // var myData = div.textContent;
-        // console.log("_" + myData + "_");
-        // console.log('questions: -----------------');
-
-        function UserAction() {
-            console.log(myAnswers);
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    alert("Correct answer(s): " + this.responseText);
-                    showResult(this.responseText);
-                    // document.getElementById('result').innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("POST", "?user/QuickTest/checkResult&id=123", true);
-            xhttp.setRequestHeader("Content-type", "application/json");
-            xhttp.send(JSON.stringify({ 'answer': [...myAnswers] }));
-        }
-
-        document.getElementById("btnSubmit").addEventListener('click', UserAction);
-        
-        function showResult(resultResponse) {
-            const result = JSON.parse(resultResponse)
-            const total_questions = result['total_questions'];
-            const correct_answers = result['correct_answers'];
-            const answers = result['answers'];
-
-            alert(total_questions + "-" + correct_answers + "-" + answers.length);
-
-            document.getElementById('result').innerHTML =
-                "<span> Scores: </span><span> Correct:"+ correct_answers+" </span ><span>Finished at: </span>";
-        }
-    </script> -->
 </body>
 
 <script src="js/user/QuickTest/index.js"></script>
