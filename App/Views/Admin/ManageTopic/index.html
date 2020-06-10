@@ -60,15 +60,16 @@
                    {
                         $id = $topic['id'];
                         echo "
-                        <form action=\"?ManageTopic/edit\" method=\"post\" onsubmit=\"alertSuccess()\">
                             <tr>
+                        <form action=\"?ManageTopic/edit\" method=\"post\">
+
                                 <td><input style=\"text-align: center;\" class=\"noborder id-class\" type=\"text\" name=\"id\" value=\"$topic[id]\"></td>
                                 <td contenteditable=\"true\"><input style=\"text-align: center;\" class=\"noborder topic-name\" type=\"text\" name=\"name\" value=\"$topic[name]\"></td>
                                 <td contenteditable=\"true\"><input style=\"text-align: center;\" class=\"noborder email-class\" type=\"textarea\" name=\"description\" value=\"$topic[description]\"></td>
 
                                 <td>
-                                    <button type=\"submit\">Edit</button>
-                                    <button onclick='confirmDelete($id)'>Delete</button>
+                                    <button onclick='alertSuccess()' type=\"submit\">Edit</button>
+                                    <button type=\"button\" onclick='confirmDelete($id)'>Delete</button>
                                 </td>
                             </tr>
                         </form>

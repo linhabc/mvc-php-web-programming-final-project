@@ -39,9 +39,9 @@ class ManageUser extends \Core\Controller
 
     public function addAction()
     {
-        $email = $_POST['email'];
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        $email = htmlentities($_POST['email']);
+        $username = htmlentities($_POST['username']);
+        $password = htmlentities($_POST['password']);
 
         User::createAdmin($email, $username, $password);
 
@@ -55,8 +55,8 @@ class ManageUser extends \Core\Controller
     public function editAction()
     {
         $id = $_POST['id'];
-        $email = $_POST['email'];
-        $username = $_POST['username'];
+        $email = htmlentities($_POST['email']);
+        $username = htmlentities($_POST['username']);
 
         User::editAdmin($id, $email, $username);
 
