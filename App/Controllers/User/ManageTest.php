@@ -15,8 +15,8 @@ class ManageTest extends \Core\Controller
     }
 
     public function indexAction()
-    {
-        $userId = -1;
+    { 
+        $userId = $_COOKIE["uid"];
         $tests = Test::getTestByUserId($userId);
         $topic_name = Topic::getTopicName();
 
@@ -28,7 +28,7 @@ class ManageTest extends \Core\Controller
 
     public function deleteAction()
     {
-        $userId = -1;
+        $userId = $_COOKIE["uid"];
         $id = $_GET['id'];
 
         Test::deleteTest($id);
@@ -43,13 +43,13 @@ class ManageTest extends \Core\Controller
 
     public function addAction()
     {
-        $userId = -1;
+        $userId = $_COOKIE["uid"];
         $name = $_POST['name_detail'];
         $topic_id = $_POST['topic'];
         $duration = $_POST['duration'];
         $description = $_POST['description'];
 
-        Test::createTest($topic_id, -1, $name, $description, $duration);
+        Test::createTest($topic_id, $userId, $name, $description, $duration);
 
         $topic_name = Topic::getTopicName();
         $tests = Test::getTestByUserId($userId);

@@ -94,4 +94,19 @@ class Comment extends \Core\Model
             echo $e->getMessage();
         }
     }
+
+    public static function getCommentUid($userId)
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT * FROM comment WHERE user_id = $userId");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 }

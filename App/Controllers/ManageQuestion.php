@@ -87,4 +87,26 @@ class ManageQuestion extends \Core\Controller
             'selected_field' => 'all',
         ]);
     }
+
+    public function editAction()
+    {
+        $id = $_POST['id'];
+        $question = $_POST['question'];
+        $answer_a = $_POST['answer_a'];
+        $answer_b = $_POST['answer_b'];
+        $answer_c = $_POST['answer_c'];
+        $answer_d = $_POST['answer_d'];
+        $correct_answer = $_POST['correct_answer'];
+
+        Question::editQuestion($id, $question, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer);
+
+        $questions = Question::getAllQuestion();
+        $topic_name = Topic::getTopicName();
+
+        View::render('Admin/ManageQuestion/index.html', [
+            'questions' => $questions,
+            'topic_name' => $topic_name,
+            'selected_field' => 'all',
+        ]);
+    }
 }

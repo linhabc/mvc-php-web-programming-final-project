@@ -61,6 +61,20 @@ class Question extends \Core\Model
         }
     }
 
+    public static function editQuestion($id, $question_detail, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer)
+    {
+        try {
+            $db = static::getDB();
+
+            $sql = "UPDATE question SET question = '$question_detail', a = '$answer_a', b = '$answer_b', c = '$answer_c', d = '$answer_d', answer = '$correct_answer' where id = $id";
+
+            $db->exec($sql);
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public static function getQuestion($id)
     {
         try {
