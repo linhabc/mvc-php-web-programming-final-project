@@ -18,10 +18,14 @@ class Users extends \Core\Controller
 
     public static function indexAction()
     {
+        $uid = $_COOKIE["uid"];
+
+        // Phụng update result để lấy nốt questions và topics
         $questions = Question::getAllQuestion();
         $topics = Topic::getAllTopic();
-        $tests = Test::getAllTest();
-        $comments = Comment::getAll();
+        
+        $tests = Test::getTestByUserId($uid);
+        $comments = Comment::getCommentUid($uid);
 
         View::render('User/index.html', [
             'questions' => $questions,
