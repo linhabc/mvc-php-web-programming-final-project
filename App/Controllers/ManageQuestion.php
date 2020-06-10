@@ -91,7 +91,7 @@ class ManageQuestion extends \Core\Controller
     public function editAction()
     {
         $id = $_POST['id'];
-        $question = $_POST['question_detail'];
+        $question = $_POST['question'];
         $answer_a = $_POST['answer_a'];
         $answer_b = $_POST['answer_b'];
         $answer_c = $_POST['answer_c'];
