@@ -15,7 +15,15 @@
     <div class="left">
       <h3>Test <span>Yourself</span></h3>
     </div>
+    if (isset($user)) {
+      # var_dump($user);
+      setcookie("uid", $user["id"], time() + (86400 * 30), "/");
+      setcookie("email", $user["email"], time() + (86400 * 30), "/");
+      setcookie("username", $user["username"], time() + (86400 * 30), "/");
+      setcookie("role", $user["role"], time() + (86400 * 30), "/");
 
+      echo $_COOKIE["username"];
+    }
     <div class="right">
       <a href="?Authentication/index" class="logout-button">Logout</a>
     </div>

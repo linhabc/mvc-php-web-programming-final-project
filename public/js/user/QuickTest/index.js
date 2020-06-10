@@ -96,7 +96,7 @@ function showResult(resultResponse) {
     // alert(total_questions + "-" + correct_answers + "-" + answers.length);
 
     document.getElementById('result').innerHTML =
-        "<span> Score: " + correct_answers/total_questions + "</span><br><span> Correct: "+ correct_answers+ " / " + total_questions + " </span><br><span>Finished at: "+ getDateFromTimestamp(finishedAt) +"</span><br><a href='#'>BACK</a>";
+        "<span> Score: " + correct_answers/total_questions*10 + " / 10</span><br><span> Correct: "+ correct_answers+ " / " + total_questions + " </span><br><span>Finished at: "+ getDateFromTimestamp(finishedAt) +"</span><br><a href='#'>BACK</a>";
 
     window.scrollTo(0, 0); 
 
