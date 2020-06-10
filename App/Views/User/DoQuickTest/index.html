@@ -48,26 +48,32 @@
         <h2 style="text-align: center;">Quick Test</h2>
 
         <div style="padding-left: 20px;">
-            <form action="?user/QuickTest/result" method="POST">
-                <?php 
-                    var_dump($questions);
-    
-                    foreach ($questions as $index =>$question) {
-                        echo "<br>";
-                        # var_dump($question);
-    
-                        $qNo = (int)$index + 1;
-                        echo "<br><div> Q" . $qNo . ":&nbsp;&nbsp;&nbsp;&nbsp;" . $question['question'] . "</div>";
-    
-                        echo "<input type='radio' id='a' name='" . $question["id"] . "' value='a'>&nbsp;" . $question["a"];
-                        echo "<br><input type='radio' id='b' name='" . $question["id"] . "' value='a'>&nbsp;" . $question["b"];
-                        echo "<br><input type='radio' id='c' name='" . $question["id"] . "' value='a'>&nbsp;" . $question["c"];
-                        echo "<br><input type='radio' id='d' name='" . $question["id"] . "' value='a'>&nbsp;" . $question["d"];
-                    }
-                ?>
-
-                <br></br>
-                <input type="submit" value="Submit">
+            <form action="?user/QuickTest/dotest" method="POST">
+                <table>
+                    <tr>
+                        <td>
+                            <label>Enter the test's duration(in minutes):</label>
+                        </td>
+                        <td>
+                            <input type="number" name="minute">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Enter the number of questions:</label>
+                        </td>
+                        <td>
+                            <input type="number" name="nQuestions">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            <input type="submit" value="Start test">
+                        </td>
+                    </tr>
+                </table>
             </form>
 
         </div>

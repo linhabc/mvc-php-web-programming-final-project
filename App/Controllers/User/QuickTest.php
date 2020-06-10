@@ -31,12 +31,12 @@ class QuickTest extends \Core\Controller
 
     public function doTestAction()
     {
-        $nQuestions = 10;
+        $nQuestions = $_POST["nQuestions"];
 
         $questions = Question::getRandomQuestion2($nQuestions);
 
-        $min = 2;
-        $sec = 16;
+        $min = $_POST["minute"];
+        $sec = 0;
 
         if ($min < 10) {
             $minute = '0' . (string) $min;
