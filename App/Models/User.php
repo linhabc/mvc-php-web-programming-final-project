@@ -8,6 +8,7 @@ class User extends \Core\Model
 {
     public $id;
     public $email;
+    public $userName;
     public $password;
     public $role;
 

@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Manage Question</title>
+    <title>Manage Test</title>
     <link rel="stylesheet" href="css//style.css" />
-    <link rel="stylesheet" href="css/User/CreateGroupTest/style.css" />
+    <link rel="stylesheet" href="css/User/ManageCustomTest/ManageTest/style.css" />
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <script src="js/User/index.js"></script>
@@ -24,23 +24,16 @@
 
     <div class="side-bar">
         <center>
-            <h4>User page</h4>
+            <h4>Custom Test</h4>
         </center>
         <a class="navLink" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dashboard</i><span>Dashboard</span></a>
-        <a class="navLink" href="?user/QuickTest/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">account_box</i><span>Doing Quick Test</span></a>
-    
-            <!-- Bổ sung đường dẫn vào Doing Group Test dưới đây -->
-        <a class="navLink" href="" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">chrome_reader_mode</i><span>Doing Group Test</span></a>
-    
-        <a class="navLink active" href="?user/CreateGroupTest/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dns</i><span>Create Group Test</span></a>
-        <a class="navLink" href="?user/ManageGroupTest/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dvr</i><span>Manage Group Test</span></a>
-        <a class="navLink" href="?user/History/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dvr</i><span>History</span></a>
+            class="material-icons">dashboard</i><span>Back</span></a>
+        <a class="navLink active" href="?user/ManageTest/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">dns</i><span>Manage Test</span></a>
+        <a class="navLink" href="?user/ManageComment/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">dvr</i><span>Manage Comment</span></a>
+        <a class="navLink" href="?user/ManageUser/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">dvr</i><span>Manage User</span></a>
     </div>
 
     <div class="content" id="content">
@@ -88,7 +81,7 @@
                     Create Group Test
                 </h2>
 
-                <form action="?user/CreateGroupTest/add" method="post">
+                <form action="?user/ManageTest/add" method="post">
                     <table style="text-align: left;" class="noborder">
                         <tr>
                             <th><label for="name">Name: </label></th>
@@ -135,7 +128,7 @@
         function confirmDelete(id) {
             var r = confirm("Are you sure you want to delete?");
             if (r == true) {
-                location.href = `?user/CreateGroupTest/delete&id=${id}`;
+                location.href = `?user/ManageTest/delete&id=${id}`;
             }
         }
     </script>

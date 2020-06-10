@@ -6,7 +6,7 @@ use App\Models\Test;
 use App\Models\Topic;
 use \Core\View;
 
-class ManageGroupTest extends \Core\Controller
+class ManageCustomTest extends \Core\Controller
 {
     protected function before()
     {
@@ -20,7 +20,7 @@ class ManageGroupTest extends \Core\Controller
         $tests = Test::getTestByUserId($userId);
         $topic_name = Topic::getTopicName();
 
-        View::render('User/ManageGroupTest/index.html', [
+        View::render('User/ManageCustomTest/index.html', [
             'tests' => $tests,
             'topic_name' => $topic_name,
         ]);
@@ -35,7 +35,7 @@ class ManageGroupTest extends \Core\Controller
 
         $tests = Test::getTestByUserId($userId);
 
-        View::render('User/ManageGroupTest/index.html', [
+        View::render('User/ManageCustomTest/index.html', [
             'tests' => $tests,
             'topic_name' => $topic_name,
         ]);

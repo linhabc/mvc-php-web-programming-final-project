@@ -35,8 +35,25 @@ class QuickTest extends \Core\Controller
 
         $questions = Question::getRandomQuestion2($nQuestions);
 
+        $min = 2;
+        $sec = 16;
+
+        if ($min < 10) {
+            $minute = '0' . (string) $min;
+        } else {
+            $minute = (string) $min;
+        }
+
+        if ($sec < 10) {
+            $second = '0' . (string) $sec;
+        } else {
+            $second = (string) $sec;
+        }
+
         View::render('User/DoQuickTest/do-test.html', [
             'questions' => $questions,
+            'minute' => $minute,
+            'second' => $second,
         ]);
     }
 
@@ -93,6 +110,8 @@ class QuickTest extends \Core\Controller
             // } else {
             //     $nInCorrectAnswers--;
             // }
+            $questions[$index]->student_anwser = ((array) $answer)['1'];
+
             if (!isset(((array) $answer)['1'])) {
                 $nIsNotSet++;
                 $nInCorrectAnswers--;
@@ -105,12 +124,17 @@ class QuickTest extends \Core\Controller
 
         // echo json_encode($data);
 
-        // echo json_encode($data["answer"] . size());
+        echo json_encode(array(
+            "total_questions" => count($answers),
+            "correct_answers" => $nCorrectAnswers,
+            "finished_at" => time(),
+            "answers" => $questions,
+        ));
 
-        View::render('User/DoQuickTest/result.html', [
-            // 'data' => ((array) $data->answer),
-            'data' => ($answers),
-        ]);
+        // View::render('User/DoQuickTest/result.html', [
+        //     // 'data' => ((array) $data->answer),
+        //     'data' => ($answers),
+        // ]);
         // echo $nCorrectAnswers;
     }
 
