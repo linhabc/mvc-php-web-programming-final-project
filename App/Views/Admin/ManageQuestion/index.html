@@ -73,7 +73,7 @@
                     <button style="margin-left: 20px;" type="submit">Select</button>
                 </form>
 
-                <table style="margin-top: 20px;">
+                <table style="margin-top: 20px; width: 80%;">
                     <tr>
                         <th>ID</th>
                         <th>Question</th>
@@ -89,19 +89,28 @@
     
                         foreach ($questions as $quest) {
                         $id = $quest['id'];
-                        echo "<tr>
-                            <td> $quest[id] </td>
-                            <td style='word-wrap: break-word; max-width: 150px;'> $quest[question] </td>
-                            <td style='word-wrap: break-word; max-width: 150px;'> $quest[a] </td>
-                            <td style='word-wrap: break-word; max-width: 150px;'> $quest[b] </td>
-                            <td style='word-wrap: break-word; max-width: 150px;'> $quest[c] </td>
-                            <td style='word-wrap: break-word; max-width: 150px;'> $quest[d] </td>
-                            <td style='word-wrap: break-word; max-width: 150px;'> $quest[answer]</td>
-                            <td>
-                                <button type=\"submit\">Edit</button>
-                                <button onclick='confirmDelete($id)'>Delete</button>
-                            </td>
-                        </tr>
+                        echo "
+                        <form action=\"?ManageQuestion/edit\" method=\"post\">
+                            <tr>
+                                <td><input style=\"text-align: center;\" class=\"noborder id-class\" type=\"text\" name=\"id\" value=\"$quest[id]\"></td>
+                                <td style='word-wrap: break-word; max-width: 10%;' contenteditable=\"true\"><input class=\"noborder email-class\" 
+                                                                                     type=\"text\" name=\"question\" value=\"$quest[question]\"></td>
+                                <td style='word-wrap: break-word; max-width: 10%;' contenteditable=\"true\"><input style=\"text-align: center;\" class=\"noborder answer\" 
+                                                                                     type=\"text\" name=\"answer_a\" value=\"$quest[a]\"></td>
+                                <td style='word-wrap: break-word; max-width: 10%;' contenteditable=\"true\"><input style=\"text-align: center;\" class=\"noborder answer\" 
+                                                                                     type=\"text\" name=\"answer_b\" value=\"$quest[b]\"></td>
+                                <td style='word-wrap: break-word; max-width: 10%;' contenteditable=\"true\"><input style=\"text-align: center;\" class=\"noborder answer\" 
+                                                                                     type=\"text\" name=\"answer_c\" value=\"$quest[c]\"></td>
+                                <td style='word-wrap: break-word; max-width: 10%;' contenteditable=\"true\"><input style=\"text-align: center;\" class=\"noborder answer\" 
+                                                                                     type=\"text\" name=\"answer_d\" value=\"$quest[d]\"></td>
+                                <td style='word-wrap: break-word; max-width: 10%;'><input style=\"text-align: center;\" class=\"noborder answer\" 
+                                                                                     type=\"text\" name=\"correct_answer\" value=\"$quest[answer]\"></td>
+                                <td>
+                                    <button onclick='alertSuccess()' type=\"submit\">Edit</button>
+                                    <button type=\"button\" onclick='confirmDelete($id)'>Delete</button>
+                                </td>
+                            </tr>
+                        </form>
                         ";
                         }
                         ?>
@@ -159,7 +168,14 @@
 
                         <tr>
                             <th><label for="correct_answer">Correct answer: </label></th>
-                            <td><textarea id="correct_answer" name="correct_answer" required></textarea></td>
+                            <td>
+                                <select name="correct_answer">
+                                    <option value='a'>a</option>
+                                    <option value='b'>b</option>
+                                    <option value='c'>c</option>
+                                    <option value='d'>d</option>
+                                </select>
+                            </td>
                         </tr>
 
                         <tr>

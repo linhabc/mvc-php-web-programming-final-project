@@ -12,10 +12,7 @@
 
 <body>
     <div id="header">
-        <div>
-            <div>
-                <span class="title">Quick Test</span>
-            </div>
+            <div class="title" >Quick Test</div>
 
             <div class="">
                 <span id="timer">
@@ -24,11 +21,9 @@
                     ?>
                 </span>
             </div>
-
-        </div>
     </div>
 
-    <div id="leftcol">
+    <div id="left-col">
       <div id="question-shorcut">
         <div>
             <?php
@@ -46,7 +41,7 @@
       </div>
     </div>
 
-    <div id="rightcol">
+    <div id="right-col">
         <div id="questions-area">
             <div id="result"></div>
 
@@ -54,98 +49,31 @@
             # var_dump($questions);
     
             foreach ($questions as $index =>$question) {
-                echo "<br>";
-    
                 $qNo = (int)$index + 1;
-                echo "<br><div id=question-" . $qNo ."> Q" . $qNo . ":&nbsp;&nbsp;&nbsp;&nbsp;" . $question->question . "</div>";
+                echo "<br><div class= 'question' id=question-" . $qNo ."> Q" . $qNo . ":&nbsp;&nbsp;&nbsp;&nbsp;" . $question->question . "</div>";
     
                 echo "<label class = 'answer' id='" . $question->id ."-a'><input type='radio' class = 'radio-btn' id='" . $qNo ."' name='" . $question->id . "' value='a'>&nbsp;" . $question->a . "</label>";
                 echo "<br><label class = 'answer' id='" . $question->id ."-b'><input type='radio' class = 'radio-btn' id='" . $qNo ."' name='" . $question->id . "' value='b'>&nbsp;" . $question->b . "</label>";
                 echo "<br><label class = 'answer' id='" . $question->id ."-c'><input type='radio' class = 'radio-btn' id='" . $qNo ."' name='" . $question->id . "' value='c'>&nbsp;" . $question->c . "</label>";
                 echo "<br><label class = 'answer' id='" . $question->id ."-d'><input type='radio' class = 'radio-btn' id='" . $qNo ."' name='" . $question->id . "' value='d'>&nbsp;" . $question->d . "</label>";
+                echo "<hr />";
             }
     
             ?>
         </div>
 
-        <div>
-            <a id="btnSubmit" class="btnSubmit">Submit</a>
+        <div class="flex-container">
+            <div style="flex: 1;"></div>
+            <div id="btnSubmit">
+                <a  class="btnSubmit">Submit</a>
+            </div>
         </div>
+
+        
         
     
     </div> 
 
-    <!-- <div id="dom-target" style="display: none;">
-        <?php
-            $output = "42"; // Again, do some operation, get the output.
-            echo htmlspecialchars($output); /* You have to escape because the result
-                                               will not be valid HTML otherwise. */
-        ?>
-    </div> -->
-
-    <!-- <script>
-        let myAnswers = new Map();
-
-        var container, inputs, index;
-
-        container = document.getElementById('testing-right');
-
-        inputs = container.getElementsByTagName('input');
-        for (index = 0; index < inputs.length; ++index) {
-            // var radioBtn = inputs[index]
-            // console.log(inputs[index].value)
-            // console.log(radioBtn.value)
-            myAnswers.set(inputs[index].name, null)
-
-            inputs[index].addEventListener('click', function () {
-                // console.log(this)
-                console.log(this.name + " - " + this.value)
-
-                myAnswers.set(this.name, this.value)
-
-                console.log(myAnswers)
-            })
-
-        }
-
-        console.log(myAnswers);
-
-        // console.log('questions: -----------------');
-        // var div = document.getElementById("dom-target");
-        // var myData = div.textContent;
-        // console.log("_" + myData + "_");
-        // console.log('questions: -----------------');
-
-        function UserAction() {
-            console.log(myAnswers);
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    alert("Correct answer(s): " + this.responseText);
-                    showResult(this.responseText);
-                    // document.getElementById('result').innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("POST", "?user/QuickTest/checkResult&id=123", true);
-            xhttp.setRequestHeader("Content-type", "application/json");
-            xhttp.send(JSON.stringify({ 'answer': [...myAnswers] }));
-        }
-
-        document.getElementById("btnSubmit").addEventListener('click', UserAction);
-        
-        function showResult(resultResponse) {
-            const result = JSON.parse(resultResponse)
-            const total_questions = result['total_questions'];
-            const correct_answers = result['correct_answers'];
-            const answers = result['answers'];
-
-            alert(total_questions + "-" + correct_answers + "-" + answers.length);
-
-            document.getElementById('result').innerHTML =
-                "<span> Scores: </span><span> Correct:"+ correct_answers+" </span ><span>Finished at: </span>";
-        }
-    </script> -->
 </body>
 
 <script src="js/user/QuickTest/index.js"></script>
