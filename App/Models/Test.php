@@ -73,8 +73,15 @@ class Test extends \Core\Model
 
             $sql = "INSERT INTO test (topic_id, user_id, name, description, duration) VALUES ('$topicId', '$userId', '$name', '$description', '$duration')";
 
-            $db->exec($sql);
+            // $stmt = $db->prepare($sql);
+            // $stmt->execute();
 
+            // $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $db->exec($sql);
+            $last_id = $db->lastInsertId();
+
+            return $last_id;
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
