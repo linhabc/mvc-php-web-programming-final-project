@@ -3,6 +3,7 @@
 namespace App\Controllers\User;
 
 use App\Models\Question;
+use App\Models\Test;
 use \Core\View;
 
 class GroupTest extends \Core\Controller
@@ -21,42 +22,30 @@ class GroupTest extends \Core\Controller
 
     public function indexAction()
     {
-        if (array_key_exists('testCode', $_POST)) {
-            $testID = $_POST['testCode'];
-        } else {
-            $testID = -1;
-        }
 
-        View::render('User/DoGroupTest/index.html', [
-            'testID' => $testID,
-        ]);
+        View::render('User/DoGroupTest/index.html', []);
+
     }
 
     public function doTestAction()
     {
-        $nQuestions = $_POST["nQuestions"];
 
-        $questions = Question::getRandomQuestion2($nQuestions);
-
-        $min = $_POST["minute"];
-        $sec = 0;
-
-        if ($min < 10) {
-            $minute = '0' . (string) $min;
-        } else {
-            $minute = (string) $min;
+        $headerCookies = explode('; ', getallheaders()['Cookie']);
+        $cookies = array();
+        foreach ($headerCookies as $itm) {
+            list($key, $val) = explode('=', $itm, 2);
+            $cookies[$key] = $val;
         }
+        $uid = (int) $cookies['uid'];
 
-        if ($sec < 10) {
-            $second = '0' . (string) $sec;
-        } else {
-            $second = (string) $sec;
-        }
+        $testCode = (int) ($this->route_params)["id"];
 
-        View::render('User/DoQuickTest/do-test.html', [
-            'questions' => $questions,
-            'minute' => $minute,
-            'second' => $second,
+        View::render('User/DoGroupTest/do-test.html', [
+            'testCode' => $testCode,
+            'uid' => $uid,
+            // 'questions' => $questions,
+            // 'minute' => $minute,
+            // 'second' => $second,
         ]);
     }
 
@@ -70,23 +59,35 @@ class GroupTest extends \Core\Controller
         ]);
     }
 
+    public function checkCodeExistAction()
+    {
+        $request_body = file_get_contents('php://input');
+        $data = json_decode($request_body);
+
+        $testCodeStr = $data->testCode;
+
+        if ($testCodeStr == "") {
+            $existed = false;
+        } else {
+            $testCode = (int) $testCodeStr;
+
+            $test = Test::getTest($testCode);
+
+            if (!isset($test) || empty($test)) {
+                $existed = false;
+            } else {
+                $existed = true;
+            }
+        }
+
+        echo json_encode(array(
+            "existed" => $existed,
+        ));
+
+    }
+
     public function checkResultAction()
     {
-        // echo ("-----");
-        // $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        // echo ("-----");
-        // echo ($actual_link);
-        // echo ("AHEHEHE");
-
-        // try {
-        //     echo $_POST;
-        // } catch (Exception $e) {
-        //     $log = 'Caught exception: ' . $e->getMessage() . "\n";
-        //     file_put_contents('/logs/' . date("j.n.Y") . '.txt', $log, FILE_APPEND);
-        //     echo 'Caught exception: ' . $e->getMessage() . "\n";
-        // }
-
-        // $id = $_GET['id'];
         $request_body = file_get_contents('php://input');
         $data = json_decode($request_body);
 
@@ -108,11 +109,6 @@ class GroupTest extends \Core\Controller
         $nIsNotSet = 0;
 
         foreach ($answers as $index => $answer) {
-            // if (isset(((array) $answer)['1']) && (strcasecmp($questions[$index]->answer, ((array) $answer)['1']) == 0)) {
-            //     $nCorrectAnswers++;
-            // } else {
-            //     $nInCorrectAnswers--;
-            // }
             $questions[$index]->student_anwser = ((array) $answer)['1'];
 
             if (!isset(((array) $answer)['1'])) {
@@ -125,8 +121,6 @@ class GroupTest extends \Core\Controller
             }
         }
 
-        // echo json_encode($data);
-
         echo json_encode(array(
             "total_questions" => count($answers),
             "correct_answers" => $nCorrectAnswers,
@@ -134,11 +128,6 @@ class GroupTest extends \Core\Controller
             "answers" => $questions,
         ));
 
-        // View::render('User/DoQuickTest/result.html', [
-        //     // 'data' => ((array) $data->answer),
-        //     'data' => ($answers),
-        // ]);
-        // echo $nCorrectAnswers;
     }
 
     public function cmp($answer_1, $answer_2)

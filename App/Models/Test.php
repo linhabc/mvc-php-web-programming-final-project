@@ -62,7 +62,7 @@ class Test extends \Core\Model
             return $results;
 
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            return $e->getMessage();
         }
     }
 
@@ -109,7 +109,7 @@ class Test extends \Core\Model
             $db = static::getDB();
 
             $stmt = $db->query("SELECT test.id,topic.name as to_name, test.name as te_name,test.description as te_des, test.duration as te_duration FROM test INNER JOIN topic ON test.topic_id = topic.id WHERE user_id = $userId");
-            
+
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;

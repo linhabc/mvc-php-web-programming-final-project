@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quick Test</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/User/DoGroupTest/style.css" />
+</head>
+
+<body>
+    <div id="header">
+            <div class="title" >Quick Test</div>
+
+            <div class="">
+                <span id="timer">
+                    <?php 
+                        var_dump($testCode);
+
+                        var_dump($uid);
+                    ?>
+                    <!-- <?php 
+                    echo $minute . " : " . $second
+                    ?> -->
+                </span>
+            </div>
+    </div>
+
+    <div id="left-col">
+      <div id="question-shorcut">
+        <div>
+            <!-- <?php
+            #var_dump($questions);
+
+            for ($i = 0; $i < count($questions); $i++) {
+                if (isset($questions[$i]->student_answer)) {
+                    echo '<a href="#question-' . ($i + 1) . '" class="question-link">Question ' . ($i + 1) . '&nbsp; <span class="tick" id="tick-' . ($i + 1) . '">✓</span></a><br>';
+                } else {
+                    echo '<a href="#question-' . ($i + 1) . '" class="question-link">Question ' . ($i + 1) . '&nbsp; <span class="tick" id="tick-' . ($i + 1) . '"></span></a><br>';
+                }
+            }
+            ?> -->
+        </div>
+      </div>
+    </div>
+
+    <div id="right-col">
+        <div id="questions-area">
+            <div id="result"></div>
+
+            <!-- <?php
+            # var_dump($questions);
+    
+            foreach ($questions as $index =>$question) {
+                $qNo = (int)$index + 1;
+                echo "<br><div class= 'question' id=question-" . $qNo ."> Q" . $qNo . ":&nbsp;&nbsp;&nbsp;&nbsp;" . $question->question . "</div>";
+    
+                echo "<label class = 'answer' id='" . $question->id ."-a'><input type='radio' class = 'radio-btn' id='" . $qNo ."' name='" . $question->id . "' value='a'>&nbsp;" . $question->a . "</label>";
+                echo "<br><label class = 'answer' id='" . $question->id ."-b'><input type='radio' class = 'radio-btn' id='" . $qNo ."' name='" . $question->id . "' value='b'>&nbsp;" . $question->b . "</label>";
+                echo "<br><label class = 'answer' id='" . $question->id ."-c'><input type='radio' class = 'radio-btn' id='" . $qNo ."' name='" . $question->id . "' value='c'>&nbsp;" . $question->c . "</label>";
+                echo "<br><label class = 'answer' id='" . $question->id ."-d'><input type='radio' class = 'radio-btn' id='" . $qNo ."' name='" . $question->id . "' value='d'>&nbsp;" . $question->d . "</label>";
+                echo "<hr />";
+            }
+    
+            ?> -->
+        </div>
+
+        <div class="flex-container">
+            <div style="flex: 1;"></div>
+            <div id="btnSubmit">
+                <a  class="btnSubmit">Submit</a>
+            </div>
+        </div>
+
+        
+        
+    
+    </div> 
+
+    <script src="js/user/GroupTest/index.js"></script>
+</body>
+
+</html>
