@@ -18,7 +18,7 @@
         </div>
 
         <div class="right">
-            <button class="logout-button" onclick="confirmLogout()">Logout</button>
+            <button class="logout-button" onclick="confirmLogout()"><img src="images/logout.svg">Logout</button>
         </div>
     </header>
 
@@ -69,8 +69,8 @@
                                 <td> $test[te_des]</td>
                                 <td>$test[te_duration]</td>
                                 <td>
-                                    <button>View</button>
-                                    <button onclick='confirmDelete($id)'>Delete</button>
+                                    <button class=\"view\">View</button>
+                                    <button onclick='confirmDelete($id)' class=\"delete\"><img src=\"images/delete.svg\">Del</button>
                                 </td>
                             </tr>
                             ";

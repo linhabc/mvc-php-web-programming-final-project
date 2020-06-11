@@ -108,3 +108,36 @@ header {
   margin-left: 250px;
   transition: 0.5s;
 }
+
+.edit {
+  border-radius: 4px;
+}
+
+.edit:hover {
+  color: #000!important;
+  background-color: #87CEEB!important
+}
+
+.delete {
+  border-radius: 4px;
+}
+
+.delete:hover {
+  color: #fff!important;
+  background-color: #f44336!important
+}
+
+.view {
+  border-radius: 4px;
+}
+
+.view:hover {
+  color: #000!important;
+  background-color: #ddffdd!important
+}
+
+img {
+  width: 30%;
+  height: auto;
+  vertical-align: bottom;
+}

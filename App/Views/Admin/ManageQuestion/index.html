@@ -18,7 +18,7 @@
         </div>
 
         <div class="right">
-            <button class="logout-button" onclick="confirmLogout()">Logout</button>
+            <button class="logout-button" onclick="confirmLogout()"><img src="images/logout.svg">Logout</button>
         </div>
     </header>
 
@@ -71,7 +71,7 @@
 
                         ?>
                     </select>
-                    <button style="margin-left: 20px;" type="submit">Select</button>
+                    <button style="margin-left: 20px; font-size: 8pt;" type="submit" class="select">Select</button>
                 </form>
 
                 <table style="margin-top: 20px; width: 80%;">
@@ -107,8 +107,8 @@
                                 <td style=\"word-wrap: break-word; max-width: 10%;\"><input style=\"text-align: center;\" class=\"noborder answer\" 
                                                                                      type=\"text\" name=\"correct_answer\" value=\"$quest[answer]\"></td>
                                 <td>
-                                    <button onclick='alertSuccess()' type=\"submit\">Edit</button>
-                                    <button type=\"button\" onclick='confirmDelete($id)'>Delete</button>
+                                    <button onclick='alertSuccess()' type=\"submit\" class=\"edit\"><img src=\"images/create.svg\">Edit</button>
+                                    <button type=\"button\" onclick='confirmDelete($id)' class=\"delete\"><img src=\"images/delete.svg\">Del</button>
                                 </td>
                             </tr>
                         </form>
