@@ -13,14 +13,14 @@ class Test extends \Core\Model
     public $description;
     public $duration;
 
-    public function __construct($id, $topicId, $userId, $name, $description)
-    {
-        $this->id = $id;
-        $this->topicId = $topicId;
-        $this->userId = $userId;
-        $this->name = $name;
-        $this->description = $description;
-    }
+    // public function __construct($id, $topicId, $userId, $name, $description)
+    // {
+    //     $this->id = $id;
+    //     $this->topicId = $topicId;
+    //     $this->userId = $userId;
+    //     $this->name = $name;
+    //     $this->description = $description;
+    // }
 
     public static function getAllTest()
     {
@@ -56,10 +56,11 @@ class Test extends \Core\Model
         try {
             $db = static::getDB();
 
-            $stmt = $db->query("SELECT * FROM test WHERE id = $id");
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt = $db->query("SELECT * FROM test WHERE id = $id LIMIT 1");
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'App\Models\Test');
+            $result = $stmt->fetch();
 
-            return $results;
+            return $result;
 
         } catch (PDOException $e) {
             return $e->getMessage();

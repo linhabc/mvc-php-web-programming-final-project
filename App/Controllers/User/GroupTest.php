@@ -3,6 +3,7 @@
 namespace App\Controllers\User;
 
 use App\Models\Question;
+use App\Models\Result;
 use App\Models\Test;
 use \Core\View;
 
@@ -29,23 +30,38 @@ class GroupTest extends \Core\Controller
 
     public function doTestAction()
     {
-
-        $headerCookies = explode('; ', getallheaders()['Cookie']);
-        $cookies = array();
-        foreach ($headerCookies as $itm) {
-            list($key, $val) = explode('=', $itm, 2);
-            $cookies[$key] = $val;
-        }
-        $uid = (int) $cookies['uid'];
+        $uid = (int) $this->getValueFromCookie('uid');
 
         $testCode = (int) ($this->route_params)["id"];
+
+        $result = Result::getResult($uid, $testCode);
+
+        if ($result) {
+            // TODO User has done the test -> redirect to result page
+            echo $uid;
+            echo "<br>";
+            echo $testCode;
+            echo "<br>";
+            echo "This user has done this test<br>";
+            var_dump($result);
+            return;
+        }
+
+        $test = Test::getTest($testCode);
+
+        $questions = Question::getQuestionByTestId($testCode);
+
+        $minute = $test->duration;
+
+        $second = '00';
 
         View::render('User/DoGroupTest/do-test.html', [
             'testCode' => $testCode,
             'uid' => $uid,
-            // 'questions' => $questions,
-            // 'minute' => $minute,
-            // 'second' => $second,
+            'questions' => $questions,
+            'minute' => $minute,
+            'second' => $second,
+            'test' => $test,
         ]);
     }
 
@@ -121,10 +137,20 @@ class GroupTest extends \Core\Controller
             }
         }
 
+        $newResult = new Result();
+        $newResult->userId = (int) $this->getValueFromCookie('uid');
+        $newResult->testId = (int) $this->getValueFromCookie('testId');
+        $newResult->score = round(($nCorrectAnswers / count($answers)) * 10, 2);
+        $newResult->rating = -1;
+        $newResult->create_at = time();
+        $newResult->time = $data->timeUsed;
+
+        Result::createResultWithObject($newResult);
+
         echo json_encode(array(
             "total_questions" => count($answers),
             "correct_answers" => $nCorrectAnswers,
-            "finished_at" => time(),
+            "finished_at" => $newResult->create_at,
             "answers" => $questions,
         ));
 
@@ -138,6 +164,22 @@ class GroupTest extends \Core\Controller
             return 0;
         }
         return ($id1 < $id2) ? -1 : 1;
+    }
+
+    private function getCookie()
+    {
+        $headerCookies = explode('; ', getallheaders()['Cookie']);
+        $cookie = array();
+        foreach ($headerCookies as $itm) {
+            list($key, $val) = explode('=', $itm, 2);
+            $cookie[$key] = $val;
+        }
+        return $cookie;
+    }
+
+    private function getValueFromCookie($name)
+    {
+        return ($this->getCookie())[$name];
     }
 
 }

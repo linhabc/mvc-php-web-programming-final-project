@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quick Test</title>
+    <title>Group Test</title>
 
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/User/DoGroupTest/style.css" />
@@ -12,18 +12,15 @@
 
 <body>
     <div id="header">
-            <div class="title" >Quick Test</div>
-
+            <?php
+                setcookie("testId", $test->id, time() + (86400 * 30), "/");
+            ?>
+            <div class="title" >Group Test - <?php echo  $test->name?></div>
             <div class="">
                 <span id="timer">
                     <?php 
-                        var_dump($testCode);
-
-                        var_dump($uid);
-                    ?>
-                    <!-- <?php 
                     echo $minute . " : " . $second
-                    ?> -->
+                    ?>
                 </span>
             </div>
     </div>
@@ -31,7 +28,7 @@
     <div id="left-col">
       <div id="question-shorcut">
         <div>
-            <!-- <?php
+            <?php
             #var_dump($questions);
 
             for ($i = 0; $i < count($questions); $i++) {
@@ -41,7 +38,7 @@
                     echo '<a href="#question-' . ($i + 1) . '" class="question-link">Question ' . ($i + 1) . '&nbsp; <span class="tick" id="tick-' . ($i + 1) . '"></span></a><br>';
                 }
             }
-            ?> -->
+            ?>
         </div>
       </div>
     </div>
@@ -50,7 +47,7 @@
         <div id="questions-area">
             <div id="result"></div>
 
-            <!-- <?php
+            <?php
             # var_dump($questions);
     
             foreach ($questions as $index =>$question) {
@@ -64,7 +61,7 @@
                 echo "<hr />";
             }
     
-            ?> -->
+            ?>
         </div>
 
         <div class="flex-container">
@@ -79,7 +76,7 @@
     
     </div> 
 
-    <script src="js/user/GroupTest/index.js"></script>
+    <script src="js/user/GroupTest/do-test.js"></script>
 </body>
 
 </html>
