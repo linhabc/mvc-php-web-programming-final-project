@@ -1,0 +1,96 @@
+html,
+body {
+  height: 100%;
+}
+
+#header {
+  position: fixed;
+  background: #c8c8c8;
+  width: 100%;
+  height: 70px;
+  text-align: center;
+  border-bottom: solid 1px black;
+}
+
+#left-col {
+  position: fixed;
+  margin-top: 70px;
+  padding-top: 30px;
+  border: solid 1px black;
+  background: #f1f1f1;
+  display: inline-block;
+  width: 20%;
+  height: calc(100vh - 73px);
+  margin-bottom: 10px;
+  overflow-y: auto;
+}
+#right-col {
+  margin-top: 80px;
+  background: #fff;
+  overflow-y: hidden;
+  float: right;
+  width: 80%;
+  height: cal;
+}
+
+.title,
+#timer {
+  font-size: 20px;
+  padding: 10px;
+}
+
+#content {
+  padding-left: 10px;
+  background: #fff;
+  float: left;
+  width: 59%;
+  height: 100%;
+}
+
+#questions-area {
+  padding-left: 20px;
+}
+
+#btnSubmit {
+  margin: 20px;
+}
+
+.btnSubmit {
+  background-color: #ff6600;
+  color: white;
+  text-decoration-color: white;
+  text-decoration: none;
+  border-radius: 2px;
+  height: 36px;
+  line-height: 36px;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 20px;
+}
+
+.btnSubmit:hover {
+  background-color: #ab5922;
+}
+
+.question {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 20px;
+  font-size: 20px;
+}
+
+.question-link {
+  line-height: 2;
+  text-decoration: none;
+  padding-left: 10px;
+}
+
+.answer {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 18px;
+}
+
+.flex-container {
+  display: flex;
+}

@@ -3,6 +3,8 @@
 namespace App\Controllers\User;
 
 use App\Models\Question;
+use App\Models\Result;
+use App\Models\Test;
 use \Core\View;
 
 class GroupTest extends \Core\Controller
@@ -21,42 +23,45 @@ class GroupTest extends \Core\Controller
 
     public function indexAction()
     {
-        if (array_key_exists('testCode', $_POST)) {
-            $testID = $_POST['testCode'];
-        } else {
-            $testID = -1;
-        }
 
-        View::render('User/DoGroupTest/index.html', [
-            'testID' => $testID,
-        ]);
+        View::render('User/DoGroupTest/index.html', []);
+
     }
 
     public function doTestAction()
     {
-        $nQuestions = $_POST["nQuestions"];
+        $uid = (int) $this->getValueFromCookie('uid');
 
-        $questions = Question::getRandomQuestion2($nQuestions);
+        $testCode = (int) ($this->route_params)["id"];
 
-        $min = $_POST["minute"];
-        $sec = 0;
+        $result = Result::getResult($uid, $testCode);
 
-        if ($min < 10) {
-            $minute = '0' . (string) $min;
-        } else {
-            $minute = (string) $min;
+        if ($result) {
+            // TODO User has done the test -> redirect to result page
+            echo $uid;
+            echo "<br>";
+            echo $testCode;
+            echo "<br>";
+            echo "This user has done this test<br>";
+            var_dump($result);
+            return;
         }
 
-        if ($sec < 10) {
-            $second = '0' . (string) $sec;
-        } else {
-            $second = (string) $sec;
-        }
+        $test = Test::getTest($testCode);
 
-        View::render('User/DoQuickTest/do-test.html', [
+        $questions = Question::getQuestionByTestId($testCode);
+
+        $minute = $test->duration;
+
+        $second = '00';
+
+        View::render('User/DoGroupTest/do-test.html', [
+            'testCode' => $testCode,
+            'uid' => $uid,
             'questions' => $questions,
             'minute' => $minute,
             'second' => $second,
+            'test' => $test,
         ]);
     }
 
@@ -70,23 +75,35 @@ class GroupTest extends \Core\Controller
         ]);
     }
 
+    public function checkCodeExistAction()
+    {
+        $request_body = file_get_contents('php://input');
+        $data = json_decode($request_body);
+
+        $testCodeStr = $data->testCode;
+
+        if ($testCodeStr == "") {
+            $existed = false;
+        } else {
+            $testCode = (int) $testCodeStr;
+
+            $test = Test::getTest($testCode);
+
+            if (!isset($test) || empty($test)) {
+                $existed = false;
+            } else {
+                $existed = true;
+            }
+        }
+
+        echo json_encode(array(
+            "existed" => $existed,
+        ));
+
+    }
+
     public function checkResultAction()
     {
-        // echo ("-----");
-        // $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        // echo ("-----");
-        // echo ($actual_link);
-        // echo ("AHEHEHE");
-
-        // try {
-        //     echo $_POST;
-        // } catch (Exception $e) {
-        //     $log = 'Caught exception: ' . $e->getMessage() . "\n";
-        //     file_put_contents('/logs/' . date("j.n.Y") . '.txt', $log, FILE_APPEND);
-        //     echo 'Caught exception: ' . $e->getMessage() . "\n";
-        // }
-
-        // $id = $_GET['id'];
         $request_body = file_get_contents('php://input');
         $data = json_decode($request_body);
 
@@ -108,11 +125,6 @@ class GroupTest extends \Core\Controller
         $nIsNotSet = 0;
 
         foreach ($answers as $index => $answer) {
-            // if (isset(((array) $answer)['1']) && (strcasecmp($questions[$index]->answer, ((array) $answer)['1']) == 0)) {
-            //     $nCorrectAnswers++;
-            // } else {
-            //     $nInCorrectAnswers--;
-            // }
             $questions[$index]->student_anwser = ((array) $answer)['1'];
 
             if (!isset(((array) $answer)['1'])) {
@@ -125,20 +137,23 @@ class GroupTest extends \Core\Controller
             }
         }
 
-        // echo json_encode($data);
+        $newResult = new Result();
+        $newResult->userId = (int) $this->getValueFromCookie('uid');
+        $newResult->testId = (int) $this->getValueFromCookie('testId');
+        $newResult->score = round(($nCorrectAnswers / count($answers)) * 10, 2);
+        $newResult->rating = -1;
+        $newResult->create_at = time();
+        $newResult->time = $data->timeUsed;
+
+        Result::createResultWithObject($newResult);
 
         echo json_encode(array(
             "total_questions" => count($answers),
             "correct_answers" => $nCorrectAnswers,
-            "finished_at" => time(),
+            "finished_at" => $newResult->create_at,
             "answers" => $questions,
         ));
 
-        // View::render('User/DoQuickTest/result.html', [
-        //     // 'data' => ((array) $data->answer),
-        //     'data' => ($answers),
-        // ]);
-        // echo $nCorrectAnswers;
     }
 
     public function cmp($answer_1, $answer_2)
@@ -149,6 +164,22 @@ class GroupTest extends \Core\Controller
             return 0;
         }
         return ($id1 < $id2) ? -1 : 1;
+    }
+
+    private function getCookie()
+    {
+        $headerCookies = explode('; ', getallheaders()['Cookie']);
+        $cookie = array();
+        foreach ($headerCookies as $itm) {
+            list($key, $val) = explode('=', $itm, 2);
+            $cookie[$key] = $val;
+        }
+        return $cookie;
+    }
+
+    private function getValueFromCookie($name)
+    {
+        return ($this->getCookie())[$name];
     }
 
 }
