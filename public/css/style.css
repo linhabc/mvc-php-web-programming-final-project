@@ -36,10 +36,14 @@ header {
   font-weight: 600;
   color: black;
   transition: 0.5s;
+  cursor: pointer;
+  border: 1px solid #ccc!important;
+  border-radius: 4px
 }
 
-.logout-button hover {
-  background: #0b87a6;
+.logout-button:hover {
+  color: #000!important;
+  background-color: #9e9e9e!important
 }
 
 .side-bar {

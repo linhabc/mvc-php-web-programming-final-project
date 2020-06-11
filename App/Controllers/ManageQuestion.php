@@ -70,13 +70,14 @@ class ManageQuestion extends \Core\Controller
     {
         $question = htmlentities($_POST['question_detail']);
         $topic_id = $_POST['topic'];
+        $user_id = $_COOKIE['uid'];
         $answer_a = htmlentities($_POST['answer_a']);
         $answer_b = htmlentities($_POST['answer_b']);
         $answer_c = htmlentities($_POST['answer_c']);
         $answer_d = htmlentities($_POST['answer_d']);
         $correct_answer = htmlentities($_POST['correct_answer']);
 
-        Question::createQuestion($topic_id, -1, $question, $correct_answer, $answer_a, $answer_b, $answer_c, $answer_d);
+        Question::createQuestion($topic_id, $user_id, $question, $correct_answer, $answer_a, $answer_b, $answer_c, $answer_d);
 
         $questions = Question::getAllQuestion();
         $topic_name = Topic::getTopicName();
