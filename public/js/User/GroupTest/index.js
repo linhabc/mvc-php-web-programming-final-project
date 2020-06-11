@@ -8,7 +8,7 @@ function checkTestCode() {
             const result = JSON.parse(this.responseText);
             const existed = result['existed'];
             if (existed) {
-
+                redirectTo(`?user/GroupTest/${testCode}/dotest`);
             } else {
                 alert('Test code NOT existed!');
             }

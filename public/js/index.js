@@ -12,3 +12,7 @@ function getCookie(cname) {
     }
     return "";
 }
+
+function redirectTo(url) {
+  location.href = `${url}`;
+}
