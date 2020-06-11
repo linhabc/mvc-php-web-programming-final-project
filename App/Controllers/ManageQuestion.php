@@ -68,13 +68,13 @@ class ManageQuestion extends \Core\Controller
 
     public function addAction()
     {
-        $question = $_POST['question_detail'];
+        $question = htmlentities($_POST['question_detail']);
         $topic_id = $_POST['topic'];
-        $answer_a = $_POST['answer_a'];
-        $answer_b = $_POST['answer_b'];
-        $answer_c = $_POST['answer_c'];
-        $answer_d = $_POST['answer_d'];
-        $correct_answer = $_POST['correct_answer'];
+        $answer_a = htmlentities($_POST['answer_a']);
+        $answer_b = htmlentities($_POST['answer_b']);
+        $answer_c = htmlentities($_POST['answer_c']);
+        $answer_d = htmlentities($_POST['answer_d']);
+        $correct_answer = htmlentities($_POST['correct_answer']);
 
         Question::createQuestion($topic_id, -1, $question, $correct_answer, $answer_a, $answer_b, $answer_c, $answer_d);
 
@@ -90,13 +90,14 @@ class ManageQuestion extends \Core\Controller
 
     public function editAction()
     {
+
         $id = $_POST['id'];
-        $question = $_POST['question'];
-        $answer_a = $_POST['answer_a'];
-        $answer_b = $_POST['answer_b'];
-        $answer_c = $_POST['answer_c'];
-        $answer_d = $_POST['answer_d'];
-        $correct_answer = $_POST['correct_answer'];
+        $question = htmlentities($_POST['question']);
+        $answer_a = htmlentities($_POST['answer_a']);
+        $answer_b = htmlentities($_POST['answer_b']);
+        $answer_c = htmlentities($_POST['answer_c']);
+        $answer_d = htmlentities($_POST['answer_d']);
+        $correct_answer = htmlentities($_POST['correct_answer']);
 
         Question::editQuestion($id, $question, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer);
 
@@ -109,4 +110,5 @@ class ManageQuestion extends \Core\Controller
             'selected_field' => 'all',
         ]);
     }
+
 }

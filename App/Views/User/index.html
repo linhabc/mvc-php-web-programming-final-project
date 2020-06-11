@@ -1,84 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Homepage</title>
+    <link rel="stylesheet" href="css//style.css" />
+    <link rel="stylesheet" href="css/User/style.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="js/User/index.js"></script>
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <title>Homepage</title>
-  <link rel="stylesheet" href="css//style.css" />
-  <link rel="stylesheet" href="css/User/style.css" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-  <script src="js/User/index.js"></script>
-</head>
-
-<body>
-  <header>
-    <div class="left">
-      <h3>Test <span>Yourself</span></h3>
-    </div>
-    <?php
-    
+  <body>
+    <header>
+      <div class="left">
+        <h3>Test <span>Yourself</span></h3>
+      </div>
+      <?php
     if (isset($user)) {
       # var_dump($user);
       setcookie("uid", $user["id"], time() + (86400 * 30), "/");
       setcookie("email", $user["email"], time() + (86400 * 30), "/");
       setcookie("username", $user["username"], time() + (86400 * 30), "/");
       setcookie("role", $user["role"], time() + (86400 * 30), "/");
+<<<<<<< HEAD
     }
   ?>
     <div class="right">
       <a href="?Authentication/index" class="logout-button">Logout</a>
     </div>
   </header>
+=======
 
-  <div class="side-bar">
-    <center>
-      <h4>User page</h4>
-    </center>
-    <a class="navLink active" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
-        class="material-icons">dashboard</i><span>Dashboard</span></a>
-    <a class="navLink" href="?user/QuickTest/index" onclick="return handleSideBarButton(event)"><i
-        class="material-icons">account_box</i><span>Doing Quick Test</span></a>
+      <!-- echo $_COOKIE["username"]; -->
+      <!-- $_COOKIE['uid'] -->
+      } ?>
+      <div class="right">
+        <a href="?Authentication/index" class="logout-button">Logout</a>
+      </div>
+    </header>
+>>>>>>> 3f2c8870f13f8f5dcbc59c35ce9fccbf172954fc
 
-        <!-- Bổ sung đường dẫn vào Doing Group Test dưới đây -->
-    <a class="navLink" href="?user/GroupTest/index" onclick="return handleSideBarButton(event)"><i
-        class="material-icons">chrome_reader_mode</i><span>Doing Group Test</span></a>
+    <div class="side-bar">
+      <center>
+        <h4>User page</h4>
+      </center>
+      <a
+        class="navLink active"
+        href="?user/Users/index"
+        onclick="return handleSideBarButton(event)"
+        ><i class="material-icons">dashboard</i><span>Dashboard</span></a
+      >
+      <a
+        class="navLink"
+        href="?user/QuickTest/index"
+        onclick="return handleSideBarButton(event)"
+        ><i class="material-icons">account_box</i
+        ><span>Doing Quick Test</span></a
+      >
 
-    <!-- <a class="navLink" href="?user/CreateGroupTest/index" onclick="return handleSideBarButton(event)"><i
+      <!-- Bổ sung đường dẫn vào Doing Group Test dưới đây -->
+      <a
+        class="navLink"
+        href="?user/GroupTest/index"
+        onclick="return handleSideBarButton(event)"
+      >
+        <i class="material-icons">chrome_reader_mode</i>
+        <span>Doing Group Test</span></a
+      >
+
+      <!-- <a class="navLink" href="?user/CreateGroupTest/index" onclick="return handleSideBarButton(event)"><i
         class="material-icons">dns</i><span>Create Group Test</span></a> -->
+<<<<<<< HEAD
     <a class="navLink" href="?user/ManageCustomTest/index" onclick="return handleSideBarButton(event)"><i
         class="material-icons">dvr</i><span>Manage Custom Test</span></a>
     <a class="navLink" href="?user/ManagePersonalInfo/index" onclick="return handleSideBarButton(event)"><i
         class="material-icons">dvr</i><span>Personal Info</span></a>
   </div>
+=======
+      <a
+        class="navLink"
+        href="?user/ManageCustomTest/index"
+        onclick="return handleSideBarButton(event)"
+        ><i class="material-icons">dvr</i><span>Manage Custom Test</span></a
+      >
+      <a
+        class="navLink"
+        href="?user/ManagePersonalInfo/index"
+        onclick="return handleSideBarButton(event)"
+        ><i class="material-icons">dvr</i><span>Manage Personal Info</span></a
+      >
+    </div>
+>>>>>>> 3f2c8870f13f8f5dcbc59c35ce9fccbf172954fc
 
-  <div class="content" id="content">
-    <div class="grid-container">
-      <div class="grid-item" id="question" onclick="location.href = '?ManageQuestion/index'">
-        <h2>
-          Question:
-          <?php $length = count($questions); echo "$length"; ?>
-        </h2>
-      </div>
-      <div class=" grid-item" id="test" onclick="location.href = '?ManageTest/index'">
-        <h2>
-          Test:
-          <?php $length = count($tests); echo "$length"; ?>
-        </h2>
-      </div>
-      <div class="grid-item" id="topic" onclick="location.href = '?ManageTopic/index'">
-        <h2>
-          Topic:
-          <?php $length = count($topics); echo "$length"; ?>
-        </h2>
-      </div>
-      <div class="grid-item" id="comment" onclick="location.href = '?ManageComment/index'">
-        <h2>
-          Comment:
-          <?php $length = count($comments); echo "$length"; ?>
-        </h2>
+    <div class="content" id="content">
+      <div class="grid-container">
+        <div
+          class="grid-item"
+          id="question"
+          onclick="location.href = '?ManageQuestion/index'"
+        >
+          <h2>
+            Question:
+            <?php $length = count($questions); echo "$length"; ?>
+          </h2>
+        </div>
+        <div
+          class="grid-item"
+          id="test"
+          onclick="location.href = '?ManageTest/index'"
+        >
+          <h2>
+            Test:
+            <?php $length = count($tests); echo "$length"; ?>
+          </h2>
+        </div>
+        <div
+          class="grid-item"
+          id="topic"
+          onclick="location.href = '?ManageTopic/index'"
+        >
+          <h2>
+            Topic:
+            <?php $length = count($topics); echo "$length"; ?>
+          </h2>
+        </div>
+        <div
+          class="grid-item"
+          id="comment"
+          onclick="location.href = '?ManageComment/index'"
+        >
+          <h2>
+            Comment:
+            <?php $length = count($comments); echo "$length"; ?>
+          </h2>
+        </div>
       </div>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>
