@@ -5,7 +5,7 @@ namespace App\Controllers\User;
 use App\Models\Question;
 use \Core\View;
 
-class QuickTest extends \Core\Controller
+class GroupTest extends \Core\Controller
 {
 
     /**
@@ -21,11 +21,14 @@ class QuickTest extends \Core\Controller
 
     public function indexAction()
     {
+        if (array_key_exists('testCode', $_POST)) {
+            $testID = $_POST['testCode'];
+        } else {
+            $testID = -1;
+        }
 
-        $questions = Question::getRandomQuestion(10);
-
-        View::render('User/DoQuickTest/index.html', [
-            'questions' => $questions,
+        View::render('User/DoGroupTest/index.html', [
+            'testID' => $testID,
         ]);
     }
 

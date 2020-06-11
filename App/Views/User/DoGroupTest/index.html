@@ -3,16 +3,15 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Quick Test</title>
-    <link rel="stylesheet" href="css//style.css" />
+    <title>Group Test</title>
+    <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/DoQuickTest/style.css" />
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <script src="js/User/QuickTest/index.js"></script>
+    <script src="js/User/GroupTest/index.js"></script>
 </head>
 
 <body>
-    <script>alert($questions)</script>
     <header>
         <div class="left">
             <h3>Test <span>Yourself</span></h3>
@@ -32,7 +31,7 @@
         <a class="navLink active" href="?user/QuickTest/index" onclick="return handleSideBarButton(event)"><i
             class="material-icons">account_box</i><span>Doing Quick Test</span></a>
     
-        <!-- Bổ sung đường dẫn vào Doing Group Test dưới đây -->
+            <!-- Bổ sung đường dẫn vào Doing Group Test dưới đây -->
         <a class="navLink" href="?user/GroupTest/index" onclick="return handleSideBarButton(event)"><i
             class="material-icons">chrome_reader_mode</i><span>Doing Group Test</span></a>
     
@@ -45,32 +44,26 @@
       </div>
 
     <div class="content" id="content">
-        <h2 style="text-align: center;">Quick Test</h2>
+        <h2 style="text-align: center;">Group Test</h2>
 
         <div style="padding-left: 20px;">
-            <form action="?user/QuickTest/dotest" method="POST">
+            <form action="?user/GroupTest/index" method="POST">
                 <table>
                     <tr>
                         <td>
-                            <label>Enter the test's duration(in minutes):</label>
+                            <label>Enter the Test Code:</label>
                         </td>
                         <td>
-                            <input type="number" name="minute">
+                            <input type="number" name="testCode">
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            <label>Enter the number of questions:</label>
-                        </td>
-                        <td>
-                            <input type="number" name="nQuestions">
-                        </td>
-                    </tr>
+
                     <tr>
                         <td>
                         </td>
                         <td>
-                            <input type="submit" value="Start test">
+                            <!-- <input type="submit" value="Start test"> -->
+                            <button onclick="test()">Start test</button>
                         </td>
                     </tr>
                 </table>
@@ -82,3 +75,9 @@
 </body>
 
 </html>
+
+<script>
+    function test() {
+        alert('ahihi');
+    }
+</script>
