@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Manage Question</title>
-    <link rel="stylesheet" href="css//style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/ManageUser/style.css" />
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -24,6 +24,7 @@
 
     <div class="side-bar">
         <center>
+            <img src="images/img_avatar.png" class="avatar" />
             <h4>Admin page</h4>
         </center>
         <a class="navLink" href="?Admin/index" onclick="return handleSideBarButton(event)"><i
@@ -93,17 +94,17 @@
                         <form action=\"?ManageQuestion/edit\" method=\"post\">
                             <tr>
                                 <td><input style=\"text-align: center;\" class=\"noborder id-class\" type=\"text\" name=\"id\" value=\"$quest[id]\"></td>
-                                <td style='word-wrap: break-word; max-width: 10%;' contenteditable=\"true\"><input class=\"noborder email-class\" 
+                                <td style=\"word-wrap: break-word; max-width: 10%;\" contenteditable=\"true\"><input class=\"noborder email-class\" 
                                                                                      type=\"text\" name=\"question\" value=\"$quest[question]\"></td>
-                                <td style='word-wrap: break-word; max-width: 10%;' contenteditable=\"true\"><input style=\"text-align: center;\" class=\"noborder answer\" 
+                                <td style=\"word-wrap: break-word; max-width: 10%;\" contenteditable=\"true\"><input style=\"text-align: center;\" class=\"noborder answer\" 
                                                                                      type=\"text\" name=\"answer_a\" value=\"$quest[a]\"></td>
-                                <td style='word-wrap: break-word; max-width: 10%;' contenteditable=\"true\"><input style=\"text-align: center;\" class=\"noborder answer\" 
+                                <td style=\"word-wrap: break-word; max-width: 10%;\" contenteditable=\"true\"><input style=\"text-align: center;\" class=\"noborder answer\" 
                                                                                      type=\"text\" name=\"answer_b\" value=\"$quest[b]\"></td>
-                                <td style='word-wrap: break-word; max-width: 10%;' contenteditable=\"true\"><input style=\"text-align: center;\" class=\"noborder answer\" 
+                                <td style=\"word-wrap: break-word; max-width: 10%;\" contenteditable=\"true\"><input style=\"text-align: center;\" class=\"noborder answer\" 
                                                                                      type=\"text\" name=\"answer_c\" value=\"$quest[c]\"></td>
-                                <td style='word-wrap: break-word; max-width: 10%;' contenteditable=\"true\"><input style=\"text-align: center;\" class=\"noborder answer\" 
+                                <td style=\"word-wrap: break-word; max-width: 10%;\" contenteditable=\"true\"><input style=\"text-align: center;\" class=\"noborder answer\" 
                                                                                      type=\"text\" name=\"answer_d\" value=\"$quest[d]\"></td>
-                                <td style='word-wrap: break-word; max-width: 10%;'><input style=\"text-align: center;\" class=\"noborder answer\" 
+                                <td style=\"word-wrap: break-word; max-width: 10%;\"><input style=\"text-align: center;\" class=\"noborder answer\" 
                                                                                      type=\"text\" name=\"correct_answer\" value=\"$quest[answer]\"></td>
                                 <td>
                                     <button onclick='alertSuccess()' type=\"submit\">Edit</button>

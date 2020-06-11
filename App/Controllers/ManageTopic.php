@@ -38,8 +38,8 @@ class ManageTopic extends \Core\Controller
 
     public function addAction()
     {
-        $name = $_POST['name'];
-        $description = $_POST['description'];
+        $name = htmlentities($_POST['name']);
+        $description = htmlentities($_POST['description']);
 
         Topic::createTopic($name, $description);
 
@@ -53,8 +53,8 @@ class ManageTopic extends \Core\Controller
     public function editAction()
     {
         $id = $_POST['id'];
-        $name = $_POST['name'];
-        $description = $_POST['description'];
+        $name = htmlentities($_POST['name']);
+        $description = htmlentities($_POST['description']);
 
         Topic::editTopic($id, $name, $description);
 
