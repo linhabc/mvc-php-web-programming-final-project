@@ -23,9 +23,6 @@
       setcookie("email", $user["email"], time() + (86400 * 30), "/");
       setcookie("username", $user["username"], time() + (86400 * 30), "/");
       setcookie("role", $user["role"], time() + (86400 * 30), "/");
-
-      <!-- echo $_COOKIE["username"]; -->
-      <!-- $_COOKIE['uid'] -->
     }
   ?>
     <div class="right">
@@ -51,7 +48,7 @@
     <a class="navLink" href="?user/ManageCustomTest/index" onclick="return handleSideBarButton(event)"><i
         class="material-icons">dvr</i><span>Manage Custom Test</span></a>
     <a class="navLink" href="?user/ManagePersonalInfo/index" onclick="return handleSideBarButton(event)"><i
-        class="material-icons">dvr</i><span>Manage Personal Info</span></a>
+        class="material-icons">dvr</i><span>Personal Info</span></a>
   </div>
 
   <div class="content" id="content">

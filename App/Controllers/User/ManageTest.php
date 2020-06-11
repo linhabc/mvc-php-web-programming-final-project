@@ -4,6 +4,7 @@ namespace App\Controllers\User;
 
 use App\Models\Test;
 use App\Models\Topic;
+use App\Models\Question;
 use \Core\View;
 
 class ManageTest extends \Core\Controller
@@ -47,9 +48,11 @@ class ManageTest extends \Core\Controller
         $name = $_POST['name_detail'];
         $topic_id = $_POST['topic'];
         $duration = $_POST['duration'];
+        $nbquestion = $_POST['nbquestion'];
         $description = $_POST['description'];
 
         Test::createTest($topic_id, $userId, $name, $description, $duration);
+        Question::createRandomTestQuestion()
 
         $topic_name = Topic::getTopicName();
         $tests = Test::getTestByUserId($userId);
