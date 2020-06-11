@@ -63,8 +63,8 @@
               <form action=\"?ManageUser/edit\" method=\"post\">
                 <tr>
                     <td><input style=\"text-align: center;\" class=\"noborder id-class\" type=\"text\" name=\"id\" value=\"$user[id]\"></td>
-                    <td contenteditable=\"true\"><input class=\"noborder email-class\" type=\"text\" name=\"email\" value=\"$user[email]\"></td>
-                    <td contenteditable=\"true\"><input style=\"text-align: center;\" class=\"noborder username-class\" type=\"text\" name=\"username\" value=\"$user[username]\"></td>
+                    <td contenteditable=\"true\"><input class=\"noborder email-class\" type=\"text\" name=\"email\" value=\"$user[email]\" style=\"width:200px;\"></td>
+                    <td contenteditable=\"true\"><input style=\"text-align: center;\" class=\"noborder username-class\" type=\"text\" name=\"username\" value=\"$user[username]\" style=\"width:200px;\"></td>
                     <td> $user[role] </td>
                     <td>
                       <button onclick='alertSuccess()' type=\"submit\" class=\"edit\"><img src=\"images/create.svg\">Edit</button>
