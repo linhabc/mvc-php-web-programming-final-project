@@ -152,6 +152,7 @@ class GroupTest extends \Core\Controller
             "correct_answers" => $nCorrectAnswers,
             "finished_at" => $newResult->create_at,
             "answers" => $questions,
+            "completion_time" => $newResult->time,
         ));
 
     }

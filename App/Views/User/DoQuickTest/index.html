@@ -17,7 +17,6 @@
         <div class="left">
             <h3>Test <span>Yourself</span></h3>
         </div>
-
         <div class="right">
             <button class="logout-button" onclick="confirmLogout()"><img src="images/logout.svg">Logout</button>
         </div>
@@ -65,6 +64,23 @@
                         </td>
                         <td>
                             <input type="number" name="nQuestions">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Choose the topic: </label>
+                        </td>
+                        <td>
+                            <select name='topic' id='topic'>
+                                echo "<option value='-1'>All topic</option>";
+                                <?php
+                                foreach ($topics as $topic){
+                                    echo "                           
+                                        <option value=$topic[id]>$topic[name]</option>
+                                        ";
+                                }   
+                                ?>
+                            </select>
                         </td>
                     </tr>
                     <tr>

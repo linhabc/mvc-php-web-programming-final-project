@@ -158,7 +158,33 @@ class Question extends \Core\Model
         try {
             $db = static::getDB();
 
-            $sql = "SELECT * FROM question
+            $sql = "SELECT q.* FROM question as q, user as u
+                    WHERE q.userId = u.id
+                    AND u.role = 'Admin'
+                    ORDER BY RAND()
+                    LIMIT $numberOfQuestions;";
+
+            $stmt = $db->query($sql);
+
+            $results = $stmt->fetchAll(PDO::FETCH_CLASS, "App\Models\Question");
+            // $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function getRandomQuestionsByTopicId($topicId, $numberOfQuestions)
+    {
+        try {
+            $db = static::getDB();
+
+            $sql = "SELECT q.* FROM question as q, user as u
+                    WHERE q.userId = u.id
+                    AND q.topicId= $topicId
+                    AND u.role = 'Admin'
                     ORDER BY RAND()
                     LIMIT $numberOfQuestions;";
 
