@@ -1,9 +1,9 @@
 .grid-container {
   display: grid;
-  grid-template: 200px / auto auto;
-  grid-gap: 100px;
+  grid-template: 190px / auto auto;
+  grid-gap: 40px;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  background-color: lightyellow;
+  background-color: white;
   padding: 50px;
 }
 
