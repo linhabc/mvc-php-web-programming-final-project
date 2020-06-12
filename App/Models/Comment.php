@@ -12,14 +12,14 @@ class Comment extends \Core\Model
     public $content;
     public $create_at;
 
-    public function __construct($id, $testId, $userId, $content, $create_at)
-    {
-        $this->id = $id;
-        $this->testId = $testId;
-        $this->userId = $userId;
-        $this->content = $content;
-        $this->create_at = $create_at;
-    }
+    // public function __construct($id, $testId, $userId, $content, $create_at)
+    // {
+    //     $this->id = $id;
+    //     $this->testId = $testId;
+    //     $this->userId = $userId;
+    //     $this->content = $content;
+    //     $this->create_at = $create_at;
+    // }
 
     public static function getComment($id)
     {
@@ -28,6 +28,26 @@ class Comment extends \Core\Model
 
             $stmt = $db->query("SELECT * FROM comment WHERE id = $id");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function findCommentsByTestId($testId)
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT c.*, u.role as userRole, u.userName FROM comment as c, user as u
+                            WHERE c.user_id = u.id
+                            AND c.test_id = $testId
+                            ORDER BY c.create_at ASC
+                            ");
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'App\Models\Comment');
+            $results = $stmt->fetchAll();
 
             return $results;
 
