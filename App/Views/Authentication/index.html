@@ -1,133 +1,97 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Login and Signup</title>
-    <link rel="stylesheet" href="css/Authentication/style.css" />
-  </head>
 
-  <body>
-    <div class="background">
-      <div class="form-box">
-        <div class="button-box">
-          <div id="btn"></div>
-          <button type="button" class="toggle-btn" onclick="login()">
-            Login
-          </button>
-          <button type="button" class="toggle-btn" onclick="register()">
-            Register
-          </button>
-        </div>
+<head>
+  <title>Login and Signup</title>
+  <link rel="stylesheet" href="css/Authentication/style.css" />
+</head>
 
-        <div class="social">
-          <img src="images/fb.png" />
-          <img src="images/tw.png" />
-          <img src="images/gp.png" />
-        </div>
-
-        <form
-          id="login"
-          class="input-group"
-          action="?Authentication/login"
-          method="POST"
-        >
-          <input
-            type="text"
-            class="input-field"
-            placeholder="Username or Email"
-            required
-            name="email"
-          />
-          <input
-            type="password"
-            class="input-field"
-            placeholder="Password"
-            id="myPass"
-            required
-            name="password"
-          /><br /><br />
-          <input type="checkbox" onclick="showPass()" /> Show Password<br /><br />
-          <input type="checkbox" class="check-box" />
-          <span>Remember password</span>
-          <button type="submit" class="submit-btn">Log in</button>
-        </form>
-
-        <form
-          id="register"
-          class="input-group"
-          action="?Authentication/signUp"
-          method="POST"
-        >
-          <input
-            type="text"
-            class="input-field"
-            placeholder="Username"
-            required
-            name="userName"
-          />
-          <input
-            type="email"
-            class="input-field"
-            placeholder="Email"
-            required
-            name="email"
-          />
-          <input
-            type="password"
-            class="input-field"
-            placeholder="Password"
-            id="myPass0"
-            required
-            name="password"
-          /><br /><br />
-          <input type="checkbox" onclick="showPass0()" /> Show Password<br />
-          <input type="checkbox" class="check-box" required /> I agree to the
-          <a
-            href="https://www.cambridgeopencentre.org/asp_pages/registrationterms.asp"
-            target="_blank"
-          >
-            terms & conditions</a
-          >
-          <button type="submit" class="submit-btn">Register</button>
-        </form>
+<body>
+  <div class="background">
+    <div class="form-box">
+      <div class="button-box">
+        <div id="btn"></div>
+        <button type="button" class="toggle-btn" onclick="login()">
+          Login
+        </button>
+        <button type="button" class="toggle-btn" onclick="register()">
+          Register
+        </button>
       </div>
+
+      <div class="social">
+        <img src="images/fb.png" onclick="coming();" />
+        <img src="images/tw.png" onclick="coming();" />
+        <img src="images/gp.png" onclick="coming();" />
+      </div>
+
+      <form id="login" class="input-group" action="?Authentication/login" method="POST">
+        <input type="text" class="input-field" placeholder="Username or Email" required name="email" />
+        <input type="password" class="input-field" placeholder="Password" id="myPass" required
+          name="password" /><br /><br />
+        <input type="checkbox" onclick="showPass()" /> Show Password<br /><br />
+        <input type="checkbox" class="check-box" />
+        <span>Remember password</span>
+        <button type="submit" class="submit-btn">Log in</button>
+      </form>
+
+      <form id="register" class="input-group" action="?Authentication/signUp" method="POST">
+        <input type="text" class="input-field" placeholder="Username" required name="userName" />
+        <input type="email" class="input-field" placeholder="Email" required name="email" />
+        <input type="password" class="input-field" placeholder="Password" id="myPass0" required
+          name="password" /><br /><br />
+        <input type="checkbox" onclick="showPass0()" /> Show Password<br />
+        <input type="checkbox" class="check-box" required /> I agree to the
+        <a href="https://www.cambridgeopencentre.org/asp_pages/registrationterms.asp" target="_blank">
+          terms & conditions</a>
+        <button type="submit" class="submit-btn">Register</button>
+      </form>
     </div>
+  </div>
 
-    <script>
-      var x = document.getElementById("login");
-      var y = document.getElementById("register");
-      var z = document.getElementById("btn");
+  <script>
+    var x = document.getElementById("login");
+    var y = document.getElementById("register");
+    var z = document.getElementById("btn");
 
-      function register() {
-        x.style.left = "-400px";
-        y.style.left = "50px";
-        z.style.left = "110px";
+    function register() {
+      x.style.left = "-400px";
+      y.style.left = "50px";
+      z.style.left = "110px";
+    }
+
+    function login() {
+      x.style.left = "50px";
+      y.style.left = "450px";
+      z.style.left = "0";
+    }
+  </script>
+
+  <script>
+    function showPass() {
+      var x = document.getElementById("myPass");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
       }
+    }
 
-      function login() {
-        x.style.left = "50px";
-        y.style.left = "450px";
-        z.style.left = "0";
+    function showPass0() {
+      var x = document.getElementById("myPass0");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
       }
-    </script>
+    }
+  </script>
 
-    <script>
-      function showPass() {
-        var x = document.getElementById("myPass");
-        if (x.type === "password") {
-          x.type = "text";
-        } else {
-          x.type = "password";
-        }
-      }
+  <script>
+    function coming() {
+      alert("Coming soon...");
+    }
+  </script>
+</body>
 
-      function showPass0() {
-        var x = document.getElementById("myPass0");
-        if (x.type === "password") {
-          x.type = "text";
-        } else {
-          x.type = "password";
-        }
-      }
-    </script>
-  </body>
 </html>
