@@ -44,6 +44,20 @@ class TestQuestion extends \Core\Model
         }
     }
 
+    public static function deleteAllTestQuestion($testId)
+    {
+
+        try {
+            $db = static::getDB();
+
+            $sql = "DELETE FROM testquestion WHERE testId = $testId";
+            $db->exec($sql);
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public static function getTestQuestion($testId, $questionId)
     {
         try {
@@ -67,6 +81,21 @@ class TestQuestion extends \Core\Model
             $sql = "INSERT INTO testquestion (testId, questionId) VALUES ('$testId', '$questionId')";
 
             $db->exec($sql);
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function getQuestionById($testId)
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT testquestion.testId as test_id, question.id as question_id, topic.name as topic_name, question.question as question, question.a as a, question.b as b, question.c as c, question.d as d, question.answer as answer FROM question INNER JOIN testquestion ON question.id = testquestion.questionId INNER JOIN topic ON question.topicId = topic.id WHERE testquestion.testId = $testId");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
 
         } catch (PDOException $e) {
             echo $e->getMessage();

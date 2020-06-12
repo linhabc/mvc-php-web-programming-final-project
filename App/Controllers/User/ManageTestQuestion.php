@@ -8,7 +8,7 @@ use App\Models\Question;
 use App\Models\TestQuestion;
 use \Core\View;
 
-class ManageTest extends \Core\Controller
+class ManageTestQuestion extends \Core\Controller
 {
     protected function before()
     {
@@ -18,11 +18,12 @@ class ManageTest extends \Core\Controller
 
     public function indexAction()
     { 
-        $userId = $_COOKIE["uid"];
-        $tests = Test::getTestByUserId($userId);
+        // $userId = $_COOKIE["uid"];
+        $id = $_GET['id'];
         $topic_name = Topic::getTopicName();
+        $tests = TestQuestion::getQuestionById($id);
 
-        View::render('User/ManageCustomTest/ManageTest/index.html', [
+        View::render('User/ManageCustomTest/ManageTestQuestion/index.html', [
             'tests' => $tests,
             'topic_name' => $topic_name,
         ]);
@@ -30,16 +31,16 @@ class ManageTest extends \Core\Controller
 
     public function deleteAction()
     {
-        $userId = $_COOKIE["uid"];
-        $id = $_GET['id'];
+        // $userId = $_COOKIE["uid"];
+        $test_id = $_GET['test_id'];
+        $question_id = $_GET['question_id'];
 
-        Test::deleteTest($id);
-        TestQuestion::deleteAllTestQuestion($id);
+        TestQuestion::deleteTestQuestion($test_id, $question_id);
 
         $topic_name = Topic::getTopicName();
-        $tests = Test::getTestByUserId($userId);
+        $tests = TestQuestion::getQuestionById($test_id);
 
-        View::render('User/ManageCustomTest/ManageTest/index.html', [
+        View::render('User/ManageCustomTest/ManageTestQuestion/index.html', [
             'tests' => $tests,
             'topic_name' => $topic_name,
         ]);

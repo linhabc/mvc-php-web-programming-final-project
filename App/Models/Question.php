@@ -194,4 +194,24 @@ class Question extends \Core\Model
             echo $e->getMessage();
         }
     }
+
+    public static function getQuestionByTestId($testId)
+    {
+        try {
+            $db = static::getDB();
+
+            $sql = "SELECT q.* FROM question as q, testquestion as tq
+                    WHERE tq.testId = $testId
+                    AND q.id = tq.questionId;";
+
+            $stmt = $db->query($sql);
+
+            $results = $stmt->fetchAll(PDO::FETCH_CLASS, "App\Models\Question");
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 }

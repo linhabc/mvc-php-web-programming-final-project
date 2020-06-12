@@ -27,7 +27,7 @@
             <h4>Custom Test</h4>
         </center>
         <a class="navLink" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dashboard</i><span>Back</span></a>
+            class="material-icons">dashboard</i><span>Home</span></a>
         <a class="navLink active" href="?user/ManageTest/index" onclick="return handleSideBarButton(event)"><i
             class="material-icons">dns</i><span>Manage Test</span></a>
         <a class="navLink" href="?user/ManageComment/index" onclick="return handleSideBarButton(event)"><i
@@ -65,7 +65,8 @@
                                 <td> $test[te_des]</td>
 
                                 <td>
-                                    <button onclick='confirmDelete($id)'>Delete</button>
+                                    <button onclick='viewTest($id)' class=\"view\"><img src=\"images/view.svg\">View</button>
+                                    <button onclick='confirmDelete($id)' class=\"delete\"><img src=\"images/delete.svg\">Delete</button>
                                 </td>
                             </tr>
                             ";
@@ -133,6 +134,11 @@
             if (r == true) {
                 location.href = `?user/ManageTest/delete&id=${id}`;
             }
+        }
+    </script>
+    <script>
+        function viewTest(id) {
+            location.href = `?user/ManageTestQuestion/index&id=${id}`;
         }
     </script>
 </body>
