@@ -1,9 +1,10 @@
 .grid-container {
   display: grid;
-  grid-template: auto / auto auto auto auto;
-  grid-gap: 20px;
-  /* background-color: #2196f3; */
-  padding: 25px;
+  grid-template: 200px / auto auto;
+  grid-gap: 100px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  background-color: lightyellow;
+  padding: 50px;
 }
 
 .grid-item {
@@ -29,5 +30,5 @@
 }
 
 #test {
-  background-color: #423f3f;
+  background-color: chocolate;
 }
