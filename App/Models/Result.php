@@ -101,7 +101,6 @@ class Result extends \Core\Model
     }
 
     public static function getResultUid($userId)
-    public static function getResultsByTestId($testId)
     {
         try {
             $db = static::getDB();
@@ -110,6 +109,26 @@ class Result extends \Core\Model
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;
+
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public static function getResultsByTestId($testId)
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT r.*, u.userName FROM result as r, user as u
+                                WHERE testId = $testId
+                                AND r.userId = u.id
+                                ORDER BY r.score DESC, r.time ASC, r.create_at ASC
+                                ");
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'App\Models\Result');
+            $result = $stmt->fetchAll();
+
+            return $result;
 
         } catch (PDOException $e) {
             return $e->getMessage();
