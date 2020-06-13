@@ -3,6 +3,7 @@
 namespace App\Controllers\User;
 
 use App\Models\Question;
+use App\Models\Topic;
 use \Core\View;
 
 class QuickTest extends \Core\Controller
@@ -22,18 +23,23 @@ class QuickTest extends \Core\Controller
     public function indexAction()
     {
 
-        $questions = Question::getRandomQuestion(10);
+        $topics = Topic::getTopicName();
 
         View::render('User/DoQuickTest/index.html', [
-            'questions' => $questions,
+            'topics' => $topics,
         ]);
     }
 
     public function doTestAction()
     {
         $nQuestions = $_POST["nQuestions"];
+        $topic = $_POST["topic"];
 
-        $questions = Question::getRandomQuestion2($nQuestions);
+        if ($topic == '-1') {
+            $questions = Question::getRandomQuestion2($nQuestions);
+        } else {
+            $questions = Question::getRandomQuestionsByTopicId($topic, $nQuestions);
+        }
 
         $min = $_POST["minute"];
         $sec = 0;
@@ -129,6 +135,7 @@ class QuickTest extends \Core\Controller
             "correct_answers" => $nCorrectAnswers,
             "finished_at" => time(),
             "answers" => $questions,
+            "completion_time" => $data->timeUsed,
         ));
 
         // View::render('User/DoQuickTest/result.html', [

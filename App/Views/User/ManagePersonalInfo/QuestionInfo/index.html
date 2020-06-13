@@ -27,90 +27,65 @@
             <h4>Personal Info</h4>
         </center>
         <a class="navLink" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dashboard</i><span>Back</span></a>
-        <a class="navLink active" href="?user/UserInfo/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">dashboard</i><span>Home</span></a>
+        <a class="navLink " href="?user/UserInfo/index" onclick="return handleSideBarButton(event)"><i
             class="material-icons">dns</i><span>User Info</span></a>
         <a class="navLink" href="?user/CommentInfo/index" onclick="return handleSideBarButton(event)"><i
             class="material-icons">dvr</i><span>Comment Info</span></a>
-        <a class="navLink" href="?user/ResultInfo/index" onclick="return handleSideBarButton(event)"><i
+        <a class="navLink active" href="?user/ResultInfo/index" onclick="return handleSideBarButton(event)"><i
             class="material-icons">dvr</i><span>Result Info</span></a>
-        <a class="navLink" href="?user/TestInfo/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dvr</i><span>Test Info</span></a>
-        <a class="navLink active" href="?user/QuestionInfo/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dvr</i><span>Question Info</span></a>
-        <a class="navLink" href="?user/TopicInfo/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dvr</i><span>Topic Info</span></a>
-    </div>
+        <a class="navLink" href="?user/ResultInfo/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">dvr</i><span>Back</span></a>
+      </div>
 
-    <div class="content" id="content">
+      <div class="content" id="content">
         <div class="grid-container">
             <div class="question-table">
                 <h2 style="margin: 0px; margin-bottom: 20px;">
-                    Questions Table
+                    Test Question Table
                 </h2>
 
-                <form action="?user/QuestionInfo/index" method="post">
-                    <label>Choose the topic: </label>
-                    <select name='topic-name' id='topic-name'>
-                        <?php
-                        if($selected_field == 'all')
-                            echo "<option value=\"all\" selected>All topic</option>";
-                        else
-                            echo "<option value=\"all\">All topic</option>";
-
-                        foreach ($topic_name as $top_name){
-                            if($selected_field == $top_name['id']){
-                                echo "                           
-                                <option value=$top_name[id] selected>$top_name[name]</option>
-                                ";
-                            } else {
-                                echo "                           
-                                <option value=$top_name[id]>$top_name[name]</option>
-                                ";
-                            }
-                        }
-
-                        ?>
-                    </select>
-                    <button style="margin-left: 20px;" type="submit">Select</button>
-                </form>
-
-                <table style="margin-top: 20px;">
+                <table style="margin-top: 20px; width: 80%;">
                     <tr>
-                        <th>ID</th>
+                        <th>Test</th>
+                        <th>Question</th>
+                        <th>Topic</th>
                         <th>Question</th>
                         <th>A</th>
                         <th>B</th>
                         <th>C</th>
                         <th>D</th>
-                        <th>Correct answer</th>
-                        <th>Action</th>
+                        <th>Answer</th>
+                        <!-- <th>Action</th> -->
                     </tr>
 
                     <?php
     
-                        foreach ($questions as $quest) {
-                        $id = $quest['id'];
-                        echo "<tr>
-                            <td> $quest[id] </td>
-                            <td style='word-wrap: break-word; max-width: 150px;'> $quest[question] </td>
-                            <td style='word-wrap: break-word; max-width: 150px;'> $quest[a] </td>
-                            <td style='word-wrap: break-word; max-width: 150px;'> $quest[b] </td>
-                            <td style='word-wrap: break-word; max-width: 150px;'> $quest[c] </td>
-                            <td style='word-wrap: break-word; max-width: 150px;'> $quest[d] </td>
-                            <td style='word-wrap: break-word; max-width: 150px;'> $quest[answer]</td>
-                            <td>
-                                <button type=\"submit\">Edit</button>
-                                <button onclick='confirmDelete($id)'>Delete</button>
-                            </td>
-                        </tr>
-                        ";
+                        foreach ($tests as $test) {
+                        $test_id = $test['test_id'];
+                        $question_id = $test['question_id'];
+                            echo "
+                            <tr>
+                                <td> $test[test_id] </td>
+                                <td>$test[question_id]</td>
+                                <td>$test[topic_name]</td>
+                                <td>$test[question]</td>
+                                <td> $test[a]</td>
+                                <td> $test[b]</td>
+                                <td> $test[c]</td>
+                                <td> $test[d]</td>
+                                <td> $test[answer]</td>
+
+                                <!-- <td>
+                                    <button onclick='confirmDelete($test_id, $question_id)' class=\"delete\"><img src=\"images/delete.svg\">Delete</button>
+                                </td> -->
+                            </tr>
+                        
+                            ";
                         }
-                        ?>
+                    ?>
                 </table>
             </div>
-        </div>
-    </div>
 
     <script>
         function confirmDelete(id) {

@@ -41,13 +41,13 @@ class Result extends \Core\Model
         }
     }
 
-    public static function deleteResult($id)
+    public static function deleteResult($userId)
     {
 
         try {
             $db = static::getDB();
 
-            $sql = "DELETE FROM result WHERE id = $id";
+            $sql = "DELETE FROM result WHERE userId = $userId";
             $db->exec($sql);
 
         } catch (PDOException $e) {
@@ -92,6 +92,66 @@ class Result extends \Core\Model
             $stmt = $db->query("SELECT * FROM result WHERE userId = $userId AND testId = $testId LIMIT 1");
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'App\Models\Result');
             $result = $stmt->fetch();
+
+            return $result;
+
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public static function getResultUid($userId)
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT topic.name as to_name, test.name, test.topic_id, test.description, test.duration, result.userId, result.testId, user.username, result.score, result.rating, result.create_at, result.time FROM result INNER JOIN user ON result.userId = user.id INNER JOIN test ON result.testId = test.id INNER JOIN topic ON test.topic_id = topic.id WHERE userId = $userId");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public static function getResultsByTestId($testId)
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT r.*, u.userName FROM result as r, user as u
+                                WHERE testId = $testId
+                                AND r.userId = u.id
+                                ORDER BY r.score DESC, r.time ASC, r.create_at ASC
+                                ");
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'App\Models\Result');
+            $result = $stmt->fetchAll();
+
+            return $result;
+
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public static function getResultByTestId($testId)
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT result.userId, result.testId, user.username, result.score, result.rating, result.create_at, result.time FROM result INNER JOIN user ON result.userId = user.id WHERE testId = $testId");
+
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+            $stmt = $db->query("SELECT r.*, u.userName FROM result as r, user as u
+                                WHERE testId = $testId
+                                AND r.userId = u.id
+                                ORDER BY r.score DESC, r.time ASC, r.create_at ASC
+                                ");
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'App\Models\Result');
+            $result = $stmt->fetchAll();
 
             return $result;
 

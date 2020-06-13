@@ -27,19 +27,13 @@
             <h4>Personal Info</h4>
         </center>
         <a class="navLink" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dashboard</i><span>Back</span></a>
+            class="material-icons">dashboard</i><span>Home</span></a>
         <a class="navLink" href="?user/UserInfo/index" onclick="return handleSideBarButton(event)"><i
             class="material-icons">dns</i><span>User Info</span></a>
         <a class="navLink active" href="?user/CommentInfo/index" onclick="return handleSideBarButton(event)"><i
             class="material-icons">dvr</i><span>Comment Info</span></a>
         <a class="navLink" href="?user/ResultInfo/index" onclick="return handleSideBarButton(event)"><i
             class="material-icons">dvr</i><span>Result Info</span></a>
-        <a class="navLink" href="?user/TestInfo/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dvr</i><span>Test Info</span></a>
-        <a class="navLink" href="?user/QuestionInfo/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dvr</i><span>Question Info</span></a>
-        <a class="navLink" href="?user/TopicInfo/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dvr</i><span>Topic Info</span></a>
     </div>
 
     <div class="content" id="content">
@@ -51,7 +45,7 @@
                 <table>
                     <tr>
                         <th>ID</th>
-                        <th>Username</th>
+                        <!-- <th>Username</th> -->
                         <th>Test name</th>
                         <th>Content</th>
                         <th>Created at</th>
@@ -66,7 +60,7 @@
                             echo "
                             <tr>
                                 <td> $comment[id] </td>
-                                <td>$comment[u_name]</td>
+                                <!-- <td>$comment[u_name]</td> -->
                                 <td>$comment[t_name]</td>
                                 <td> $comment[content]</td>
                                 <td>$comment[create_at]</td>

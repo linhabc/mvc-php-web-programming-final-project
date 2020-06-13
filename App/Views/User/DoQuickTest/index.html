@@ -17,7 +17,7 @@
         <div class="left">
             <h3>Test <span>Yourself</span></h3>
         </div>
-
+        <div id="hello-username">Hello</div>
         <div class="right">
             <button class="logout-button" onclick="confirmLogout()"><img src="images/logout.svg">Logout</button>
         </div>
@@ -69,6 +69,23 @@
                     </tr>
                     <tr>
                         <td>
+                            <label>Choose the topic: </label>
+                        </td>
+                        <td>
+                            <select name='topic' id='topic'>
+                                echo "<option value='-1'>All topic</option>";
+                                <?php
+                                foreach ($topics as $topic){
+                                    echo "                           
+                                        <option value=$topic[id]>$topic[name]</option>
+                                        ";
+                                }   
+                                ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                         </td>
                         <td>
                             <input type="submit" value="Start test" class="edit"></input>
@@ -81,13 +98,21 @@
 
     </div>
 
+    <script src="js/index.js"></script>
     <script>
+        var x = document.cookie;
+        var username = getCookie("username");
+
         function confirmLogout() {
             var r = confirm("Are you sure you want to logout?");
             if (r == true) {
                 location.href = "?Authentication/index";
             }
         }
+        console.log(username);
+
+        document.getElementById("hello-username").innerText =
+            "Hello " + username + " ";
     </script>
 </body>
 

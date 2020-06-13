@@ -16,7 +16,7 @@
         <div class="left">
             <h3>Test <span>Yourself</span></h3>
         </div>
-
+        <div id="hello-username">Hello</div>
         <div class="right">
             <button class="logout-button" onclick="confirmLogout()"><img src="images/logout.svg">Logout</button>
         </div>
@@ -28,28 +28,30 @@
             <h4>Personal Info</h4>
         </center>
         <a class="navLink" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">dashboard</i><span>Back</span></a>
-        <a class="navLink" href="?user/UserInfo/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">arrow_back</i><span>Back</span></a>
+        <a class="navLink " href="?user/UserInfo/index" onclick="return handleSideBarButton(event)"><i
                 class="material-icons">dns</i><span>User Info</span></a>
         <a class="navLink" href="?user/CommentInfo/index" onclick="return handleSideBarButton(event)"><i
                 class="material-icons">dvr</i><span>Comment Info</span></a>
         <a class="navLink" href="?user/ResultInfo/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">dvr</i><span>Result Info</span></a>
-        <a class="navLink" href="?user/TestInfo/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">dvr</i><span>Test Info</span></a>
-        <a class="navLink" href="?user/QuestionInfo/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">dvr</i><span>Question Info</span></a>
-        <a class="navLink" href="?user/TopicInfo/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">dvr</i><span>Topic Info</span></a>
+                class="material-icons">grading</i><span>Result Info</span></a>
     </div>
 
+    <script src="js/index.js"></script>
     <script>
+        var x = document.cookie;
+        var username = getCookie("username");
+
         function confirmLogout() {
             var r = confirm("Are you sure you want to logout?");
             if (r == true) {
                 location.href = "?Authentication/index";
             }
         }
+        console.log(username);
+
+        document.getElementById("hello-username").innerText =
+            "Hello " + username + " ";
     </script>
 </body>
 

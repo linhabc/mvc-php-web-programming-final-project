@@ -27,22 +27,16 @@
             <h4>Custom Test</h4>
         </center>
         <a class="navLink" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dashboard</i><span>Home</span></a>
-        <a class="navLink active" href="?user/ManageTest/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dns</i><span>Manage Test</span></a>
-        <a class="navLink" href="?user/ManageComment/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dvr</i><span>Manage Comment</span></a>
-        <a class="navLink" href="?user/ManageUser/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dvr</i><span>Manage User</span></a>
-        <a class="navLink" href="?user/ManageTest/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dns</i><span>Back</span></a>
+                class="material-icons">dashboard</i><span>Home</span></a>
+        <a class="navLink" href="?user/ManageCustomTest/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">arrow_back</i><span>Back</span></a>
     </div>
 
     <div class="content" id="content">
         <div class="grid-container">
             <div class="question-table">
                 <h2 style="margin: 0px; margin-bottom: 20px;">
-                    Test Detail Table
+                    Test Question Table
                 </h2>
 
                 <table style="margin-top: 20px; width: 80%;">
@@ -56,6 +50,7 @@
                         <th>C</th>
                         <th>D</th>
                         <th>Answer</th>
+                        <th>Action</th>
                     </tr>
 
                     <?php

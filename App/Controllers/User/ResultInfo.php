@@ -5,7 +5,7 @@ namespace App\Controllers\User;
 use App\Models\Result;
 use \Core\View;
 
-class ManageUser extends \Core\Controller
+class ResultInfo extends \Core\Controller
 {
     protected function before()
     {
@@ -15,10 +15,10 @@ class ManageUser extends \Core\Controller
 
     public function indexAction()
     {
-        $id = $_GET['id'];
-        $users = Result::getResultByTestId($id);
+        $userId = $_COOKIE["uid"];
+        $users = Result::getResultUid($userId);
 
-        View::render('User/ManageCustomTest/ManageUser/index.html', [
+        View::render('User/ManagePersonalInfo/ResultInfo/index.html', [
             'users' => $users,
         ]);
     }

@@ -70,7 +70,8 @@ function submit() {
     };
     xhttp.open("POST", "?user/QuickTest/checkResult&id=123", true);
     xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(JSON.stringify({ 'answer': [...myAnswers] }));
+    xhttp.send(JSON.stringify({ 'answer': [...myAnswers],
+                                'timeUsed': timeUsed }));
 }
 
 document.getElementById("btnSubmit").addEventListener('click', submit);
@@ -96,7 +97,7 @@ function showResult(resultResponse) {
     // alert(total_questions + "-" + correct_answers + "-" + answers.length);
 
     document.getElementById('result').innerHTML =
-        "<span> Score: " + correct_answers/total_questions*10 + " / 10</span><br><span> Correct: "+ correct_answers+ " / " + total_questions + " </span><br><span>Finished at: "+ getDateFromTimestamp(finishedAt) +"</span><br><a href='#'>BACK</a>";
+        "<span> Score: " + correct_answers/total_questions*10 + " / 10</span><br><span> Correct: "+ correct_answers+ " / " + total_questions + " </span><br><span>Finished at: "+ getDateFromTimestamp(finishedAt) +"</span><br><span>Completion time: "+ convertSecondsToMinutes(completionTime) +"</span><br><a href='#'>BACK</a>";
 
     window.scrollTo(0, 0); 
 

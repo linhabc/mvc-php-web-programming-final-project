@@ -15,7 +15,8 @@ class CommentInfo extends \Core\Controller
 
     public function indexAction()
     {
-        $comments = Comment::getAll();
+        $userId = $_COOKIE["uid"];
+        $comments = Comment::getCommentUid($userId);
 
         View::render('User/ManagePersonalInfo/CommentInfo/index.html', [
             'comments' => $comments,
@@ -24,12 +25,12 @@ class CommentInfo extends \Core\Controller
 
     public function deleteAction()
     {
-
+        $userId = $_COOKIE["uid"];
         $id = $_GET['id'];
 
         Comment::deleteComment($id);
 
-        $comments = Comment::getAll();
+        $comments = Comment::getCommentUid($userId);
 
         View::render('User/ManagePersonalInfo/CommentInfo/index.html', [
             'comments' => $comments,

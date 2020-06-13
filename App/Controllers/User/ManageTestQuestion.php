@@ -69,7 +69,7 @@ class ManageTestQuestion extends \Core\Controller
         $topic_name = Topic::getTopicName();
         $tests = Test::getTestByUserId($userId);
 
-        View::render('User/ManageCustomTest/ManageTest/index.html', [
+        View::render('User/ManageCustomTest/ManageTestQuestion/index.html', [
             'tests' => $tests,
             'topic_name' => $topic_name,
         ]);

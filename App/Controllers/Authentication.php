@@ -32,9 +32,9 @@ class Authentication extends \Core\Controller
     public function signUpAction()
     {
         if (array_key_exists('email', $_POST) && array_key_exists('password', $_POST) && array_key_exists('userName', $_POST)) {
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            $userName = $_POST['userName'];
+            $email = htmlentities($_POST['email']);
+            $password = htmlentities($_POST['password']);
+            $userName = htmlentities($_POST['userName']);
 
             $user = User::createUser($email, $userName, $password);
 
@@ -48,8 +48,8 @@ class Authentication extends \Core\Controller
     public function loginAction()
     {
         if (array_key_exists('email', $_POST) && array_key_exists('password', $_POST)) {
-            $email = $_POST['email'];
-            $password = $_POST['password'];
+            $email = htmlentities($_POST['email']);
+            $password = htmlentities($_POST['password']);
             $user = User::login($email, $password);
 
             if ($user != null) {
@@ -59,9 +59,14 @@ class Authentication extends \Core\Controller
                     self::openUserHomePage($user[0]);
                 }
             } else {
+                echo '<script type="text/javascript">alert("Invalid username or password!");</script>';
+
+                // echo '<font color="#FF0000"><p align="center">Invalid user!</p>';
                 Authentication::indexAction();
             }
         } else {
+            echo '<script type="text/javascript">alert("Invalid username or password!");</script>';
+            // echo '<font color="#FF0000"><p align="center">Invalid username or password!</p>';
             Authentication::indexAction();
         }
     }
@@ -109,4 +114,5 @@ class Authentication extends \Core\Controller
             'user' => $user,
         ]);
     }
+
 }

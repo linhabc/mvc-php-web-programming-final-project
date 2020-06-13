@@ -16,13 +16,14 @@
         <div class="left">
             <h3>Test <span>Yourself</span></h3>
         </div>
-
+        <div id="hello-username">Hello</div>
         <div class="right">
             <button class="logout-button" onclick="confirmLogout()"><img src="images/logout.svg">Logout</button>
         </div>
     </header>
 
-    <div class="side-bar">
+    <div id="mySidebar" class="side-bar">
+
         <center>
             <img src="images/img_avatar.png" class="avatar" />
             <h4>Admin page</h4>
@@ -95,7 +96,8 @@
                             <tr>
                                 <td><input style=\"text-align: center;\" class=\"noborder id-class\" type=\"text\" name=\"id\" value=\"$quest[id]\"></td>
                                 <td style=\"word-wrap: break-word; max-width: 10%;\" contenteditable=\"true\"><input class=\"noborder email-class\" 
-                                                                                     type=\"text\" name=\"question\" value=\"$quest[question]\" style=\"width:200px;\"></td>
+                                                                                     type=\"text\" name=\"question\" value=\"$quest[question]\" 
+                                                                                     style=\"width:200px;\"></td>
                                 <td style=\"word-wrap: break-word; max-width: 10%;\" contenteditable=\"true\"><input style=\"text-align: center;\" class=\"noborder answer\" 
                                                                                      type=\"text\" name=\"answer_a\" value=\"$quest[a]\" style=\"width:200px;\"></td>
                                 <td style=\"word-wrap: break-word; max-width: 10%;\" contenteditable=\"true\"><input style=\"text-align: center;\" class=\"noborder answer\" 
@@ -204,14 +206,25 @@
         }
     </script>
 
+    <script src="js/index.js"></script>
     <script>
+        var x = document.cookie;
+        var username = getCookie("username");
+
         function confirmLogout() {
             var r = confirm("Are you sure you want to logout?");
             if (r == true) {
                 location.href = "?Authentication/index";
             }
         }
+
+        console.log(username);
+
+        document.getElementById("hello-username").innerText =
+            "Hello " + username + " ";
     </script>
+
+
 </body>
 
 </html>

@@ -15,7 +15,8 @@ class UserInfo extends \Core\Controller
 
     public function indexAction()
     {
-        $users = User::getAll();
+        $userId = $_COOKIE["uid"];
+        $users = User::getUser($userId);
 
         View::render('User/ManagePersonalInfo/UserInfo/index.html', [
             'users' => $users,

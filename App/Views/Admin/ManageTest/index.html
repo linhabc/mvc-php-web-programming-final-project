@@ -16,7 +16,7 @@
         <div class="left">
             <h3>Test <span>Yourself</span></h3>
         </div>
-
+        <div id="hello-username">Hello</div>
         <div class="right">
             <button class="logout-button" onclick="confirmLogout()"><img src="images/logout.svg">Logout</button>
         </div>
@@ -91,13 +91,22 @@
         }
     </script>
 
+    <script src="js/index.js"></script>
     <script>
+        var x = document.cookie;
+        var username = getCookie("username");
+
         function confirmLogout() {
             var r = confirm("Are you sure you want to logout?");
             if (r == true) {
                 location.href = "?Authentication/index";
             }
         }
+
+        console.log(username);
+
+        document.getElementById("hello-username").innerText =
+            "Hello " + username + " ";
     </script>
 
     <script>

@@ -16,3 +16,10 @@ function getCookie(cname) {
 function redirectTo(url) {
   location.href = `${url}`;
 }
+
+function confirmLogout() {
+  var r = confirm("Are you sure you want to logout?");
+  if (r == true) {
+      location.href = "?Authentication/index";
+  }
+}
