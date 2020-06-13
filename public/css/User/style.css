@@ -1,6 +1,6 @@
 .grid-container {
   display: grid;
-  grid-template: 190px / auto auto;
+  grid-template: auto / auto auto;
   grid-gap: 40px;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   background-color: white;
@@ -14,7 +14,7 @@
 }
 
 .grid-item:hover {
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 #comment {

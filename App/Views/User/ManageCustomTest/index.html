@@ -16,7 +16,7 @@
         <div class="left">
             <h3>Test <span>Yourself</span></h3>
         </div>
-
+        <div id="hello-username">Hello</div>
         <div class="right">
             <button class="logout-button" onclick="confirmLogout()"><img src="images/logout.svg">Logout</button>
         </div>
@@ -24,44 +24,22 @@
 
     <div class="side-bar">
         <center>
-          <h4>User page</h4>
+            <h4>User page</h4>
         </center>
-        <a
-          class="navLink"
-          href="?user/Users/index"
-          onclick="return handleSideBarButton(event)"
-          ><i class="material-icons">dashboard</i><span>Dashboard</span></a
-        >
-        <a
-          class="navLink"
-          href="?user/QuickTest/index"
-          onclick="return handleSideBarButton(event)"
-          ><i class="material-icons">account_box</i
-          ><span>Do Quick Test</span></a
-        >
-        <a
-          class="navLink"
-          href="?user/GroupTest/index"
-          onclick="return handleSideBarButton(event)"
-        >
-          <i class="material-icons">chrome_reader_mode</i>
-          <span>Do Group Test</span></a
-        >
-        <a
-          class="navLink active"
-          href="?user/ManageCustomTest/index"
-          onclick="return handleSideBarButton(event)"
-          ><i class="material-icons">dvr</i><span>Custom Test</span></a
-        >
-        <a
-          class="navLink"
-          href="?user/ManagePersonalInfo/index"
-          onclick="return handleSideBarButton(event)"
-          ><i class="material-icons">dvr</i><span>Personal Info</span></a
-        >
-      </div>
+        <a class="navLink" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">dashboard</i><span>Dashboard</span></a>
+        <a class="navLink" href="?user/QuickTest/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">account_box</i><span>Do Quick Test</span></a>
+        <a class="navLink" href="?user/GroupTest/index" onclick="return handleSideBarButton(event)">
+            <i class="material-icons">chrome_reader_mode</i>
+            <span>Do Group Test</span></a>
+        <a class="navLink active" href="?user/ManageCustomTest/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">dvr</i><span>Custom Test</span></a>
+        <a class="navLink" href="?user/ManagePersonalInfo/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">dvr</i><span>Personal Info</span></a>
+    </div>
 
-      <div class="content" id="content">
+    <div class="content" id="content">
         <div class="grid-container">
             <div class="test-table">
                 <h2 style="margin: 0px;">
@@ -145,7 +123,7 @@
                             <th><label for="description">Description: </label></th>
                             <td><textarea id="description" name="description" required></textarea></td>
                         </tr>
-                        
+
                         <tr>
                             <th></th>
                             <td><button type="submit" class="btn" id="add_test" name="add-test">Add</button></td>
@@ -179,26 +157,34 @@
             location.href = `?user/ManageUser/index&id=${id}`;
         }
     </script>
-            <img src="images/avatar_user.png" class="avatar" />
-            <h4>Custom Test</h4>
-        </center>
-        <a class="navLink" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">dashboard</i><span>Home</span></a>
-        <a class="navLink" href="?user/ManageTest/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">dns</i><span>Manage Test</span></a>
-        <a class="navLink" href="?user/ManageComment/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">dvr</i><span>Manage Comment</span></a>
-        <a class="navLink" href="?user/ManageUser/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">dvr</i><span>Manage User</span></a>
+    <img src="images/avatar_user.png" class="avatar" />
+    <h4>Custom Test</h4>
+    </center>
+    <a class="navLink" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">dashboard</i><span>Home</span></a>
+    <a class="navLink" href="?user/ManageTest/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">dns</i><span>Manage Test</span></a>
+    <a class="navLink" href="?user/ManageComment/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">dvr</i><span>Manage Comment</span></a>
+    <a class="navLink" href="?user/ManageUser/index" onclick="return handleSideBarButton(event)"><i
+            class="material-icons">dvr</i><span>Manage User</span></a>
     </div>
 
+    <script src="js/index.js"></script>
     <script>
+        var x = document.cookie;
+        var username = getCookie("username");
+
         function confirmLogout() {
             var r = confirm("Are you sure you want to logout?");
             if (r == true) {
                 location.href = "?Authentication/index";
             }
         }
+        console.log(username);
+
+        document.getElementById("hello-username").innerText =
+            "Hello " + username + " ";
     </script>
 </body>
 
