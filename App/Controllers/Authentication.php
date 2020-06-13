@@ -59,13 +59,17 @@ class Authentication extends \Core\Controller
                     self::openUserHomePage($user[0]);
                 }
             } else {
-                echo '<script type="text/javascript">alert("Invalid username or password!");</script>';
+                echo '<script type="text/javascript">
+                    window.onload = function() {alert("Username or password not correct!");}
+                </script>';
 
                 // echo '<font color="#FF0000"><p align="center">Invalid user!</p>';
                 Authentication::indexAction();
             }
         } else {
-            echo '<script type="text/javascript">alert("Invalid username or password!");</script>';
+            echo '<script type="text/javascript">
+                window.onload = function() {alert("Username or password not correct!");}
+            </script>';
             // echo '<font color="#FF0000"><p align="center">Invalid username or password!</p>';
             Authentication::indexAction();
         }
