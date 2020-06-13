@@ -8,7 +8,7 @@
 ## Setting
 
 - put project in htdoc folder if using xampp
-- local link: http://localhost/final-project/public/
+- local link: http://localhost/mvc-php-web-programming-final-project/public/
 - set database config in /App/Config.php
 
 ## Initial folder structure
