@@ -2,7 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\Comment;
 use App\Models\Test;
+use App\Models\TestQuestion;
 use \Core\View;
 
 class ManageTest extends \Core\Controller
@@ -28,6 +30,8 @@ class ManageTest extends \Core\Controller
         $id = $_GET['id'];
 
         Test::deleteTest($id);
+        TestQuestion::deleteAllTestQuestion($id);
+        Comment::deleteAllCommentByTestId($id);
 
         $tests = Test::getAllTest();
 

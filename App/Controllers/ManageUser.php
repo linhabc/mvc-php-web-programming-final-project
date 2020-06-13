@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\Comment;
+use App\Models\Test;
 use App\Models\User;
 use \Core\View;
 
@@ -29,6 +31,8 @@ class ManageUser extends \Core\Controller
         $id = $_GET['id'];
 
         User::deleteUser($id);
+        Comment::deleteAllCommentByUserId($id);
+        Test::deleteTestByUserId($id);
 
         $users = User::getAll();
 

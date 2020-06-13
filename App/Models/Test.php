@@ -120,4 +120,17 @@ class Test extends \Core\Model
         }
     }
 
+    public static function deleteTestByUserId($id)
+    {
+
+        try {
+            $db = static::getDB();
+
+            $sql = "DELETE FROM test WHERE user_id = $id";
+            $db->exec($sql);
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 }

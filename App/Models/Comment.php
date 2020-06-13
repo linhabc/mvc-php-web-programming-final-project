@@ -114,6 +114,20 @@ class Comment extends \Core\Model
         }
     }
 
+    public static function deleteAllCommentByUserId($id)
+    {
+
+        try {
+            $db = static::getDB();
+
+            $sql = "DELETE FROM comment WHERE user_id = $id";
+            $db->exec($sql);
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public static function getAll()
     {
         try {

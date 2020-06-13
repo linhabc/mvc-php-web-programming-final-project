@@ -2,11 +2,11 @@
 
 namespace App\Controllers\User;
 
-use App\Models\Test;
-use App\Models\Topic;
-use App\Models\Question;
-use App\Models\TestQuestion;
 use App\Models\Comment;
+use App\Models\Question;
+use App\Models\Test;
+use App\Models\TestQuestion;
+use App\Models\Topic;
 use \Core\View;
 
 class ManageTest extends \Core\Controller
@@ -18,7 +18,7 @@ class ManageTest extends \Core\Controller
     }
 
     public function indexAction()
-    { 
+    {
         $userId = $_COOKIE["uid"];
         $tests = Test::getTestByUserId($userId);
         $topic_name = Topic::getTopicName();
@@ -57,7 +57,7 @@ class ManageTest extends \Core\Controller
         $description = $_POST['description'];
 
         $id = Test::createTest($topic_id, $userId, $name, $description, $duration);
-        
+
         // $id = $test;
 
         $randoms = Question::getRandomQuestion($nbquestion);
