@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <title>Participants</title>
   <link rel="stylesheet" href="css//style.css" />
-  <link rel="stylesheet" href="css/User/ManageCustomTest/ManageUser/style.css" />
+  <link rel="stylesheet" href="css/User/ManagePersonalInfo/ResultInfo/style.css" />
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <script src="js/User/index.js"></script>
@@ -24,28 +24,35 @@
 
   <div class="side-bar">
     <center>
-      <h4>Custom Test</h4>
+        <h4>Personal Info</h4>
     </center>
     <a class="navLink" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
-        class="material-icons">dashboard</i><span>Back</span></a>
-    <a class="navLink" href="?user/ManageCustomTest/index" onclick="return handleSideBarButton(event)"><i
-        class="material-icons">dns</i><span>Back</span></a>
+        class="material-icons">dashboard</i><span>Home</span></a>
+    <a class="navLink " href="?user/UserInfo/index" onclick="return handleSideBarButton(event)"><i
+        class="material-icons">dns</i><span>User Info</span></a>
+    <a class="navLink" href="?user/CommentInfo/index" onclick="return handleSideBarButton(event)"><i
+        class="material-icons">dvr</i><span>Comment Info</span></a>
+    <a class="navLink active" href="?user/ResultInfo/index" onclick="return handleSideBarButton(event)"><i
+        class="material-icons">dvr</i><span>Result Info</span></a>
   </div>
 
   <div class="content" id="content">
     <div class="grid-container">
       <div class="user-table">
         <h2 style="margin: 0px;">
-          Participants
+          Results
         </h2>
         <table>
           <tr>
-            <th>Username</th>
+            <th>Test Name</th>
+            <th>Topic</th>
+            <th>Description</th>
+            <th>Duration</th>
             <th>Score</th>
             <th>Rating</th>
             <th>Create At</th>
             <th>Time</th>
-            <!-- <th>Action</th> -->
+            <th>Action</th>
           </tr>
 
           <?php
@@ -55,14 +62,17 @@
               echo "
               
                 <tr>
-                  <td> $user[username] </td>
+                  <td> $user[name] </td>
+                  <td> $user[to_name] </td>
+                  <td> $user[description] </td>
+                  <td> $user[duration] </td>
                   <td> $user[score] </td>
                   <td> $user[rating] </td>
                   <td> $user[create_at] </td>
                   <td> $user[time] </td>
-                  <!-- <td>                      
-                    <button onclick='confirmDelete($userId, $testId)'>Delete</button>
-                  </td> -->
+                  <td>                      
+                    <button onclick='view($testId)' class=\"view\"><img src=\"images/view.svg\">View</button></td>
+                  </td>
                 </tr>
               
               ";
@@ -83,6 +93,12 @@
       }
     }
   </script>
+
+<script>
+  function view(id) {
+    location.href = `?user/QuestionInfo/index&id=${id}`;
+  }
+</script>
 </body>
 
 </html>

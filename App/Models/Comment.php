@@ -80,6 +80,20 @@ class Comment extends \Core\Model
         }
     }
 
+    public static function deleteAllCommentByTestId($id)
+    {
+
+        try {
+            $db = static::getDB();
+
+            $sql = "DELETE FROM comment WHERE test_id = $id";
+            $db->exec($sql);
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public static function getAll()
     {
         try {
@@ -95,12 +109,27 @@ class Comment extends \Core\Model
         }
     }
 
+    public static function getCommentByTestCreateByUser($userId)
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT comment.id, user.username as u_name,test.name as t_name, comment.content, comment.create_at  FROM comment INNER JOIN user on comment.user_id = user.id INNER JOIN test on comment.test_id = test.id WHERE test.user_id = $userId");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public static function getCommentUid($userId)
     {
         try {
             $db = static::getDB();
 
-            $stmt = $db->query("SELECT * FROM comment WHERE user_id = $userId");
+            $stmt = $db->query("SELECT comment.id, user.username as u_name,test.name as t_name, comment.content, comment.create_at  FROM comment INNER JOIN user on comment.user_id = user.id INNER JOIN test on comment.test_id = test.id WHERE comment.user_id = $userId");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;

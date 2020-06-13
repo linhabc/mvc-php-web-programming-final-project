@@ -2,89 +2,76 @@
 
 namespace App\Controllers\User;
 
-use App\Models\Question;
+use App\Models\Test;
 use App\Models\Topic;
+use App\Models\Question;
+use App\Models\TestQuestion;
 use \Core\View;
 
 class QuestionInfo extends \Core\Controller
 {
     protected function before()
     {
-        // Make sure an admin user is loged in for example
+        // Make sure an admin user is logged in for example
         // return false;
     }
 
     public function indexAction()
-    {
+    { 
+        // $userId = $_COOKIE["uid"];
+        $id = $_GET['id'];
         $topic_name = Topic::getTopicName();
-        if (array_key_exists('topic-name', $_POST)) {
-            $topic_id = $_POST['topic-name'];
+        $tests = TestQuestion::getQuestionById($id);
 
-            if ($topic_id == "all") {
-                $questions = Question::getAllQuestion();
-
-                View::render('User/ManagePersonalInfo/QuestionInfo/index.html', [
-                    'questions' => $questions,
-                    'topic_name' => $topic_name,
-                    'selected_field' => 'all',
-                ]);
-            } else {
-                $question = Question::getQuestionByTopic($topic_id);
-
-                View::render('User/ManagePersonalInfo/QuestionInfo/index.html', [
-                    'questions' => $question,
-                    'topic_name' => $topic_name,
-                    'selected_field' => $topic_id,
-                ]);
-            }
-
-        } else {
-            $questions = Question::getAllQuestion();
-
-            View::render('User/ManagePersonalInfo/QuestionInfo/index.html', [
-                'questions' => $questions,
-                'topic_name' => $topic_name,
-                'selected_field' => 'all',
-            ]);
-        }
+        View::render('User/ManagePersonalInfo/QuestionInfo/index.html', [
+            'tests' => $tests,
+            'topic_name' => $topic_name,
+        ]);
     }
 
     public function deleteAction()
     {
+        // $userId = $_COOKIE["uid"];
+        $test_id = $_GET['test_id'];
+        $question_id = $_GET['question_id'];
 
-        $id = $_GET['id'];
+        TestQuestion::deleteTestQuestion($test_id, $question_id);
 
-        Question::deleteQuestion($id);
-
-        $questions = Question::getAllQuestion();
         $topic_name = Topic::getTopicName();
+        $tests = TestQuestion::getQuestionById($test_id);
 
-        View::render('User/ManagePersonalInfo/QuestionInfo/index.html', [
-            'questions' => $questions,
+        View::render('User/ManageCustomTest/ManageTestQuestion/index.html', [
+            'tests' => $tests,
             'topic_name' => $topic_name,
-            'selected_field' => 'all',
         ]);
     }
 
     public function addAction()
     {
-        $question = $_POST['question_detail'];
+        $userId = $_COOKIE["uid"];
+        $name = $_POST['name_detail'];
         $topic_id = $_POST['topic'];
-        $answer_a = $_POST['answer_a'];
-        $answer_b = $_POST['answer_b'];
-        $answer_c = $_POST['answer_c'];
-        $answer_d = $_POST['answer_d'];
-        $correct_answer = $_POST['correct_answer'];
+        $duration = $_POST['duration'];
+        $nbquestion = $_POST['nbquestion'];
+        $description = $_POST['description'];
 
-        Question::createQuestion($topic_id, -1, $question, $correct_answer, $answer_a, $answer_b, $answer_c, $answer_d);
+        $id = Test::createTest($topic_id, $userId, $name, $description, $duration);
+        
+        // $id = $test;
 
-        $questions = Question::getAllQuestion();
+        $randoms = Question::getRandomQuestion($nbquestion);
+
+        foreach ($randoms as $random) {
+            $questionId = $random["id"];
+            TestQuestion::createTestQuestion($id, $questionId);
+        }
+
         $topic_name = Topic::getTopicName();
+        $tests = Test::getTestByUserId($userId);
 
-        View::render('User/ManagePersonalInfo/QuestionInfo/index.html', [
-            'questions' => $questions,
+        View::render('User/ManageCustomTest/ManageTestQuestion/index.html', [
+            'tests' => $tests,
             'topic_name' => $topic_name,
-            'selected_field' => 'all',
         ]);
     }
 }

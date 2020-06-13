@@ -4,6 +4,9 @@ namespace App\Controllers\User;
 
 use App\Models\Test;
 use App\Models\Topic;
+use App\Models\Question;
+use App\Models\TestQuestion;
+use App\Models\Comment;
 use \Core\View;
 
 class ManageCustomTest extends \Core\Controller
@@ -15,8 +18,8 @@ class ManageCustomTest extends \Core\Controller
     }
 
     public function indexAction()
-    {
-        $userId = -1;
+    { 
+        $userId = $_COOKIE["uid"];
         $tests = Test::getTestByUserId($userId);
         $topic_name = Topic::getTopicName();
 
@@ -28,11 +31,43 @@ class ManageCustomTest extends \Core\Controller
 
     public function deleteAction()
     {
-        $userId = -1;
+        $userId = $_COOKIE["uid"];
         $id = $_GET['id'];
 
         Test::deleteTest($id);
+        TestQuestion::deleteAllTestQuestion($id);
+        Comment::deleteAllCommentByTestId($id);
 
+        $topic_name = Topic::getTopicName();
+        $tests = Test::getTestByUserId($userId);
+
+        View::render('User/ManageCustomTest/index.html', [
+            'tests' => $tests,
+            'topic_name' => $topic_name,
+        ]);
+    }
+
+    public function addAction()
+    {
+        $userId = $_COOKIE["uid"];
+        $name = $_POST['name_detail'];
+        $topic_id = $_POST['topic'];
+        $duration = $_POST['duration'];
+        $nbquestion = $_POST['nbquestion'];
+        $description = $_POST['description'];
+
+        $id = Test::createTest($topic_id, $userId, $name, $description, $duration);
+        
+        // $id = $test;
+
+        $randoms = Question::getRandomQuestion($nbquestion);
+
+        foreach ($randoms as $random) {
+            $questionId = $random["id"];
+            TestQuestion::createTestQuestion($id, $questionId);
+        }
+
+        $topic_name = Topic::getTopicName();
         $tests = Test::getTestByUserId($userId);
 
         View::render('User/ManageCustomTest/index.html', [

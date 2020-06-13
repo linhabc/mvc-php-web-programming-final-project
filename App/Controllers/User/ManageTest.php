@@ -6,6 +6,7 @@ use App\Models\Test;
 use App\Models\Topic;
 use App\Models\Question;
 use App\Models\TestQuestion;
+use App\Models\Comment;
 use \Core\View;
 
 class ManageTest extends \Core\Controller
@@ -35,6 +36,7 @@ class ManageTest extends \Core\Controller
 
         Test::deleteTest($id);
         TestQuestion::deleteAllTestQuestion($id);
+        Comment::deleteAllCommentByTestId($id);
 
         $topic_name = Topic::getTopicName();
         $tests = Test::getTestByUserId($userId);
