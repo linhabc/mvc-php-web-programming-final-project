@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Test Questions</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/ManageUser/style.css" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script src="js/User/index.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="left">
+            <h3>Test <span>Yourself</span></h3>
+        </div>
+
+        <div class="right">
+            <button class="logout-button" onclick="confirmLogout()"><img src="images/logout.svg">Logout</button>
+        </div>
+    </header>
+
+    <div class="side-bar">
+        <center>
+            <img src="images/img_avatar.png" class="avatar" />
+            <h4>Custom Test</h4>
+        </center>
+        <a class="navLink" href="?Admin/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">dashboard</i><span>Home</span></a>
+        <a class="navLink" href="?ManageTest/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">dns</i><span>Back</span></a>
+    </div>
+
+    <div class="content" id="content">
+        <div class="grid-container">
+            <div class="question-table">
+                <h2 style="margin: 0px; margin-bottom: 20px;">
+                    Test Detail
+                </h2>
+
+                <table style="margin-top: 20px; width: 100%;">
+                    <tr>
+                        <th>Test</th>
+                        <th>Question</th>
+                        <th>Topic</th>
+                        <th class="question">Question</th>
+                        <th>A</th>
+                        <th>B</th>
+                        <th>C</th>
+                        <th>D</th>
+                        <th>Answer</th>
+                        <th class="action">Action</th>
+                    </tr>
+
+                    <?php
+    
+                        foreach ($tests as $test) {
+                        $test_id = $test['test_id'];
+                        $question_id = $test['question_id'];
+                            echo "
+                            <tr>
+                                <td> $test[test_id] </td>
+                                <td style=\"word-wrap: break-word; max-width: 100%;\">$test[question_id]</td>
+                                <td style=\"word-wrap: break-word; max-width: 100%;\">$test[topic_name]</td>
+                                <td style=\"word-wrap: break-word; max-width: 100%;\">$test[question]</td>
+                                <td style=\"word-wrap: break-word; max-width: 100%;\"> $test[a]</td>
+                                <td style=\"word-wrap: break-word; max-width: 100%;\"> $test[b]</td>
+                                <td style=\"word-wrap: break-word; max-width: 100%;\"> $test[c]</td>
+                                <td style=\"word-wrap: break-word; max-width: 100%;\"> $test[d]</td>
+                                <td style=\"word-wrap: break-word; max-width: 100%;\"> $test[answer]</td>
+
+                                <td>
+                                    <button onclick='confirmDelete($test_id, $question_id)' class=\"delete\"><img src=\"images/delete.svg\">Delete</button>
+                                </td>
+                            </tr>
+                        
+                            ";
+                        }
+                    ?>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function confirmDelete(test_id, question_id) {
+            var r = confirm("Are you sure you want to delete?");
+            if (r == true) {
+                location.href = `?user/ManageTestQuestion/delete&test_id=${test_id}&question_id=${question_id}`;
+            }
+        }
+    </script>
+
+    <script>
+        function confirmLogout() {
+            var r = confirm("Are you sure you want to logout?");
+            if (r == true) {
+                location.href = "?Authentication/index";
+            }
+        }
+    </script>
+</body>
+
+</html>

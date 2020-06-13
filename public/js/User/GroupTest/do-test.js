@@ -83,12 +83,13 @@ function showResult(resultResponse) {
     const total_questions = result['total_questions'];
     const correct_answers = result['correct_answers'];
     const finishedAt = result['finished_at'];
+    const completionTime = result['completion_time'];
     const answers = result['answers'];
 
     // alert(total_questions + "-" + correct_answers + "-" + answers.length);
 
     document.getElementById('result').innerHTML =
-        "<span> Score: " + correct_answers/total_questions*10 + " / 10</span><br><span> Correct: "+ correct_answers+ " / " + total_questions + " </span><br><span>Finished at: "+ getDateFromTimestamp(finishedAt) +"</span><br><a href='#'>BACK</a>";
+        "<span> Score: " + correct_answers/total_questions*10 + " / 10</span><br><span> Correct: "+ correct_answers+ " / " + total_questions + " </span><br><span>Finished at: "+ getDateFromTimestamp(finishedAt) +"</span><br><span>Completion time: "+ convertSecondsToMinutes(completionTime) +"</span><br><a href='#'>BACK</a>";
 
     window.scrollTo(0, 0); 
 
@@ -100,6 +101,25 @@ function showResult(resultResponse) {
 function getDateFromTimestamp(timestamp) {
     var date = new Date(timestamp * 1000);
     return date.toString();
+}
+
+function convertSecondsToMinutes(nSeconds) {
+    const minutes = Math.floor(nSeconds / 60)
+    const remainder = nSeconds - (minutes*60);
+
+    if (minutes < 10) {
+        minute = '0' + minutes;
+    } else {
+        minute = minutes;
+    }
+
+    if (remainder < 10) {
+        second = '0' + remainder;
+    } else {
+        second = remainder;
+    }
+    
+    return minute + " : " + second
 }
 
 function showAnswers(answers) {

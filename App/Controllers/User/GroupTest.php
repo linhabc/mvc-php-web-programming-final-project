@@ -2,6 +2,7 @@
 
 namespace App\Controllers\User;
 
+use App\Models\Comment;
 use App\Models\Question;
 use App\Models\Result;
 use App\Models\Test;
@@ -67,12 +68,48 @@ class GroupTest extends \Core\Controller
 
     public function resultAction()
     {
-        $ids = array(1, 2);
-        $questions = Question::getQuestionsByIds($ids);
+        $uid = (int) $this->getValueFromCookie('uid');
 
-        View::render('User/DoQuickTest/result.html', [
-            'questions' => $questions,
-        ]);
+        $testCode = (int) ($this->route_params)["id"];
+
+        $result = Result::getResult($uid, $testCode);
+
+        if ($result) {
+            // TODO User has done the test -> redirect to result page
+            // echo $uid;
+            // echo "<br>";
+            // echo $testCode;
+            // echo "<br>";
+            // echo "This user has done this test<br>";
+            // echo "<pre>";
+            // var_dump($result);
+            // echo "--------------<br>";
+            // var_dump($allResult);
+            // echo "--------------<br>";
+            // var_dump($comments);
+            // echo "</pre>";
+
+            $allResults = Result::getResultsByTestId($testCode);
+
+            $comments = Comment::findCommentsByTestId($testCode);
+
+            $test = Test::getTest($testCode);
+
+            View::render('User/DoGroupTest/result.html', [
+                'test' => $test,
+                'result' => $result,
+                'allResults' => $allResults,
+                'comments' => $comments,
+            ]);
+
+        } else {
+            echo $uid;
+            echo "<br>";
+            echo $testCode;
+            echo "<br>";
+            echo "This user has NOT done this test<br>";
+            var_dump($result);
+        }
     }
 
     public function checkCodeExistAction()
@@ -152,6 +189,7 @@ class GroupTest extends \Core\Controller
             "correct_answers" => $nCorrectAnswers,
             "finished_at" => $newResult->create_at,
             "answers" => $questions,
+            "completion_time" => $newResult->time,
         ));
 
     }

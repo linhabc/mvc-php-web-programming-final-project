@@ -18,7 +18,7 @@
         </div>
 
         <div class="right">
-            <a href="?Authentication/index" class="logout-button">Logout</a>
+            <button class="logout-button" onclick="confirmLogout()"><img src="images/logout.svg">Logout</button>
         </div>
     </header>
 
@@ -177,6 +177,27 @@
     <script>
         function viewUser(id) {
             location.href = `?user/ManageUser/index&id=${id}`;
+        }
+    </script>
+            <img src="images/avatar_user.png" class="avatar" />
+            <h4>Custom Test</h4>
+        </center>
+        <a class="navLink" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">dashboard</i><span>Home</span></a>
+        <a class="navLink" href="?user/ManageTest/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">dns</i><span>Manage Test</span></a>
+        <a class="navLink" href="?user/ManageComment/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">dvr</i><span>Manage Comment</span></a>
+        <a class="navLink" href="?user/ManageUser/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">dvr</i><span>Manage User</span></a>
+    </div>
+
+    <script>
+        function confirmLogout() {
+            var r = confirm("Are you sure you want to logout?");
+            if (r == true) {
+                location.href = "?Authentication/index";
+            }
         }
     </script>
 </body>

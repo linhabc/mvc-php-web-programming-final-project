@@ -1,9 +1,10 @@
 .grid-container {
   display: grid;
-  grid-template: auto / auto auto auto auto;
-  grid-gap: 20px;
-  /* background-color: #2196f3; */
-  padding: 25px;
+  grid-template: auto / auto auto;
+  grid-gap: 40px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  background-color: white;
+  padding: 50px;
 }
 
 .grid-item {
@@ -13,7 +14,7 @@
 }
 
 .grid-item:hover {
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 #user {
@@ -29,5 +30,5 @@
 }
 
 #test {
-  background-color: #423f3f;
+  background-color: chocolate;
 }
