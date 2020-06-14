@@ -14,6 +14,9 @@ function setUpPagination(maxRowsEachPage) {
     console.log('maxRowsPerPage: ' + maxRowsPerPage);
     if (nRows <= maxRowsPerPage) {
         document.getElementById('pagination-container').style.visibility = "hidden";
+        for(var i=0; i<rows.length; i++) {
+            rows.item(i).style.visibility = 'visible';
+        } 
         return;
     }
 

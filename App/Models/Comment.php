@@ -67,7 +67,7 @@ class Comment extends \Core\Model
         try {
             $db = static::getDB();
 
-            $sql = "INSERT INTO comment (test_id, user_id, content, create_at) VALUES ('$testId', '$userId', '$content', '$create_at')";
+            $sql = "INSERT INTO comment (test_id, user_id, content, create_at) VALUES ('$testId', '$userId', '$content', FROM_UNIXTIME($create_at))";
 
             $db->exec($sql);
 
