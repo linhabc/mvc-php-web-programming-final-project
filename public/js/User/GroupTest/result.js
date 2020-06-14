@@ -103,7 +103,7 @@ function sendComment() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            alert("Response: " + this.responseText);
+            // alert("Response: " + this.responseText);
             clearInputComment();
             const result = JSON.parse(this.responseText);
             showNewComment(result['newComment']);
