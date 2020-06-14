@@ -45,15 +45,15 @@ for (index = 0; index < shorcuts.length; ++index) {
 
 }
 
-// console.log('questions: -----------------');
-// var div = document.getElementById("dom-target");
-// var myData = div.textContent;
-// console.log("_" + myData + "_");
-// console.log('questions: -----------------');
+function manualSubmit() {
+    var conf = confirm("Are you sure to turn in?");
+    if (conf == true) {
+        clearInterval(cdID);
+        submit();
+    }
+}
 
 function submit() {
-    clearInterval(cdID);
-
     var timeUsed = (init_min*60 + init_sec) - ((min >= 0 ? min : 0)*60 + (sec >= 0 ? sec : 0))
 
     console.log('timeUsed in seconds: ' + timeUsed);
@@ -74,7 +74,7 @@ function submit() {
                                 'timeUsed': timeUsed }));
 }
 
-document.getElementById("btnSubmit").addEventListener('click', submit);
+document.getElementById("btnSubmit").addEventListener('click', manualSubmit);
 
 var duration = document.getElementById('timer').textContent;
 console.log(duration);
@@ -149,7 +149,8 @@ function countdown() {
             sec_text = sec;
 
         if (min < 0) {
-            alert('Hết giờ, hệ thống sẽ tự động nộp bài!');
+            clearInterval(cdID);
+            alert('Time out! The answers will be turned in automatically!');
             submit();
         }
         
