@@ -220,4 +220,22 @@ class GroupTest extends \Core\Controller
         return ($this->getCookie())[$name];
     }
 
+    public function commentAction()
+    {
+        $uid = (int) $this->getValueFromCookie('uid');
+
+        $testId = (int) ($this->route_params)["id"];
+
+        $request_body = file_get_contents('php://input');
+        $data = json_decode($request_body);
+        $comment = $data->comment;
+
+        $createAt = time();
+        $newCmtId = Comment::createCommment($testId, $uid, $comment, $createAt);
+
+        $newComment = Comment::getCommentById($newCmtId);
+        echo json_encode(array(
+            "newComment" => $newComment,
+        ));
+    }
 }

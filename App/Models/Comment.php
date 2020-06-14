@@ -21,15 +21,21 @@ class Comment extends \Core\Model
     //     $this->create_at = $create_at;
     // }
 
-    public static function getComment($id)
+    public static function getCommentById($id)
     {
         try {
             $db = static::getDB();
 
-            $stmt = $db->query("SELECT * FROM comment WHERE id = $id");
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // $stmt = $db->query("SELECT * FROM comment WHERE id = $id LIMIT 1");
+            $stmt = $db->query("SELECT c.*, u.role as userRole, u.userName FROM comment as c, user as u
+                                WHERE c.user_id = u.id
+                                AND c.id = $id
+                                ORDER BY c.create_at ASC
+                                LIMIT 1");
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'App\Models\Comment');
+            $result = $stmt->fetch();
 
-            return $results;
+            return $result;
 
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -61,10 +67,13 @@ class Comment extends \Core\Model
         try {
             $db = static::getDB();
 
-            $sql = "INSERT INTO comment (testId, userId, content, create_at) VALUES ($testId, $userId, $content, $create_at)";
+            $sql = "INSERT INTO comment (test_id, user_id, content, create_at) VALUES ('$testId', '$userId', '$content', '$create_at')";
 
             $db->exec($sql);
 
+            $last_id = $db->lastInsertId();
+
+            return $last_id;
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
