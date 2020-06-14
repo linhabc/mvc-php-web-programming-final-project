@@ -55,50 +55,89 @@
                 var_dump($comments);
                 echo "</pre>";
             ?> -->
+            <div class="flex-container">
+                <div class="flex-item-left">
+                    <?php
+                    echo "<span> Your score: " . $result->score . "</span><br>";
+                    echo "<span> Completion time: " . $result->time . "</span><br>";
+                    echo "<br></br>";
+                    ?>
 
-            <?php
-                echo "<span> Your score: " . $result->score . "</span><br>";
-                echo "<span> Completion time: " . $result->time . "</span><br>";
-                echo "<br></br>";
-            ?>
+                    <table class="table" id="table-id">
+                        <tr>
+                            <th>Ranking</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                            <th>Completion Time</th>
+                        </tr>
 
-            <table class="table" id= "table-id">
-                <tr>
-                    <th>Ranking</th>
-                    <th>Name</th>
-                    <th>Score</th>
-                    <th>Completion Time</th>
-                </tr>
+                        <?php
+                            foreach($allResults as $index => $result) {
+                                $ranking = $index + 1;
+                                echo "<tr>";
+                                echo "<td>" . $ranking . "</td>";
+                                echo "<td>" . $result->userName . "</td>";
+                                echo "<td>" . $result->score . "</td>";
+                                echo "<td>" . $result->time . "</td>";
+                                echo "</tr>";
+                            }
+                        ?>
+                    </table>
 
-                <?php
-                    foreach($allResults as $index => $result) {
-                        $ranking = $index + 1;
-                        echo "<tr>";
-                        echo "<td>" . $ranking . "</td>";
-                        echo "<td>" . $result->userName . "</td>";
-                        echo "<td>" . $result->score . "</td>";
-                        echo "<td>" . $result->time . "</td>";
-                        echo "</tr>";
-                    }
-                ?>
-            </table>
 
-            
-            <div class='pagination-container' id='pagination-container'>
-                <nav>
-                  <ul class="pagination" id="pagination">
-                    <li data-page="prev" >
-                        <span> < </span>
-                    </li>
-                   <!--	PageIndices will be added here -->
-                    <li data-page="next">
-                    <span> > </span>
-                    </li>
-                  </ul>
-                </nav>
+                    <div class='pagination-container' id='pagination-container'>
+                        <nav>
+                            <ul class="pagination" id="pagination">
+                                <li data-page="prev">
+                                    <span> < </span>
+                                </li>
+                                <!--	PageIndices will be added here -->
+                                <li data-page="next">
+                                    <span> > </span>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <br></br>
+                </div>
+                <div class="flex-item-right">
+                    <textarea id="input-cmt" class="textAreaCmt" placeholder="Enter your comment here..."></textarea>
+                    <br>
+                    <button onclick="sendComment()">Send</button>
+
+                    <br></br>
+
+                    <div class="comment-container" id="comment-area">
+                        <!-- <?php 
+                            echo "<pre>";
+                            var_dump($comments);
+                            echo "</pre>";
+                        ?> -->
+
+                        <?php
+                        foreach($comments as $comment) {
+                            echo "<div class='user-comment-container'>";
+                                echo "<div class='comment-user-detail'>";
+                                    echo "<div class='userName'>";
+                                        echo "<label>" . $comment->userName . "</label><br>";
+                                    echo "</div>";
+                                echo "</div>";
+                                
+                                echo "<div class='comment-detail-container'>";
+                                    echo "<div class='date'>";
+                                        echo "<label> [" . $comment->create_at . "]</label><br>";
+                                    echo "</div>";
+                                    echo "<hr>";
+                                    echo "<label>" . $comment->content ."</label><br>";
+                                echo "</div>";
+                            echo "</div>";
+                        }
+                        ?> 
+                    </div>
+                </div>
             </div>
 
-            <br></br>
         </div>
 
     </div>

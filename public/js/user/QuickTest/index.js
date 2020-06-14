@@ -93,6 +93,7 @@ function showResult(resultResponse) {
     const correct_answers = result['correct_answers'];
     const finishedAt = result['finished_at'];
     const answers = result['answers'];
+    const completionTime = result['completion_time'];
 
     // alert(total_questions + "-" + correct_answers + "-" + answers.length);
 
@@ -155,4 +156,23 @@ function countdown() {
         document.getElementById('timer').innerHTML = min_text + ' : ' + sec_text;
         
     }, 1000);
+}
+
+function convertSecondsToMinutes(nSeconds) {
+    const minutes = Math.floor(nSeconds / 60)
+    const remainder = nSeconds - (minutes*60);
+
+    if (minutes < 10) {
+        minute = '0' + minutes;
+    } else {
+        minute = minutes;
+    }
+
+    if (remainder < 10) {
+        second = '0' + remainder;
+    } else {
+        second = remainder;
+    }
+    
+    return minute + " : " + second
 }

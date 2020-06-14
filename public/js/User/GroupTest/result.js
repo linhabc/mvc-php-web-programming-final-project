@@ -90,3 +90,48 @@ function showCurrentRows() {
         rows.item(i).style.visibility = 'visible';
     } 
 }
+
+function sendComment() {
+    const pieces = window.location.href.split("/");
+    const testId = pieces[pieces.length-2];
+    // alert(testId);
+    var comment = document.getElementById("input-cmt").value;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            alert("Response: " + this.responseText);
+            clearInputComment();
+            const result = JSON.parse(this.responseText);
+            showNewComment(result['newComment']);
+        }
+    };
+    xhttp.open("POST", "?user/GroupTest/" + testId +"/comment", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(JSON.stringify({ 'comment': comment }));
+}
+
+function clearInputComment() {
+    document.getElementById("input-cmt").value = '';
+}
+
+function showNewComment(newComment) {
+    let newDiv = document.createElement("div");
+    newDiv.classList.add("user-comment-container");
+
+    newDiv.innerHTML = "<div class='comment-user-detail'>" +
+                            "<div class='userName'>" +
+                                "<label>" + newComment['userName'] + "</label><br>" +
+                            "</div>" +
+                        "</div>" +
+                        "<div class='comment-detail-container'>" +
+                            "<div class='date'>" +
+                                "<label> [" + newComment['create_at'] + "]</label><br>" +
+                            "</div>" +
+                            "<hr>" +
+                            "<label>" + newComment['content'] + "</label><br>" +
+                        "</div>" ;
+
+    const container = document.getElementById('comment-area');
+    container.insertBefore(newDiv, container.firstChild);
+}
