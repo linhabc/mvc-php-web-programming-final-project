@@ -4,6 +4,7 @@
 <head>
   <title>Login and Signup</title>
   <link rel="stylesheet" href="css/Authentication/style.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 </head>
 
 <body>
@@ -26,21 +27,49 @@
       </div>
 
       <form id="login" class="input-group" action="?Authentication/login" method="POST">
-        <input type="text" class="input-field" placeholder="Username or Email" required name="email" />
-        <input type="password" class="input-field" placeholder="Password" id="myPass" required
-          name="password" /><br /><br />
-        <input type="checkbox" onclick="showPass()" /> Show Password<br /><br />
-        <input type="checkbox" class="check-box" />
-        <span>Remember password</span>
+
+        <div class="input-container">
+          <i class="material-icons icon">email</i>
+          <input type="text" placeholder="Email" required name="email" />
+        </div>
+
+        <div class="input-container">
+          <i class="material-icons icon">vpn_key</i>
+          <input type="password" placeholder="Password" id="myPass" required name="password" />
+
+          <button type="button" class="eye" onclick="showPass()">
+            <i id="hide1" class="material-icons icon">visibility</i>
+            <i id="hide2" class="material-icons icon">visibility_off</i>
+          </button>
+
+        </div>
+        <br><br>
         <button type="submit" class="submit-btn">Log in</button>
       </form>
 
       <form id="register" class="input-group" action="?Authentication/signUp" method="POST">
-        <input type="text" class="input-field" placeholder="Username" required name="userName" />
-        <input type="email" class="input-field" placeholder="Email" required name="email" />
-        <input type="password" class="input-field" placeholder="Password" id="myPass0" 5 required
-          name="password" /><br /><br />
-        <input type="checkbox" onclick="showPass0()" /> Show Password<br />
+
+        <div class="input-container">
+          <i class="material-icons icon">person</i>
+          <input type="text" placeholder="Username" required name="userName" />
+        </div>
+
+        <div class="input-container">
+          <i class="material-icons icon">email</i>
+          <input type="text" placeholder="Email" required name="email" />
+        </div>
+
+        <div class="input-container">
+          <i class="material-icons icon">vpn_key</i>
+          <input type="password" placeholder="Password" id="myPass0" required name="password" />
+
+          <button type="button" class="eye" onclick="showPass0()">
+            <i id="hide_1" class="material-icons icon">visibility</i>
+            <i id="hide_2" class="material-icons icon">visibility_off</i>
+          </button>
+
+        </div>
+
         <input type="checkbox" class="check-box" required /> I agree to the
         <a href="https://www.cambridgeopencentre.org/asp_pages/registrationterms.asp" target="_blank">
           terms & conditions</a>
@@ -70,19 +99,31 @@
   <script>
     function showPass() {
       var x = document.getElementById("myPass");
+      var y = document.getElementById("hide1");
+      var z = document.getElementById("hide2");
       if (x.type === "password") {
         x.type = "text";
+        y.style.display = "block";
+        z.style.display = "none";
       } else {
         x.type = "password";
+        y.style.display = "none";
+        z.style.display = "block";
       }
     }
 
     function showPass0() {
       var x = document.getElementById("myPass0");
+      var y = document.getElementById("hide_1");
+      var z = document.getElementById("hide_2");
       if (x.type === "password") {
         x.type = "text";
+        y.style.display = "block";
+        z.style.display = "none";
       } else {
         x.type = "password";
+        y.style.display = "none";
+        z.style.display = "block";
       }
     }
   </script>
