@@ -57,7 +57,8 @@
             <th>Rating</th>
             <th>Create At</th>
             <th>Time</th>
-            <th>Action</th>
+            <th>View Questions</th>
+            <th>View Ranking</th>
           </tr>
 
           <?php
@@ -77,6 +78,9 @@
                   <td> $user[time] </td>
                   <td>                      
                     <button onclick='view($testId)' class=\"view\"><img src=\"images/view.svg\">View</button></td>
+                  </td>
+                  <td>                      
+                    <button onclick='viewRanking($testId)' class=\"view\"><img src=\"images/view.svg\">View</button></td>
                   </td>
                 </tr>
               
