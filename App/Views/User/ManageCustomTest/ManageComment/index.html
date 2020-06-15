@@ -53,6 +53,7 @@
                     
                         foreach ($comments as $comment) {
                         $id = $comment['id'];
+                        $testId = $comment['testId'];
                             echo "
                             <tr>
                                 <td> $comment[id] </td>
@@ -62,7 +63,7 @@
                                 <td>$comment[create_at]</td>
 
                                 <td>
-                                    <button onclick='confirmDelete($id)'>Delete</button>
+                                    <button onclick='confirmDelete($id, $testId)'>Delete</button>
                                 </td>
                             </tr>
                             ";

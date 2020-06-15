@@ -38,11 +38,12 @@ class ManageComment extends \Core\Controller
     public function deleteAction()
     {
         $userId = $_COOKIE["uid"];
+        $testId = $_GET['testId'];
         $id = $_GET['id'];
 
         Comment::deleteComment($id);
 
-        $comments = Comment::getCommentByTestCreateByUser($userId, $id);
+        $comments = Comment::getCommentByTestCreateByUser($userId, $testId);
 
         View::render('User/ManageCustomTest/ManageComment/index.html', [
             'comments' => $comments,
