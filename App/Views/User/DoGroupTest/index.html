@@ -1,100 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <title>Group Test</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/DoQuickTest/style.css" />
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <!-- <script src="js/User/GroupTest/index.js"></script> -->
-</head>
+  </head>
 
-<body>
+  <body>
     <header>
-        <div class="left">
-            <h3>Rage <span>Quiz</span></h3>
-        </div>
-        <div id="hello-username">Hello</div>
-        <div class="right">
-            <button class="logout-button" onclick="confirmLogout()"><img src="images/logout.svg">Logout</button>
-        </div>
+      <div class="left">
+        <h3>Rage <span>Quiz</span></h3>
+      </div>
+      <div id="hello-username">Hello</div>
+      <div class="right">
+        <button class="logout-button" onclick="confirmLogout()">
+          <img src="images/logout.svg" />Logout
+        </button>
+      </div>
     </header>
 
     <div class="side-bar">
-        <center>
-            <img src="images/avatar_user.png" class="avatar" />
-            <h4>User page</h4>
-        </center>
-        <a class="navLink" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">dashboard</i><span>Dashboard</span></a>
-        <a class="navLink" href="?user/QuickTest/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">alarm</i><span>Doing Quick Test</span></a>
+      <center>
+        <img src="images/avatar_user.png" class="avatar" />
+        <h4>User page</h4>
+      </center>
+      <a
+        class="navLink"
+        href="?user/Users/index"
+        onclick="return handleSideBarButton(event)"
+        ><i class="material-icons">dashboard</i><span>Dashboard</span></a
+      >
+      <a
+        class="navLink"
+        href="?user/QuickTest/index"
+        onclick="return handleSideBarButton(event)"
+        ><i class="material-icons">alarm</i><span>Doing Quick Test</span></a
+      >
 
-        <!-- Bổ sung đường dẫn vào Doing Group Test dưới đây -->
-        <a class="navLink active" href="?user/GroupTest/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">group</i><span>Doing Group Test</span></a>
+      <!-- Bổ sung đường dẫn vào Doing Group Test dưới đây -->
+      <a
+        class="navLink active"
+        href="?user/GroupTest/index"
+        onclick="return handleSideBarButton(event)"
+        ><i class="material-icons">group</i><span>Doing Group Test</span></a
+      >
 
-        <!-- <a class="navLink" href="?user/CreateGroupTest/index" onclick="return handleSideBarButton(event)"><i
+      <!-- <a class="navLink" href="?user/CreateGroupTest/index" onclick="return handleSideBarButton(event)"><i
             class="material-icons">dns</i><span>Create Group Test</span></a> -->
-        <a class="navLink" href="?user/ManageCustomTest/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">assignment</i><span>Custom Test</span></a>
-        <a class="navLink" href="?user/ManagePersonalInfo/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">contacts</i><span>Personal Info</span></a>
-        <a class="navLink" href="?user/ManageUserSetting/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">settings</i><span>Personal settings</span></a>
+      <a
+        class="navLink"
+        href="?user/ManageCustomTest/index"
+        onclick="return handleSideBarButton(event)"
+        ><i class="material-icons">assignment</i><span>Custom Test</span></a
+      >
+      <a
+        class="navLink"
+        href="?user/ManagePersonalInfo/index"
+        onclick="return handleSideBarButton(event)"
+        ><i class="material-icons">contacts</i><span>Personal Info</span></a
+      >
+      <a
+        class="navLink"
+        href="?user/ManageUserSetting/index"
+        onclick="return handleSideBarButton(event)"
+        ><i class="material-icons">settings</i><span>Personal settings</span></a
+      >
     </div>
 
     <div class="content" id="content">
-        <h2 style="text-align: center;">Group Test</h2>
+      <h2 style="text-align: center;">Group Test</h2>
 
-        <div style="padding-left: 20px;">
-            <!-- <form action="?user/GroupTest/index" method="POST"> -->
-            <table class="spacing">
-                <tr>
-                    <td>
-                        <label>Enter the Test Code:</label>
-                    </td>
-                    <td>
-                        <input type="number" name="testCode" id="testCode">
-                    </td>
-                </tr>
+      <div style="padding-left: 20px;">
+        <!-- <form action="?user/GroupTest/index" method="POST"> -->
+        <table class="spacing">
+          <tr>
+            <td>
+              <label>Enter the Test Code:</label>
+            </td>
+            <td>
+              <input type="number" name="testCode" id="testCode" />
+            </td>
+          </tr>
 
-                <tr>
-                    <td>
-                    </td>
-                    <td>
-                        <button onclick="checkTestCode()" class="edit">Start test</button>
-                    </td>
-                </tr>
-            </table>
-            <!-- </form> -->
-
-        </div>
-
+          <tr>
+            <td></td>
+            <td>
+              <button onclick="checkTestCode()" class="edit">Start test</button>
+            </td>
+          </tr>
+        </table>
+        <!-- </form> -->
+      </div>
     </div>
 
     <script src="js/index.js"></script>
     <script>
-        var x = document.cookie;
-        var username = getCookie("username");
+      var x = document.cookie;
+      var username = getCookie("username");
 
-        function confirmLogout() {
-            var r = confirm("Are you sure you want to logout?");
-            if (r == true) {
-                location.href = "?Authentication/index";
-            }
+      function confirmLogout() {
+        var r = confirm("Are you sure you want to logout?");
+        if (r == true) {
+          location.href = "?Authentication/index";
         }
-        console.log(username);
+      }
+      console.log(username);
 
-        document.getElementById("hello-username").innerText =
-            "Hello " + username + " ";
+      document.getElementById("hello-username").innerText =
+        "Hello " + username + " ";
     </script>
-</body>
-
+  </body>
 </html>
 
 <script src="js/index.js"></script>
 
-<script src="js/user/GroupTest/index.js"></script>
+<script src="js/User/GroupTest/index.js"></script>
