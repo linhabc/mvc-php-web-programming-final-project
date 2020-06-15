@@ -16,16 +16,16 @@
     <div class="left">
       <h3>Test <span>Yourself</span></h3>
     </div>
-
+    <div id="hello-username">Hello</div>
     <div class="right">
-      <a href="?Authentication/index" class="logout-button">Logout</a>
+      <button class="logout-button" onclick="confirmLogout()"><img src="images/logout.svg">Logout</button>
     </div>
   </header>
 
   <div class="side-bar">
     <center>
       <img src="images/avatar_user.png" class="avatar" />
-        <h4>Personal Info</h4>
+      <h4>Personal Info</h4>
     </center>
     <a class="navLink" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
         class="material-icons">dashboard</i><span>Home</span></a>
@@ -86,9 +86,9 @@
         </table>
       </div>
 
-</div>
-</div>
-</div>
+    </div>
+  </div>
+  </div>
 
   <script>
     function confirmDelete(userId, testId) {
@@ -99,11 +99,27 @@
     }
   </script>
 
-<script>
-  function view(id) {
-    location.href = `?user/QuestionInfo/index&id=${id}`;
-  }
-</script>
+  <script>
+    function view(id) {
+      location.href = `?user/QuestionInfo/index&id=${id}`;
+    }
+  </script>
+
+  <script src="js/index.js"></script>
+  <script>
+    var x = document.cookie;
+    var username = getCookie("username");
+
+    function confirmLogout() {
+      var r = confirm("Are you sure you want to logout?");
+      if (r == true) {
+        location.href = "?Authentication/index";
+      }
+    }
+    console.log(username);
+    document.getElementById("hello-username").innerText =
+      "Hello " + username + " ";
+  </script>
 </body>
 
 </html>

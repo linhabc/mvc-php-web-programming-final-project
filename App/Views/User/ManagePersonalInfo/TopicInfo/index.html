@@ -16,9 +16,9 @@
         <div class="left">
             <h3>Test <span>Yourself</span></h3>
         </div>
-
+        <div id="hello-username">Hello</div>
         <div class="right">
-            <a href="?Authentication/index" class="logout-button">Logout</a>
+            <button class="logout-button" onclick="confirmLogout()"><img src="images/logout.svg">Logout</button>
         </div>
     </header>
 
@@ -28,17 +28,17 @@
             <h4>Personal Info</h4>
         </center>
         <a class="navLink" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dashboard</i><span>Home</span></a>
+                class="material-icons">dashboard</i><span>Home</span></a>
         <a class="navLink" href="?user/UserInfo/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dns</i><span>User Info</span></a>
+                class="material-icons">dns</i><span>User Info</span></a>
         <a class="navLink" href="?user/CommentInfo/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dvr</i><span>Comment Info</span></a>
+                class="material-icons">dvr</i><span>Comment Info</span></a>
         <a class="navLink" href="?user/ResultInfo/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dvr</i><span>Result Info</span></a>
+                class="material-icons">dvr</i><span>Result Info</span></a>
         <a class="navLink active" href="?user/TopicInfo/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dvr</i><span>Topic Info</span></a>
+                class="material-icons">dvr</i><span>Topic Info</span></a>
         <a class="navLink" href="?user/DistinctQuestionInfo/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dvr</i><span>Question Info</span></a>
+                class="material-icons">dvr</i><span>Question Info</span></a>
     </div>
 
     <div class="content" id="content">
@@ -86,6 +86,22 @@
             }
         }
     </script> -->
+
+    <script src="js/index.js"></script>
+    <script>
+        var x = document.cookie;
+        var username = getCookie("username");
+
+        function confirmLogout() {
+            var r = confirm("Are you sure you want to logout?");
+            if (r == true) {
+                location.href = "?Authentication/index";
+            }
+        }
+        console.log(username);
+        document.getElementById("hello-username").innerText =
+            "Hello " + username + " ";
+    </script>
 </body>
 
 </html>
