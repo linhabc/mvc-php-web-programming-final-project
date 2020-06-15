@@ -54,7 +54,7 @@
 
                 <form action="?user/CreateManually/index" method="post">
                     <label>Choose type of questions: </label>
-                    <select name='ques-type' id='ques-type'>
+                    <select name='ques-type' id='ques-type' onchange='refreshTable()'>
                         <?php
                         if($selected_ques == 'all'){
                             echo "<option value=\"all\" selected>All questions</option>";
@@ -67,7 +67,7 @@
                     </select>
 
                     <label>Choose the topic: </label>
-                    <select name='topic-name' id='topic-name'>
+                    <select name='topic-name' id='topic-name' onchange='refreshTable()'>
                         <?php
                         if($selected_field == 'all')
                             echo "<option value=\"all\" selected>All topic</option>";
@@ -88,7 +88,6 @@
 
                         ?>
                     </select>
-                    <button style="margin-left: 20px; font-size: 8pt;" type="submit" class="select">Select</button>
                 </form>
 
                 <table style="margin-top: 20px; width: 80%;">
@@ -107,9 +106,11 @@
     
                         foreach ($questions as $quest) {
                         $id = $quest['id'];
+                        $uid = $quest['userId'];
+                        $topicId = $quest['topicId'];
                         echo "
                         
-                            <tr>
+                            <tr class='content-row " . $uid . "-" . $topicId . "'>
                                 
                                 <td>$quest[question]</td>
                                 <td>$quest[a]</td>
@@ -166,10 +167,10 @@
                         </tr>
                         <tr>
                             <th><label for="question">Question: </label></th>
-                            <td><textarea id="question" name="question"></textarea></td>
+                            <td><textarea id="question" name="question" readonly></textarea></td>
                         </tr>
                         <tr>
-                            <th><button type="submit" class="btn" id="add_test" name="add-test">Add</button></th>
+                            <th><button type="submit" class="btn" id="add_test">Add</button></th>
                         </tr>
                     </table>
                 </form>
@@ -197,20 +198,73 @@
 
     <script>
         let myQuestionsIdSet = new Set()
-            const checkboxs = document.getElementsByClassName('checkbox')
-            for (var i = 0; i<checkboxs.length; i++) {
-                let checkbox = checkboxs[i];
-                checkbox.addEventListener('change', (event) => {
-                    console.log(checkbox.id);
-                    if (event.target.checked) {
-                        myQuestionsIdSet.add(checkbox.id);
-                    } else {
-                        myQuestionsIdSet.delete(checkbox.id);
+        const checkboxs = document.getElementsByClassName('checkbox')
+        for (var i = 0; i<checkboxs.length; i++) {
+            let checkbox = checkboxs[i];
+            checkbox.addEventListener('change', (event) => {
+                console.log(checkbox.id);
+                if (event.target.checked) {
+                    myQuestionsIdSet.add(checkbox.id);
+                } else {
+                    myQuestionsIdSet.delete(checkbox.id);
+                }
+                console.log(myQuestionsIdSet);
+                document.getElementById('question').value = Array.from(myQuestionsIdSet).join(' ');
+            })
+        }
+
+        function refreshTable() {
+            const questionType = document.getElementById("ques-type").value;
+            const topicId = document.getElementById("topic-name").value;
+
+            console.log(questionType + " - " + topicId);
+
+            const allRows = document.getElementsByClassName('content-row');
+            if (questionType == "all") {
+                if (topicId == "all") {
+                    for (let row of allRows) {
+                        row.style.visibility='visible';
                     }
-                    console.log(myQuestionsIdSet);
-                    document.getElementById('question').value = Array.from(myQuestionsIdSet).join(' ');
-                })
-             } 
+                } else {
+                    for (let row of allRows) {
+                        let classList = row.className.split(' ');
+                        console.log(classList);
+                        let rowTopicId = (classList[1].split('-'))[1];
+                        if (rowTopicId == topicId) {
+                            row.style.visibility='visible';
+                        } else {
+                            row.style.visibility='collapse';
+                        }
+
+                    }
+                }
+            } else { // $questionType == "your"
+                let currentUID = getCookie('uid');
+                if (topicId == "all") {
+                    for (let row of allRows) {
+                        let classList = row.className.split(' ');
+                        let rowUID = (classList[1].split('-'))[0];
+                        if (rowUID == currentUID) {
+                            row.style.visibility='visible';
+                        } else {
+                            row.style.visibility='collapse';
+                        }
+                    }
+                } else {
+                    for (let row of allRows) {
+                        let classList = row.className.split(' ');
+                        let rowUID = (classList[1].split('-'))[0];
+                        let rowTopicId = (classList[1].split('-'))[1];
+                        if (rowUID == currentUID && rowTopicId == topicId) {
+                            row.style.visibility='visible';
+                        } else {
+                            row.style.visibility='collapse';
+                        }
+                    }
+                }
+            }
+        } 
+
     </script>
 
 

@@ -94,11 +94,12 @@ function showResult(resultResponse) {
     const finishedAt = result['finished_at'];
     const completionTime = result['completion_time'];
     const answers = result['answers'];
+    const score = Math.round(((correct_answers / total_questions * 10) + Number.EPSILON) * 100) / 100;
 
     // alert(total_questions + "-" + correct_answers + "-" + answers.length);
 
     document.getElementById('result').innerHTML =
-        "<span> Score: " + correct_answers / total_questions * 10 + " / 10</span><br>" +
+        "<span> Score: " + score + " / 10</span><br>" +
         "<span> Correct: " + correct_answers + " / " + total_questions + " </span><br>" +
         "<span>Finished at: " + getDateFromTimestamp(finishedAt) + "</span><br>" +
         "<span>Completion time: " + convertSecondsToMinutes(completionTime) + "</span><br>" +
