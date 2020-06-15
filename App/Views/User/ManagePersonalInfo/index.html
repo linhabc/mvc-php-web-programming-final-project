@@ -1,76 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Manage Question</title>
-    <link rel="stylesheet" href="css//style.css" />
-    <link rel="stylesheet" href="css/User/ManagePersonalInfo/style.css" />
 
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <script src="js/User/ManagePersonalInfo/index.js"></script>
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <title>Manage Question</title>
+  <link rel="stylesheet" href="css//style.css" />
+  <link rel="stylesheet" href="css/User/ManagePersonalInfo/style.css" />
 
-  <body>
-    <header>
-      <div class="left">
-        <h3>Rage <span>Quiz</span></h3>
-      </div>
-      <div id="hello-username">Hello</div>
-      <div class="right">
-        <button class="logout-button" onclick="confirmLogout()">
-          <img src="images/logout.svg" />Logout
-        </button>
-      </div>
-    </header>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <script src="js/User/ManagePersonalInfo/index.js"></script>
+</head>
 
-    <div class="side-bar">
-      <center>
-        <img src="images/avatar_user.png" class="avatar" />
-        <h4>Personal Info</h4>
-      </center>
-      <a
-        class="navLink"
-        href="?user/Users/index"
-        onclick="return handleSideBarButton(event)"
-        ><i class="material-icons">arrow_back</i><span>Back</span></a
-      >
-      <a
-        class="navLink"
-        href="?user/UserInfo/index"
-        onclick="return handleSideBarButton(event)"
-        ><i class="material-icons">dns</i><span>User Info</span></a
-      >
-      <a
-        class="navLink"
-        href="?user/CommentInfo/index"
-        onclick="return handleSideBarButton(event)"
-        ><i class="material-icons">dvr</i><span>Comment Info</span></a
-      >
-      <a
-        class="navLink"
-        href="?user/ResultInfo/index"
-        onclick="return handleSideBarButton(event)"
-        ><i class="material-icons">grading</i><span>Result Info</span></a
-      >
-      <a
-        class="navLink"
-        href="?user/TopicInfo/index"
-        onclick="return handleSideBarButton(event)"
-        ><i class="material-icons">dvr</i><span>Topic Info</span></a
-      >
-      <a
-        class="navLink"
-        href="?user/DistinctQuestionInfo/index"
-        onclick="return handleSideBarButton(event)"
-        ><i class="material-icons">dvr</i><span>Question Info</span></a
-      >
+<body>
+  <header>
+    <div class="left">
+      <h3>Rage <span>Quiz</span></h3>
     </div>
+    <div id="hello-username">Hello</div>
+    <div class="right">
+      <button class="logout-button" onclick="confirmLogout()">
+        <img src="images/logout.svg" />Logout
+      </button>
+    </div>
+  </header>
 
-    <script src="js/index.js"></script>
-    <!-- <script>
+  <div class="side-bar">
+    <center>
+      <img src="images/avatar_user.png" class="avatar" />
+      <h4>Personal Info</h4>
+    </center>
+    <a class="navLink" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
+        class="material-icons">arrow_back</i><span>Back</span></a>
+    <a class="navLink" href="?user/UserInfo/index" onclick="return handleSideBarButton(event)"><i
+        class="material-icons">dns</i><span>User Info</span></a>
+    <a class="navLink" href="?user/CommentInfo/index" onclick="return handleSideBarButton(event)"><i
+        class="material-icons">dvr</i><span>Comment Info</span></a>
+    <a class="navLink" href="?user/ResultInfo/index" onclick="return handleSideBarButton(event)"><i
+        class="material-icons">grading</i><span>Result Info</span></a>
+    <a class="navLink" href="?user/TopicInfo/index" onclick="return handleSideBarButton(event)"><i
+        class="material-icons">dvr</i><span>Topic Info</span></a>
+    <a class="navLink" href="?user/DistinctQuestionInfo/index" onclick="return handleSideBarButton(event)"><i
+        class="material-icons">dvr</i><span>Question Info</span></a>
+  </div>
+
+  <script src="js/index.js"></script>
+  <!-- <script>
       var x = document.cookie;
       var username = getCookie("username");
 
@@ -85,5 +59,6 @@
       document.getElementById("hello-username").innerText =
         "Hello " + decodeURIComponent(username) + " ";
     </script> -->
-  </body>
+</body>
+
 </html>
