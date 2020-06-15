@@ -27,7 +27,8 @@ class ManageComment extends \Core\Controller
     public function indexAction()
     {
         $userId = $_COOKIE["uid"];
-        $comments = Comment::getCommentByTestCreateByUser($userId);
+        $id = $_GET['id'];
+        $comments = Comment::getCommentByTestCreateByUser($userId, $id);
 
         View::render('User/ManageCustomTest/ManageComment/index.html', [
             'comments' => $comments,
@@ -41,7 +42,7 @@ class ManageComment extends \Core\Controller
 
         Comment::deleteComment($id);
 
-        $comments = Comment::getCommentByTestCreateByUser($userId);
+        $comments = Comment::getCommentByTestCreateByUser($userId, $id);
 
         View::render('User/ManageCustomTest/ManageComment/index.html', [
             'comments' => $comments,

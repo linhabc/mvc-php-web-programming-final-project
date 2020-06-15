@@ -152,12 +152,12 @@ class Comment extends \Core\Model
         }
     }
 
-    public static function getCommentByTestCreateByUser($userId)
+    public static function getCommentByTestCreateByUser($userId, $testId)
     {
         try {
             $db = static::getDB();
 
-            $stmt = $db->query("SELECT comment.id, user.username as u_name,test.name as t_name, comment.content, comment.create_at  FROM comment INNER JOIN user on comment.user_id = user.id INNER JOIN test on comment.test_id = test.id WHERE test.user_id = $userId");
+            $stmt = $db->query("SELECT comment.id, user.username as u_name,test.name as t_name, comment.content, comment.create_at  FROM comment INNER JOIN user on comment.user_id = user.id INNER JOIN test on comment.test_id = test.id WHERE test.user_id = $userId AND test.id = $testId");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;
