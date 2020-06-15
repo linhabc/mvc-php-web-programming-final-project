@@ -26,7 +26,7 @@
         } ?>
         <div id="hello-username">Hello</div>
         <div class="right">
-            <a href="?Authentication/index" class="logout-button">Logout</a>
+            <button class="logout-button" onclick="confirmLogout()"><img src="images/logout.svg">Logout</button>
         </div>
     </header>
 
@@ -84,7 +84,7 @@
     </div>
 
     <script src="js/index.js"></script>
-    <script>
+    <!-- <script>
         var x = document.cookie;
         var username = getCookie("username");
 
@@ -104,7 +104,7 @@
         function alertSuccess() {
             alert('Edit success!');
         }
-    </script>
+    </script> -->
 
 </body>
 
