@@ -3,10 +3,11 @@ const rows = document.getElementById('table-id').getElementsByTagName('tr');
 const nRows = rows.length - 1;
 
 let currentPage = 1;
-let maxRowsPerPage = 2;
+let prePage = 1;
+let maxRowsPerPage = 100;
 let maxPage = 0;
 
-setUpPagination(2)
+setUpPagination(1)
 
 function setUpPagination(maxRowsEachPage) {
     maxRowsPerPage = maxRowsEachPage;
@@ -33,49 +34,58 @@ function setUpPagination(maxRowsEachPage) {
     for(var i = 0; i < pageIndices.length; i++) {
         var li = document.createElement("li");
         li.setAttribute("id",'pi-' + (i+1));
+        if (i == 0) {
+            li.className = 'selected';
+        } else {
+            li.className = 'normal';
+        }
+
         const pageIndex = document.createTextNode(pageIndices[i]);
         li.appendChild(pageIndex);
         li.addEventListener('click', function() {
-            // console.log(this.firstChild.textContent);
+            prePage = currentPage;
             currentPage = this.firstChild.textContent;
-            console.log(currentPage);
+            console.log('pre: ' + prePage);
+            console.log('cur: ' + currentPage);
             showRows();
         })
         ul.insertBefore(li, next);
     }
+
+    document.getElementById('pi-pre').addEventListener('click', function() {
+        if (currentPage > 1) {
+            prePage = currentPage;
+            currentPage--;
+            showRows();
+        }
+    })
+
+    document.getElementById('pi-next').addEventListener('click', function() {
+        if (currentPage < pageIndices.length) {
+            prePage = currentPage;
+            currentPage++;
+            showRows();
+        }
+    })
 
     rows.item(0).style.visibility = 'visible';
     showRows();
 }
 
 function showRows() {
+    document.getElementById('pi-' + prePage).className = 'normal';
+    document.getElementById('pi-' + currentPage).className = 'selected';
     hidePreRows();
-    hideNextRows();
     showCurrentRows();
 }
 
 function hidePreRows() {
-    const startIndex = (currentPage-2)*maxRowsPerPage + 1;
+    const startIndex = (prePage-1)*maxRowsPerPage + 1;
     if (startIndex <= 0) {
         return;
     }
     const lastIndex = startIndex + maxRowsPerPage - 1;
     console.log('hide pre from ' + startIndex + ' to ' +lastIndex);
-    for(var i=startIndex; i<=lastIndex; i++) {
-        rows.item(i).style.visibility = 'collapse';
-    } 
-}
-
-function hideNextRows() {
-    const startIndex = (currentPage)*maxRowsPerPage + 1;
-    if (startIndex > nRows) {
-        return;
-    }
-    let lastIndex = startIndex + maxRowsPerPage - 1;
-    if (lastIndex > nRows) {
-        lastIndex = nRows;
-    }
-    console.log('hide next from ' + startIndex + ' to ' +lastIndex);
     for(var i=startIndex; i<=lastIndex; i++) {
         rows.item(i).style.visibility = 'collapse';
     } 

@@ -30,13 +30,26 @@
     background-color: #F1F1F1
 }
 
-.pagination li {
+.pagination li.normal {
     list-style-type: none;
     float: left;
     border: 1px solid gray;
     width: 20px;
     height: 20px;
     text-align: center;
+    background-color: #D0DEF2;
+    user-select: none;
+}
+
+.pagination li.selected {
+    list-style-type: none;
+    float: left;
+    border: 1px solid gray;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    background-color: #FFD7DB;
+    user-select: none;
 }
 
 .pagination li:hover {
