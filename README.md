@@ -29,7 +29,8 @@
     - base.html
 - logs
 - public
+  - css
+  - images
+  - js
   - index.php //root file of project
-- vendor // where package is install
-- composer.json //package management file
 - README.md
