@@ -22,3 +22,7 @@ var x = document.cookie;
 var username = getCookie("username");
 
 document.getElementById("hello-username").innerText = "Hello " + decodeURIComponent(username) + " ";
+
+function viewRanking(testId) {
+  location.href = `?user/GroupTest/${testId}/result`;
+}
