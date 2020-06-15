@@ -58,8 +58,24 @@
             <div class="flex-container">
                 <div class="flex-item-left">
                     <?php
+                    # convert from seconds -> mm:ss 
+                    function formatTime($seconds){
+                        $min = floor($seconds/60);
+                        $sec = $seconds - ($min*60);
+
+                        if ($min < 10) {
+                            $min = '0' . $min;
+                        }
+                        
+                        if ($sec < 10) {
+                            $sec = '0' . $sec;
+                        }
+
+                        return $min . ':' . $sec; 
+                    }
+
                     echo "<span> Your score: " . $result->score . "</span><br>";
-                    echo "<span> Completion time: " . $result->time . "</span><br>";
+                    echo "<span> Completion time: " . formatTime($result->time) . "</span><br>";
                     echo "<br></br>";
                     ?>
 
@@ -78,7 +94,7 @@
                                 echo "<td>" . $ranking . "</td>";
                                 echo "<td>" . $result->userName . "</td>";
                                 echo "<td>" . $result->score . "</td>";
-                                echo "<td>" . $result->time . "</td>";
+                                echo "<td>" . formatTime($result->time) . "</td>";
                                 echo "</tr>";
                             }
                         ?>

@@ -3,12 +3,11 @@
 namespace App\Controllers\User;
 
 use App\Controllers\Authentication;
-
-use App\Models\User;
 use App\Models\Comment;
 use App\Models\Question;
 use App\Models\Result;
 use App\Models\Test;
+use App\Models\User;
 use \Core\View;
 
 class GroupTest extends \Core\Controller
@@ -21,16 +20,16 @@ class GroupTest extends \Core\Controller
      */
     protected function before()
     {
-        if(array_key_exists('uid', $_COOKIE)){
+        if (array_key_exists('uid', $_COOKIE)) {
             $user = User::getUser($_COOKIE['uid']);
-            if($user == NULL){
+            if ($user == null) {
                 Authentication::indexAction();
-                return false; 
+                return false;
             }
         } else {
             Authentication::indexAction();
-            return false; 
-        } ;
+            return false;
+        };
     }
 
     public function indexAction()
@@ -111,12 +110,10 @@ class GroupTest extends \Core\Controller
             ]);
 
         } else {
-            echo $uid;
-            echo "<br>";
-            echo $testCode;
-            echo "<br>";
-            echo "This user has NOT done this test<br>";
-            var_dump($result);
+            $redirectedURL = "?user/GroupTest/index";
+            View::render('/redirect-page.html', [
+                'redirectURL' => $redirectedURL,
+            ]);
         }
     }
 
