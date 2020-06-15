@@ -38,13 +38,10 @@ class GroupTest extends \Core\Controller
         $result = Result::getResult($uid, $testCode);
 
         if ($result) {
-            // TODO User has done the test -> redirect to result page
-            echo $uid;
-            echo "<br>";
-            echo $testCode;
-            echo "<br>";
-            echo "This user has done this test<br>";
-            var_dump($result);
+            $redirectedURL = "?user/GroupTest/" . $testCode . "/result";
+            View::render('/redirect-page.html', [
+                'redirectURL' => $redirectedURL,
+            ]);
             return;
         }
 

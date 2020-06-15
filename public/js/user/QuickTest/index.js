@@ -98,7 +98,7 @@ function showResult(resultResponse) {
     // alert(total_questions + "-" + correct_answers + "-" + answers.length);
 
     document.getElementById('result').innerHTML =
-        "<span> Score: " + correct_answers/total_questions*10 + " / 10</span><br><span> Correct: "+ correct_answers+ " / " + total_questions + " </span><br><span>Finished at: "+ getDateFromTimestamp(finishedAt) +"</span><br><span>Completion time: "+ convertSecondsToMinutes(completionTime) +"</span><br><a href='#'>BACK</a>";
+        "<span> Score: " + correct_answers/total_questions*10 + " / 10</span><br><span> Correct: "+ correct_answers+ " / " + total_questions + " </span><br><span>Finished at: "+ getDateFromTimestamp(finishedAt) +"</span><br><span>Completion time: "+ convertSecondsToMinutes(completionTime) +"</span><br><button onclick='backToQuickTestIndex()'>BACK</button>";
 
     window.scrollTo(0, 0); 
 
@@ -176,4 +176,8 @@ function convertSecondsToMinutes(nSeconds) {
     }
     
     return minute + " : " + second
+}
+
+function backToQuickTestIndex() {
+    redirectTo('?user/QuickTest/index');
 }

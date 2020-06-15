@@ -95,7 +95,12 @@ function showResult(resultResponse) {
     // alert(total_questions + "-" + correct_answers + "-" + answers.length);
 
     document.getElementById('result').innerHTML =
-        "<span> Score: " + correct_answers/total_questions*10 + " / 10</span><br><span> Correct: "+ correct_answers+ " / " + total_questions + " </span><br><span>Finished at: "+ getDateFromTimestamp(finishedAt) +"</span><br><span>Completion time: "+ convertSecondsToMinutes(completionTime) +"</span><br><a href='#'>BACK</a>";
+        "<span> Score: " + correct_answers/total_questions*10 + " / 10</span><br>" + 
+        "<span> Correct: "+ correct_answers+ " / " + total_questions + " </span><br>"+
+        "<span>Finished at: "+ getDateFromTimestamp(finishedAt) +"</span><br>"+
+        "<span>Completion time: "+ convertSecondsToMinutes(completionTime) +"</span><br>"+
+        "<button onclick='backToGroupTestIndex()'>BACK</button>"+
+        "<button onclick='gotoRankingPage()'>Continue to view the Ranking</button>";
 
     window.scrollTo(0, 0); 
 
@@ -173,4 +178,21 @@ function countdown() {
         document.getElementById('timer').innerHTML = min_text + ' : ' + sec_text;
         
     }, 1000);
+}
+
+function backToGroupTestIndex() {
+    redirectTo('?user/GroupTest/index');
+}
+
+function gotoRankingPage() {
+    const testId = getCurrentTestId();
+
+    redirectTo(`?user/GroupTest/${testId}/result`);
+}
+
+function getCurrentTestId() {
+    const pieces = window.location.href.split("/");
+    const testId = pieces[pieces.length-2];
+
+    return testId;
 }

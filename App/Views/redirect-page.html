@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+  </head>
+  <body>
+    <label id="redirect-url-container">
+        <?php
+            echo $redirectURL;
+        ?>
+    </label id="redirect-url-container">
+  </body>
+</html>
+
+<script>
+    redirectedURL = document.getElementById('redirect-url-container').textContent;
+    window.location.href = redirectedURL;
+</script>
