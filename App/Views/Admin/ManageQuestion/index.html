@@ -33,13 +33,13 @@
         <a class="navLink" href="?ManageUser/index" onclick="return handleSideBarButton(event)"><i
                 class="material-icons">account_box</i><span>Manage user</span></a>
         <a class="navLink active" href="?ManageQuestion/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">chrome_reader_mode</i><span>Manage question</span></a>
+                class="material-icons">help</i><span>Manage question</span></a>
         <a class="navLink" href="?ManageTopic/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">dns</i><span>Manage topic</span></a>
+                class="material-icons">topic</i><span>Manage topic</span></a>
         <a class="navLink" href="?ManageTest/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">dvr</i><span>Manage test</span></a>
+                class="material-icons">assignment</i><span>Manage test</span></a>
         <a class="navLink" href="?ManageComment/index" onclick="return handleSideBarButton(event)"><i
-                class="material-icons">feedback</i><span>Manage comment</span></a>
+                class="material-icons">comment</i><span>Manage comment</span></a>
     </div>
 
     <div class="content" id="content">
@@ -77,7 +77,7 @@
 
                 <table style="margin-top: 20px; width: 80%;">
                     <tr>
-                        <th>ID</th>
+                        <th class="id_width">ID</th>
                         <th>Question</th>
                         <th>A</th>
                         <th>B</th>
@@ -94,7 +94,7 @@
                         echo "
                         <form action=\"?ManageQuestion/edit\" method=\"post\">
                             <tr>
-                                <td><input style=\"text-align: center;\" class=\"noborder id-class\" type=\"text\" name=\"id\" value=\"$quest[id]\"></td>
+                                <td>$quest[id]</td>
                                 <td style=\"word-wrap: break-word; max-width: 10%;\" contenteditable=\"true\"><input class=\"noborder email-class\" 
                                                                                      type=\"text\" name=\"question\" value=\"$quest[question]\" 
                                                                                      style=\"width:200px;\"></td>
