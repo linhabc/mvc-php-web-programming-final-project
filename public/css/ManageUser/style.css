@@ -22,8 +22,9 @@ table {
 }
 
 .email-class {
-  width: 200px;
-  font-size: 11pt;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 10pt;
 }
 
 .id-class {
@@ -47,7 +48,7 @@ table {
 }
 
 .question {
-  width: 900px;
+  width: 300px;
 }
 
 .action {
@@ -55,7 +56,7 @@ table {
 }
 
 .id_width {
-  width: 200px;
+  width: 30px;
 }
 
 .btn {
