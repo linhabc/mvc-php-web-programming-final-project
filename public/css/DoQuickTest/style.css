@@ -7,31 +7,30 @@
     line-height: 36px;
     text-transform: uppercase;
     text-align: center;
-    
+    cursor: pointer;
     padding: 20px;
     margin-left: 60%;
     margin-bottom: 20px;
 }
 
-
 .btnSubmit:hover {
     background-color: #2bbbad;
 }
-
 
 .grid-container {
     display: grid;
     grid-template-columns: 20% auto;
     background-color: #2196F3;
 }
-.grid-item.top{
+
+.grid-item.top {
     background-color: rgba(255, 255, 255, 1);
     padding: 20px;
     font-size: 15px;
     text-align: center;
 }
 
-.grid-item.left{
+.grid-item.left {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
     font-size: 15px;
@@ -39,7 +38,7 @@
     text-decoration: none;
 }
 
-.grid-item.right{
+.grid-item.right {
     background-color: rgba(255, 255, 255, 1);
     border: 1px solid black;
     padding: 20px;
