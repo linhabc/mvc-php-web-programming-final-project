@@ -100,7 +100,13 @@ function showResult(resultResponse) {
     // alert(total_questions + "-" + correct_answers + "-" + answers.length);
 
     document.getElementById('result').innerHTML =
-        "<span> Score: " + correct_answers / total_questions * 10 + " / 10</span><br><span> Correct: " + correct_answers + " / " + total_questions + " </span><br><span>Finished at: " + getDateFromTimestamp(finishedAt) + "</span><br><span>Completion time: " + convertSecondsToMinutes(completionTime) + "</span><br><button  onclick='backToQuickTestIndex()'>BACK</button>";
+        "<span> Score: " + correct_answers / total_questions * 10 + " / 10</span><br>" +
+        "<span> Correct: " + correct_answers + " / " + total_questions + " </span><br>" +
+        "<span>Finished at: " + getDateFromTimestamp(finishedAt) + "</span><br>" +
+        "<span>Completion time: " + convertSecondsToMinutes(completionTime) + "</span><br>" +
+        "<button id='back-btn' class='back_btn' onclick='backToQuickTestIndex()'>BACK</button>";
+
+    // document.getElementById('back-btn').className = 'back_btn';
 
     window.scrollTo(0, 0);
 
