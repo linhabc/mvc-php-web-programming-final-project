@@ -6,6 +6,7 @@ use App\Models\Comment;
 use App\Models\Question;
 use App\Models\Test;
 use App\Models\Topic;
+use App\Models\Result;
 use \Core\View;
 
 class Users extends \Core\Controller
@@ -21,10 +22,10 @@ class Users extends \Core\Controller
         $uid = $_COOKIE["uid"];
 
         // Phụng update result để lấy nốt questions và topics
-        $questions = Question::getAllQuestion();
-        $topics = Topic::getAllTopic();
+        $questions = Result::getResultQuestion($uid);
+        $topics = Result::getResultTopic($uid);
         
-        $tests = Test::getTestByUserId($uid);
+        $tests = Result::getResultUid($uid);
         $comments = Comment::getCommentUid($uid);
 
         View::render('User/index.html', [

@@ -2,10 +2,10 @@
 
 namespace App\Controllers\User;
 
-use App\Models\User;
+use App\Models\Topic;
 use \Core\View;
 
-class ManagePersonalInfo extends \Core\Controller
+class TopicInfo extends \Core\Controller
 {
     protected function before()
     {
@@ -16,10 +16,10 @@ class ManagePersonalInfo extends \Core\Controller
     public function indexAction()
     {
         $userId = $_COOKIE["uid"];
-        $users = User::getUser($userId);
+        $topics = Topic::getTopicUid($userId);
 
-        View::render('User/ManagePersonalInfo/UserInfo/index.html', [
-            'users' => $users,
+        View::render('User/ManagePersonalInfo/TopicInfo/index.html', [
+            'topics' => $topics,
         ]);
     }
 }

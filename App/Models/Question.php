@@ -240,4 +240,61 @@ class Question extends \Core\Model
             echo $e->getMessage();
         }
     }
+
+    public static function getQuestionByUId($userId)
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT question.id as question_id, topic.name as topic_name, question.question as question, question.a as a, question.b as b, question.c as c, question.d as d, question.answer as answer 
+                                FROM question 
+                                INNER JOIN topic
+                                ON question.topicId = topic.id
+                                WHERE question.id IN 
+                                (SELECT DISTINCT testquestion.questionId   
+                                FROM result 
+                                INNER JOIN testquestion ON result.testId = testquestion.testId                                
+                                WHERE result.userId = $userId)");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public static function getQuestionMadeByUID($userId)
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT * FROM question WHERE userId = $userId");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function getQuestionByTopicUid($topicId, $uid)
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT question.id, question.question, question.a,question.b,question.c,question.d,question.answer 
+                                FROM question, topic 
+                                where question.topicId = $topicId
+                                AND question.userId = $uid 
+                                AND question.topicId = topic.id");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 }

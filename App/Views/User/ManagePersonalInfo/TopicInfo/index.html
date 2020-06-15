@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <title>Personal Comment Info</title>
     <link rel="stylesheet" href="css//style.css" />
-    <link rel="stylesheet" href="css/User/ManagePersonalInfo/CommentInfo/style.css" />
+    <link rel="stylesheet" href="css/User/ManagePersonalInfo/TopicInfo/style.css" />
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <script src="js/User/index.js"></script>
@@ -31,11 +31,11 @@
             class="material-icons">dashboard</i><span>Home</span></a>
         <a class="navLink" href="?user/UserInfo/index" onclick="return handleSideBarButton(event)"><i
             class="material-icons">dns</i><span>User Info</span></a>
-        <a class="navLink active" href="?user/CommentInfo/index" onclick="return handleSideBarButton(event)"><i
+        <a class="navLink" href="?user/CommentInfo/index" onclick="return handleSideBarButton(event)"><i
             class="material-icons">dvr</i><span>Comment Info</span></a>
         <a class="navLink" href="?user/ResultInfo/index" onclick="return handleSideBarButton(event)"><i
             class="material-icons">dvr</i><span>Result Info</span></a>
-        <a class="navLink" href="?user/TopicInfo/index" onclick="return handleSideBarButton(event)"><i
+        <a class="navLink active" href="?user/TopicInfo/index" onclick="return handleSideBarButton(event)"><i
             class="material-icons">dvr</i><span>Topic Info</span></a>
         <a class="navLink" href="?user/DistinctQuestionInfo/index" onclick="return handleSideBarButton(event)"><i
             class="material-icons">dvr</i><span>Question Info</span></a>
@@ -45,34 +45,28 @@
         <div class="grid-container">
             <div class="comment-table">
                 <h2 style="margin: 0px;">
-                    Comments Table
+                    Topics Table
                 </h2>
                 <table>
                     <tr>
                         <th>ID</th>
-                        <!-- <th>Username</th> -->
-                        <th>Test name</th>
-                        <th>Content</th>
-                        <th>Created at</th>
-                        <th>Action</th>
+                        <th>Name</th>
+                        <th>Description</th>
                     </tr>
 
 
                     <?php
                     
-                        foreach ($comments as $comment) {
-                        $id = $comment['id'];
+                        foreach ($topics as $topic) {
+                        $id = $topic['id'];
                             echo "
                             <tr>
-                                <td> $comment[id] </td>
-                                <!-- <td>$comment[u_name]</td> -->
-                                <td>$comment[t_name]</td>
-                                <td> $comment[content]</td>
-                                <td>$comment[create_at]</td>
-
-                                <td>
+                                <td> $topic[id] </td>
+                                <td>$topic[name]</td>
+                                <td> $topic[description]</td>
+                                <!-- <td>
                                     <button onclick='confirmDelete($id)'>Delete</button>
-                                </td>
+                                </td> -->
                             </tr>
                             ";
                         }
@@ -84,14 +78,14 @@
         </div>
     </div>
 
-    <script>
+    <!-- <script>
         function confirmDelete(id) {
             var r = confirm("Are you sure you want to delete?");
             if (r == true) {
                 location.href = `?user/CommentInfo/delete&id=${id}`;
             }
         }
-    </script>
+    </script> -->
 </body>
 
 </html>

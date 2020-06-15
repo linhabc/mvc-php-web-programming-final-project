@@ -102,4 +102,42 @@ class Topic extends \Core\Model
             echo $e->getMessage();
         }
     }
+
+    public static function getTopicUid($uid)
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT * FROM topic WHERE id IN (SELECT DISTINCT topic.id
+                                FROM result 
+                                INNER JOIN user ON result.userId = user.id 
+                                INNER JOIN test ON result.testId = test.id 
+                                INNER JOIN topic ON test.topic_id = topic.id 
+                                WHERE result.userId = $uid)");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public static function getTopicQid($userId)
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT id, name FROM topic 
+                                WHERE id IN
+                                (SELECT topicId FROM question 
+                                WHERE userId = $userId)");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 }

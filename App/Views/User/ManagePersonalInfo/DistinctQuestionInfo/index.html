@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <title>Question Info</title>
     <link rel="stylesheet" href="css//style.css" />
-    <link rel="stylesheet" href="css/User/ManagePersonalInfo/QuestionInfo/style.css" />
+    <link rel="stylesheet" href="css/User/ManagePersonalInfo/DistinctQuestionInfo/style.css" />
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <script src="js/User/index.js"></script>
@@ -33,26 +33,23 @@
             class="material-icons">dns</i><span>User Info</span></a>
         <a class="navLink" href="?user/CommentInfo/index" onclick="return handleSideBarButton(event)"><i
             class="material-icons">dvr</i><span>Comment Info</span></a>
-        <a class="navLink active" href="?user/ResultInfo/index" onclick="return handleSideBarButton(event)"><i
+        <a class="navLink " href="?user/ResultInfo/index" onclick="return handleSideBarButton(event)"><i
             class="material-icons">dvr</i><span>Result Info</span></a>
         <a class="navLink" href="?user/TopicInfo/index" onclick="return handleSideBarButton(event)"><i
             class="material-icons">dvr</i><span>Topic Info</span></a>
-        <a class="navLink" href="?user/DistinctQuestionInfo/index" onclick="return handleSideBarButton(event)"><i
+        <a class="navLink active" href="?user/DistinctQuestionInfo/index" onclick="return handleSideBarButton(event)"><i
             class="material-icons">dvr</i><span>Question Info</span></a>
-        <a class="navLink" href="?user/ResultInfo/index" onclick="return handleSideBarButton(event)"><i
-            class="material-icons">dvr</i><span>Back</span></a>
       </div>
 
       <div class="content" id="content">
         <div class="grid-container">
             <div class="question-table">
                 <h2 style="margin: 0px; margin-bottom: 20px;">
-                    Test Question Table
+                    Question Table
                 </h2>
 
                 <table style="margin-top: 20px; width: 80%;">
                     <tr>
-                        <th>Test</th>
                         <th>Question</th>
                         <th>Topic</th>
                         <th>Question</th>
@@ -61,17 +58,14 @@
                         <th>C</th>
                         <th>D</th>
                         <th>Answer</th>
-                        <!-- <th>Action</th> -->
                     </tr>
 
                     <?php
     
                         foreach ($tests as $test) {
-                        $test_id = $test['test_id'];
                         $question_id = $test['question_id'];
                             echo "
                             <tr>
-                                <td> $test[test_id] </td>
                                 <td>$test[question_id]</td>
                                 <td>$test[topic_name]</td>
                                 <td>$test[question]</td>
@@ -80,32 +74,11 @@
                                 <td> $test[c]</td>
                                 <td> $test[d]</td>
                                 <td> $test[answer]</td>
-
-                                <!-- <td>
-                                    <button onclick='confirmDelete($test_id, $question_id)' class=\"delete\"><img src=\"images/delete.svg\">Delete</button>
-                                </td> -->
-                            </tr>
-                        
+                            </tr>                       
                             ";
                         }
                     ?>
                 </table>
             </div>
-
-    <script>
-        function confirmDelete(id) {
-            var r = confirm("Are you sure you want to delete?");
-            if (r == true) {
-                location.href = `?user/QuestionInfo/delete&id=${id}`;
-            }
-        }
-    </script>
-
-    <script>
-        function alertSuccess() {
-            alert('Edit success!');
-        }
-    </script>
 </body>
-
 </html>

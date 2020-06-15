@@ -37,17 +37,18 @@
     <a class="navLink active" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
         class="material-icons">dashboard</i><span>Dashboard</span></a>
     <a class="navLink" href="?user/QuickTest/index" onclick="return handleSideBarButton(event)"><i
-        class="material-icons">account_box</i><span>Doing Quick Test</span></a>
+        class="material-icons">account_box</i><span>Do Quick Test</span></a>
 
     <!-- Bổ sung đường dẫn vào Doing Group Test dưới đây -->
     <a class="navLink" href="?user/GroupTest/index" onclick="return handleSideBarButton(event)">
-      <i class="material-icons">chrome_reader_mode</i>
-      <span>Doing Group Test</span></a>
+      <i class="material-icons">chrome_reader_mode</i><span>Do Group Test</span></a>
 
     <!-- <a class="navLink" href="?user/CreateGroupTest/index" onclick="return handleSideBarButton(event)"><i
         class="material-icons">dns</i><span>Create Group Test</span></a> -->
     <a class="navLink" href="?user/ManageCustomTest/index" onclick="return handleSideBarButton(event)"><i
         class="material-icons">dvr</i><span>Custom Test</span></a>
+    <a class="navLink" href="?user/ManageQuestion/index" onclick="return handleSideBarButton(event)"><i
+        class="material-icons">dvr</i><span>Custom Question</span></a>
     <a class="navLink" href="?user/ManagePersonalInfo/index" onclick="return handleSideBarButton(event)"><i
         class="material-icons">dvr</i><span>Personal Info</span></a>
     <a class="navLink" href="?user/ManageUserSetting/index" onclick="return handleSideBarButton(event)"><i
@@ -56,28 +57,28 @@
 
   <div class="content" id="content">
     <div class="grid-container">
-      <div class="grid-item" id="question" onclick="location.href = '?ManageQuestion/index'">
+      <div class="grid-item" id="question" onclick="location.href = '?user/DistinctQuestionInfo/index'">
         <h2>
           <img src="images/question.svg" style="vertical-align: middle;">
           Question:
           <?php $length = count($questions); echo "$length"; ?>
         </h2>
       </div>
-      <div class="grid-item" id="test" onclick="location.href = '?ManageTest/index'">
+      <div class="grid-item" id="test" onclick="location.href = '?user/ResultInfo/index'">
         <h2>
           <img src="images/test.svg" style="vertical-align: middle">
           Test:
           <?php $length = count($tests); echo "$length"; ?>
         </h2>
       </div>
-      <div class="grid-item" id="topic" onclick="location.href = '?ManageTopic/index'">
+      <div class="grid-item" id="topic" onclick="location.href = '?user/TopicInfo/index'">
         <h2>
           <img src="images/topic.svg" style="vertical-align: middle;">
           Topic:
           <?php $length = count($topics); echo "$length"; ?>
         </h2>
       </div>
-      <div class="grid-item" id="comment" onclick="location.href = '?ManageComment/index'">
+      <div class="grid-item" id="comment" onclick="location.href = '?user/CommentInfo/index'">
         <h2>
           <img src="images/comment.svg" style="vertical-align: middle;">
           Comment:

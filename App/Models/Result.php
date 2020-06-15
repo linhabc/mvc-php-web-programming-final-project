@@ -105,7 +105,7 @@ class Result extends \Core\Model
         try {
             $db = static::getDB();
 
-            $stmt = $db->query("SELECT topic.name as to_name, test.name, test.topic_id, test.description, test.duration, result.userId, result.testId, user.username, result.score, result.rating, result.create_at, result.time FROM result INNER JOIN user ON result.userId = user.id INNER JOIN test ON result.testId = test.id INNER JOIN topic ON test.topic_id = topic.id WHERE userId = $userId");
+            $stmt = $db->query("SELECT topic.name as to_name, test.name, test.topic_id, test.description, test.duration, result.userId, result.testId, user.username, result.score, result.rating, result.create_at, result.time FROM result INNER JOIN user ON result.userId = user.id INNER JOIN test ON result.testId = test.id INNER JOIN topic ON test.topic_id = topic.id WHERE result.userId = $userId");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;
@@ -154,6 +154,44 @@ class Result extends \Core\Model
             $result = $stmt->fetchAll();
 
             return $result;
+
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public static function getResultTopic($userId)
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT DISTINCT topic.id
+                                FROM result 
+                                INNER JOIN user ON result.userId = user.id 
+                                INNER JOIN test ON result.testId = test.id 
+                                INNER JOIN topic ON test.topic_id = topic.id 
+                                WHERE result.userId = $userId");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
+
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public static function getResultQuestion($userId)
+    {
+        try {
+            $db = static::getDB();
+
+            $stmt = $db->query("SELECT DISTINCT testquestion.questionId   
+                                FROM result 
+                                INNER JOIN testquestion ON result.testId = testquestion.testId                                
+                                WHERE result.userId = $userId");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $results;
 
         } catch (PDOException $e) {
             return $e->getMessage();
