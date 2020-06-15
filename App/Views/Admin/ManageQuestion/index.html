@@ -75,7 +75,7 @@
                     <button style="margin-left: 20px; font-size: 8pt;" type="submit" class="select">Select</button>
                 </form>
 
-                <table style="margin-top: 20px; width: 80%;">
+                <table style="margin-top: 20px; width: 100%;">
                     <tr>
                         <th class="id_width">ID</th>
                         <th>Question</th>
@@ -94,7 +94,7 @@
                         echo "
                         <form action=\"?ManageQuestion/edit\" method=\"post\">
                             <tr>
-                                <td>$quest[id]</td>
+                                <td><input style=\"text-align: center;\" class=\"noborder id-class\" type=\"text\" name=\"id\" value=\"$quest[id]\"></td>
                                 <td style=\"word-wrap: break-word; max-width: 10%;\" contenteditable=\"true\"><input class=\"noborder email-class\" 
                                                                                      type=\"text\" name=\"question\" value=\"$quest[question]\" 
                                                                                      style=\"width:200px;\"></td>
