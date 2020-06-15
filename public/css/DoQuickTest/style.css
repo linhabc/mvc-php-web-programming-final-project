@@ -49,3 +49,8 @@
 .question-link {
     text-decoration: none;
 }
+
+.spacing {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}

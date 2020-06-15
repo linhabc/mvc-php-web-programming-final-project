@@ -51,7 +51,7 @@ function manualSubmit() {
 
 function submit() {
 
-    var timeUsed = (init_min*60 + init_sec) - ((min >= 0 ? min : 0)*60 + (sec >= 0 ? sec : 0))
+    var timeUsed = (init_min * 60 + init_sec) - ((min >= 0 ? min : 0) * 60 + (sec >= 0 ? sec : 0))
 
     console.log('timeUsed in seconds: ' + timeUsed);
 
@@ -67,9 +67,11 @@ function submit() {
     };
     xhttp.open("POST", "?user/GroupTest/checkResult", true);
     xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(JSON.stringify({ 'testId' : getCurrentTestId(),
-                                'answer': [...myAnswers],
-                                'timeUsed': timeUsed}));
+    xhttp.send(JSON.stringify({
+        'testId': getCurrentTestId(),
+        'answer': [...myAnswers],
+        'timeUsed': timeUsed
+    }));
 }
 
 document.getElementById("btnSubmit").addEventListener('click', manualSubmit);
@@ -96,14 +98,14 @@ function showResult(resultResponse) {
     // alert(total_questions + "-" + correct_answers + "-" + answers.length);
 
     document.getElementById('result').innerHTML =
-        "<span> Score: " + correct_answers/total_questions*10 + " / 10</span><br>" + 
-        "<span> Correct: "+ correct_answers+ " / " + total_questions + " </span><br>"+
-        "<span>Finished at: "+ getDateFromTimestamp(finishedAt) +"</span><br>"+
-        "<span>Completion time: "+ convertSecondsToMinutes(completionTime) +"</span><br>"+
-        "<button onclick='backToGroupTestIndex()'>BACK</button>"+
-        "<button onclick='gotoRankingPage()'>Continue to view the Ranking</button>";
+        "<span> Score: " + correct_answers / total_questions * 10 + " / 10</span><br>" +
+        "<span> Correct: " + correct_answers + " / " + total_questions + " </span><br>" +
+        "<span>Finished at: " + getDateFromTimestamp(finishedAt) + "</span><br>" +
+        "<span>Completion time: " + convertSecondsToMinutes(completionTime) + "</span><br>" +
+        "<button class='action_btn' onclick='backToGroupTestIndex()'>BACK</button>" +
+        "<button class='action_btn' onclick='gotoRankingPage()'>Continue to view the Ranking</button>";
 
-    window.scrollTo(0, 0); 
+    window.scrollTo(0, 0);
 
     console.log(answers);
     showAnswers(answers);
@@ -117,7 +119,7 @@ function getDateFromTimestamp(timestamp) {
 
 function convertSecondsToMinutes(nSeconds) {
     const minutes = Math.floor(nSeconds / 60)
-    const remainder = nSeconds - (minutes*60);
+    const remainder = nSeconds - (minutes * 60);
 
     if (minutes < 10) {
         minute = '0' + minutes;
@@ -130,7 +132,7 @@ function convertSecondsToMinutes(nSeconds) {
     } else {
         second = remainder;
     }
-    
+
     return minute + " : " + second
 }
 
@@ -175,9 +177,9 @@ function countdown() {
             alert('Time out! The answers will be turned in automatically!');
             submit();
         }
-        
+
         document.getElementById('timer').innerHTML = min_text + ' : ' + sec_text;
-        
+
     }, 1000);
 }
 
@@ -193,7 +195,7 @@ function gotoRankingPage() {
 
 function getCurrentTestId() {
     const pieces = window.location.href.split("/");
-    const testId = pieces[pieces.length-2];
+    const testId = pieces[pieces.length - 2];
 
     return testId;
 }
