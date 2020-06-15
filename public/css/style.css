@@ -131,6 +131,7 @@ h2 {
 
 .edit {
   border-radius: 4px;
+  margin-bottom: 10px;
 }
 
 .edit:hover {
