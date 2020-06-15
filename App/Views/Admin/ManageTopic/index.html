@@ -138,7 +138,7 @@
         console.log(username);
 
         document.getElementById("hello-username").innerText =
-            "Hello " + username + " ";
+            "Hello " + decodeURIComponent(username) + " ";
     </script>
 </body>
 
