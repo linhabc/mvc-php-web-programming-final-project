@@ -7,7 +7,7 @@ let prePage = 1;
 let maxRowsPerPage = 100;
 let maxPage = 0;
 
-setUpPagination(1)
+setUpPagination(5)
 
 function setUpPagination(maxRowsEachPage) {
     maxRowsPerPage = maxRowsEachPage;

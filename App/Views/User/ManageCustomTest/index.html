@@ -4,11 +4,10 @@
 <head>
     <meta charset="utf-8" />
     <title>Manage Custom Test</title>
-    <link rel="stylesheet" href="css//style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/User/ManageCustomTest/style.css" />
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <script src="js/User/index.js"></script>
 </head>
 
 <body>
@@ -143,57 +142,10 @@
         </div>
     </div>
 
-    <script>
-        function confirmDelete(id) {
-            var r = confirm("Are you sure you want to delete?");
-            if (r == true) {
-                location.href = `?user/ManageCustomTest/delete&id=${id}`;
-            }
-        }
-    </script>
-    <script>
-        function viewQuestion(id) {
-            location.href = `?user/ManageTestQuestion/index&id=${id}`;
-        }
-    </script>
-    <script>
-        function viewComment(id) {
-            location.href = `?user/ManageComment/index&id=${id}`;
-        }
-    </script>
-    <script>
-        function viewUser(id) {
-            location.href = `?user/ManageUser/index&id=${id}`;
-        }
-    </script>
-
-    <script>
-        function randomly() {
-            location.href = `?user/CreateRandomly/index`;
-    }
-    </script>
-
-    <script>
-        function manually() {
-            location.href = `?user/CreateManually/index`;
-    }
-    </script>
-
     <script src="js/index.js"></script>
+    <script src="js/User/ManageCustomTest/index.js"></script>
     <script>
-        var x = document.cookie;
-        var username = getCookie("username");
-
-        function confirmLogout() {
-            var r = confirm("Are you sure you want to logout?");
-            if (r == true) {
-                location.href = "?Authentication/index";
-            }
-        }
-        console.log(username);
-
-        document.getElementById("hello-username").innerText =
-            "Hello " + decodeURIComponent(username) + " ";
+        showGreeting();
     </script>
 </body>
 

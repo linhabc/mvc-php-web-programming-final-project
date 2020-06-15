@@ -25,6 +25,14 @@ function deleteAllCookies() {
   }
 }
 
+function showGreeting() {
+  var x = document.cookie;
+  var username = getCookie("username");
+
+  document.getElementById("hello-username").innerText =
+    "Hello " + decodeURIComponent(username) + " ";
+}
+
 function redirectTo(url) {
   location.href = `${url}`;
 }
