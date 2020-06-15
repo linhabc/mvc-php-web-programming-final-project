@@ -2,6 +2,9 @@
 
 namespace App\Controllers\User;
 
+use App\Controllers\Authentication;
+
+use App\Models\User;
 use App\Models\Comment;
 use App\Models\Question;
 use App\Models\Test;
@@ -13,15 +16,22 @@ class Users extends \Core\Controller
 {
     protected function before()
     {
-        // Make sure an admin user is logged in for example
-        // return false;
+        if(array_key_exists('uid', $_COOKIE)){
+            $user = User::getUser($_COOKIE['uid']);
+            if($user == NULL){
+                Authentication::indexAction();
+                return false; 
+            }
+        } else {
+            Authentication::indexAction();
+            return false; 
+        } ;
     }
 
     public static function indexAction()
     {
         $uid = $_COOKIE["uid"];
 
-        // Phụng update result để lấy nốt questions và topics
         $questions = Result::getResultQuestion($uid);
         $topics = Result::getResultTopic($uid);
         

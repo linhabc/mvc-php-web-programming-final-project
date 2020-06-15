@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\User;
 use App\Models\Comment;
 use App\Models\Test;
 use App\Models\TestQuestion;
@@ -11,8 +12,16 @@ class ManageTest extends \Core\Controller
 {
     protected function before()
     {
-        // Make sure an admin user is logged in for example
-        // return false;
+        if(array_key_exists('uid', $_COOKIE)){
+            $user = User::getUser($_COOKIE['uid']);
+            if($user == NULL){
+                Authentication::indexAction();
+                return false; 
+            }
+        } else {
+            Authentication::indexAction();
+            return false; 
+        } ;
     }
 
     public function indexAction()

@@ -23,13 +23,13 @@ class Authentication extends \Core\Controller
 
     }
 
-    public function indexAction()
+    public static function indexAction()
     {
 
         View::render('Authentication/index.html');
     }
 
-    public function signUpAction()
+    public static function signUpAction()
     {
         if (array_key_exists('email', $_POST) && array_key_exists('password', $_POST) && array_key_exists('userName', $_POST)) {
             $email = htmlentities($_POST['email']);
