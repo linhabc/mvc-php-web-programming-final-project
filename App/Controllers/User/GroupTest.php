@@ -153,13 +153,14 @@ class GroupTest extends \Core\Controller
 
         usort($answers, array($this, 'cmp'));
 
-        $ids = array();
+        // $ids = array();
 
-        foreach ($answers as $answer) {
-            $ids[] = (int) ((array) $answer)['0'];
-        }
+        // foreach ($answers as $answer) {
+        //     $ids[] = (int) ((array) $answer)['0'];
+        // }
+        $testId = $data->testId;
 
-        $questions = Question::getQuestionsByIds($ids);
+        $questions = Question::getQuestionByTestId($testId);
 
         $nCorrectAnswers = 0;
         $nInCorrectAnswers = 0;
@@ -182,7 +183,7 @@ class GroupTest extends \Core\Controller
         $newResult = new Result();
         $newResult->userId = (int) $this->getValueFromCookie('uid');
         $newResult->testId = (int) $this->getValueFromCookie('testId');
-        $newResult->score = round(($nCorrectAnswers / count($answers)) * 10, 2);
+        $newResult->score = round(($nCorrectAnswers / count($questions)) * 10, 2);
         $newResult->rating = -1;
         $newResult->create_at = time();
         $newResult->time = $data->timeUsed;

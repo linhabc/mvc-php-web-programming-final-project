@@ -228,7 +228,8 @@ class Question extends \Core\Model
 
             $sql = "SELECT q.* FROM question as q, testquestion as tq
                     WHERE tq.testId = $testId
-                    AND q.id = tq.questionId;";
+                    AND q.id = tq.questionId
+                    ORDER BY q.id ASC;";
 
             $stmt = $db->query($sql);
 
@@ -246,14 +247,14 @@ class Question extends \Core\Model
         try {
             $db = static::getDB();
 
-            $stmt = $db->query("SELECT question.id as question_id, topic.name as topic_name, question.question as question, question.a as a, question.b as b, question.c as c, question.d as d, question.answer as answer 
-                                FROM question 
+            $stmt = $db->query("SELECT question.id as question_id, topic.name as topic_name, question.question as question, question.a as a, question.b as b, question.c as c, question.d as d, question.answer as answer
+                                FROM question
                                 INNER JOIN topic
                                 ON question.topicId = topic.id
-                                WHERE question.id IN 
-                                (SELECT DISTINCT testquestion.questionId   
-                                FROM result 
-                                INNER JOIN testquestion ON result.testId = testquestion.testId                                
+                                WHERE question.id IN
+                                (SELECT DISTINCT testquestion.questionId
+                                FROM result
+                                INNER JOIN testquestion ON result.testId = testquestion.testId
                                 WHERE result.userId = $userId)");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -284,10 +285,10 @@ class Question extends \Core\Model
         try {
             $db = static::getDB();
 
-            $stmt = $db->query("SELECT question.id, question.question, question.a,question.b,question.c,question.d,question.answer 
-                                FROM question, topic 
+            $stmt = $db->query("SELECT question.id, question.question, question.a,question.b,question.c,question.d,question.answer
+                                FROM question, topic
                                 where question.topicId = $topicId
-                                AND question.userId = $uid 
+                                AND question.userId = $uid
                                 AND question.topicId = topic.id");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
