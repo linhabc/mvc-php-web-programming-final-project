@@ -27,7 +27,8 @@ table {
 }
 
 .id-class {
-  width: 15px;
+  width: 100%;
+  box-sizing: border-box;
   background-color: white;
   pointer-events: none;
 }

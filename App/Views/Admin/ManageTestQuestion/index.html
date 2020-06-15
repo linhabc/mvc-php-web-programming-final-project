@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="css/ManageUser/style.css" />
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <script src="js/User/index.js"></script>
 </head>
 
 <body>
@@ -84,23 +83,7 @@
         </div>
     </div>
 
-    <script>
-        function confirmDelete(test_id, question_id) {
-            var r = confirm("Are you sure you want to delete?");
-            if (r == true) {
-                location.href = `?user/ManageTestQuestion/delete&test_id=${test_id}&question_id=${question_id}`;
-            }
-        }
-    </script>
-
-    <script>
-        function confirmLogout() {
-            var r = confirm("Are you sure you want to logout?");
-            if (r == true) {
-                location.href = "?Authentication/index";
-            }
-        }
-    </script>
+    <script src="js/Admin/ManageTestQuestion/index.js"></script>
 </body>
 
 </html>

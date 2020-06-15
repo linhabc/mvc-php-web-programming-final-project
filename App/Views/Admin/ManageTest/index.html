@@ -82,38 +82,9 @@
         </div>
     </div>
 
-    <script>
-        function confirmDelete(id) {
-            var r = confirm("Are you sure you want to delete?");
-            if (r == true) {
-                location.href = `?ManageTest/delete&id=${id}`;
-            }
-        }
-    </script>
-
     <script src="js/index.js"></script>
-    <script>
-        var x = document.cookie;
-        var username = getCookie("username");
+    <script src="js/Admin/ManageTest/index.js"></script>
 
-        function confirmLogout() {
-            var r = confirm("Are you sure you want to logout?");
-            if (r == true) {
-                location.href = "?Authentication/index";
-            }
-        }
-
-        console.log(username);
-
-        document.getElementById("hello-username").innerText =
-            "Hello " + decodeURIComponent(username) + " ";
-    </script>
-
-    <script>
-        function viewTest(id) {
-            location.href = `?ManageTestQuestion/index&id=${id}`;
-        }
-    </script>
 </body>
 
 </html>

@@ -6,9 +6,7 @@
     <title>Manage Comment</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/ManageUser/style.css" />
-
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <script src="js/Admin/index.js"></script>
 </head>
 
 <body>
@@ -78,38 +76,14 @@
                         }
                         ?>
 
-
                 </table>
             </div>
         </div>
     </div>
 
-    <script>
-        function confirmDelete(id) {
-            var r = confirm("Are you sure you want to delete?");
-            if (r == true) {
-                location.href = `?ManageComment/delete&id=${id}`;
-            }
-        }
-    </script>
-
+    <script src="js/Admin/index.js"></script>
     <script src="js/index.js"></script>
-    <script>
-        var x = document.cookie;
-        var username = getCookie("username");
-
-        function confirmLogout() {
-            var r = confirm("Are you sure you want to logout?");
-            if (r == true) {
-                location.href = "?Authentication/index";
-            }
-        }
-
-        console.log(username);
-
-        document.getElementById("hello-username").innerText =
-            "Hello " + decodeURIComponent(username) + " ";
-    </script>
+    <script src="js/Admin/ManageComment/index.js"></script>
 </body>
 
 </html>
