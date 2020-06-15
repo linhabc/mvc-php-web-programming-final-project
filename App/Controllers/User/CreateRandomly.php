@@ -3,14 +3,14 @@
 namespace App\Controllers\User;
 
 use App\Controllers\Authentication;
-use App\Models\Comment;
+use App\Models\Question;
 use App\Models\Test;
 use App\Models\TestQuestion;
 use App\Models\Topic;
 use App\Models\User;
 use \Core\View;
 
-class ManageCustomTest extends \Core\Controller
+class CreateRandomly extends \Core\Controller
 {
     protected function before()
     {
@@ -29,28 +29,37 @@ class ManageCustomTest extends \Core\Controller
     public function indexAction()
     {
         $userId = $_COOKIE["uid"];
-        $tests = Test::getTestByUserId($userId);
         $topic_name = Topic::getTopicName();
 
-        View::render('User/ManageCustomTest/index.html', [
-            'tests' => $tests,
+        View::render('User/ManageCustomTest/CreateRandomly/index.html', [
             'topic_name' => $topic_name,
         ]);
     }
 
-    public function deleteAction()
+    public function addAction()
     {
         $userId = $_COOKIE["uid"];
-        $id = $_GET['id'];
-
-        Test::deleteTest($id);
-        TestQuestion::deleteAllTestQuestion($id);
-        Comment::deleteAllCommentByTestId($id);
-
+        $name = $_POST['name_detail'];
+        $topic_id = $_POST['topic'];
+        $duration = $_POST['duration'];
+        $nbquestion = $_POST['nbquestion'];
+        $description = $_POST['description'];
         $topic_name = Topic::getTopicName();
+        $questions = Question::getAllQuestion();
+        $topic_name = Topic::getTopicName();
+
+        $id = Test::createTest($topic_id, $userId, $name, $description, $duration);
+
+        $randoms = Question::getRandomQuestion($nbquestion);
+
+        foreach ($randoms as $random) {
+            $questionId = $random["id"];
+            TestQuestion::createTestQuestion($id, $questionId);
+        }
+
         $tests = Test::getTestByUserId($userId);
 
-        View::render('User/ManageCustomTest/index.html', [
+        View::render('User/ManageCustomTest/CreateRandomly/index.html', [
             'tests' => $tests,
             'topic_name' => $topic_name,
         ]);

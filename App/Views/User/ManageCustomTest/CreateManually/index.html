@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Manage Question</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/ManageUser/style.css" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script src="js/Admin/index.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="left">
+            <h3>Rage <span>Quiz</span></h3>
+        </div>
+        <div id="hello-username">Hello</div>
+        <div class="right">
+            <button class="logout-button" onclick="confirmLogout()"><img src="images/logout.svg">Logout</button>
+        </div>
+    </header>
+
+    <div class="side-bar">
+        <center>
+            <img src="images/avatar_user.png" class="avatar" />
+            <h4>User page</h4>
+        </center>
+        <a class="navLink" href="?user/Users/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">dashboard</i><span>Dashboard</span></a>
+        <a class="navLink" href="?user/QuickTest/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">alarm</i><span>Do Quick Test</span></a>
+        <a class="navLink" href="?user/GroupTest/index" onclick="return handleSideBarButton(event)">
+            <i class="material-icons">group</i><span>Do Group Test</span></a>
+        <a class="navLink active" href="?user/ManageCustomTest/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">assignment</i><span>Custom Test</span></a>
+        <a class="navLink" href="?user/ManageQuestion/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">help</i><span>Custom Question</span></a>
+        <a class="navLink" href="?user/ManagePersonalInfo/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">contacts</i><span>Personal Info</span></a>
+        <a class="navLink" href="?user/ManageUserSetting/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">settings</i><span>Personal settings</span></a>
+        <a class="navLink" href="?user/ManageCustomTest/index" onclick="return handleSideBarButton(event)"><i
+                class="material-icons">assignment</i><span>Back</span></a>
+    </div>
+
+    <div class="content" id="content">
+        <div class="grid-container">
+            <div class="question-table">
+                <h2 style="margin: 0px; margin-bottom: 20px;">
+                    Questions Table
+                </h2>
+
+                <form action="?user/CreateManually/index" method="post">
+                    <label>Choose type of questions: </label>
+                    <select name='ques-type' id='ques-type'>
+                        <?php
+                        if($selected_ques == 'all'){
+                            echo "<option value=\"all\" selected>All questions</option>";
+                            echo "<option value=\"your\">Your questions</option>";
+                        }else{
+                            echo "<option value=\"all\">All questions</option>";
+                            echo "<option value=\"your\" selected>Your questions</option>";
+                        }
+                        ?>
+                    </select>
+
+                    <label>Choose the topic: </label>
+                    <select name='topic-name' id='topic-name'>
+                        <?php
+                        if($selected_field == 'all')
+                            echo "<option value=\"all\" selected>All topic</option>";
+                        else
+                            echo "<option value=\"all\">All topic</option>";
+
+                        foreach ($topic_name as $top_name){
+                            if($selected_field == $top_name['id']){
+                                echo "                           
+                                <option value=$top_name[id] selected>$top_name[name]</option>
+                                ";
+                            } else {
+                                echo "                           
+                                <option value=$top_name[id]>$top_name[name]</option>
+                                ";
+                            }
+                        }
+
+                        ?>
+                    </select>
+                    <button style="margin-left: 20px; font-size: 8pt;" type="submit" class="select">Select</button>
+                </form>
+
+                <table style="margin-top: 20px; width: 80%;">
+                    <tr>
+                        
+                        <th>Question</th>
+                        <th>A</th>
+                        <th>B</th>
+                        <th>C</th>
+                        <th>D</th>
+                        <th>Correct answer</th>
+                        <th>Action</th>
+                    </tr>
+
+                    <?php
+    
+                        foreach ($questions as $quest) {
+                        $id = $quest['id'];
+                        echo "
+                        
+                            <tr>
+                                
+                                <td>$quest[question]</td>
+                                <td>$quest[a]</td>
+                                <td>$quest[b]</td>
+                                <td>$quest[c]</td>
+                                <td>$quest[d]</td>
+                                <td>$quest[answer]</td>
+                                <td>
+                                    <input class='checkbox' type='checkbox' id='$id' name='$id' value='$id'>
+                                    <!-- <button type=\"button\" onclick='confirmDelete($id)' class=\"delete\"><img src=\"images/delete.svg\">Add</button> -->
+                                </td>
+                            </tr>
+                        ";
+                        }
+                        ?>
+                </table>              
+            </div>
+
+            <div class="create-test">
+                <h2 style="margin: 0px;">
+                    Test Property
+                </h2>
+
+                <form action="?user/CreateManually/add" method="post">
+                    <table style="text-align: left;" class="noborder">
+                        <tr>
+                            <th><label for="name">Name: </label></th>
+                            <td><textarea id="name_detail" name="name_detail" required></textarea></td>
+                            
+                        </tr>
+
+                        <tr>
+                            <th><label for='topic'>Topic: </label></th>
+                            <td>
+                                <select name='topic' id='topic'>
+                                    <?php
+                                    foreach ($topic_name as $top_name)
+                                    echo "                           
+                                        <option value=$top_name[id]>$top_name[name]</option>
+                                    "
+                                    ?>
+                                </select>
+                            </td>
+                        </tr>
+
+                       <tr>
+                            <th><label for="duration">Duration: </label></th>
+                            <td><textarea id="duration" name="duration" required></textarea></td>
+                        </tr>
+
+                        <tr>
+                            <th><label for="description">Description: </label></th>
+                            <td><textarea id="description" name="description" required></textarea></td>
+                        </tr>
+                        <tr>
+                            <th><label for="question">Question: </label></th>
+                            <td><textarea id="question" name="question"></textarea></td>
+                        </tr>
+                        <tr>
+                            <th><button type="submit" class="btn" id="add_test" name="add-test">Add</button></th>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/index.js"></script>
+    <script>
+        var x = document.cookie;
+        var username = getCookie("username");
+
+        function confirmLogout() {
+            var r = confirm("Are you sure you want to logout?");
+            if (r == true) {
+                location.href = "?Authentication/index";
+            }
+        }
+
+        console.log(username);
+
+        document.getElementById("hello-username").innerText =
+            "Hello " + username + " ";
+    </script>
+
+    <script>
+        let myQuestionsIdSet = new Set()
+            const checkboxs = document.getElementsByClassName('checkbox')
+            for (var i = 0; i<checkboxs.length; i++) {
+                let checkbox = checkboxs[i];
+                checkbox.addEventListener('change', (event) => {
+                    console.log(checkbox.id);
+                    if (event.target.checked) {
+                        myQuestionsIdSet.add(checkbox.id);
+                    } else {
+                        myQuestionsIdSet.delete(checkbox.id);
+                    }
+                    console.log(myQuestionsIdSet);
+                    document.getElementById('question').value = Array.from(myQuestionsIdSet).join(' ');
+                })
+             } 
+    </script>
+
+
+</body>
+
+</html>
