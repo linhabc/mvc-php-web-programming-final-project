@@ -109,7 +109,8 @@ function showResult(resultResponse) {
 
     console.log(answers);
     showAnswers(answers);
-    disableAllRadioButton()
+    hideSubmitButton();
+    disableAllRadioButton();
 }
 
 function getDateFromTimestamp(timestamp) {
@@ -153,6 +154,10 @@ function disableAllRadioButton() {
     for (i = 0; i < x.length; i++) {
         x[i].disabled = true;
     }
+}
+
+function hideSubmitButton() {
+    document.getElementById("btnSubmit").style.visibility = 'collapse';
 }
 
 function countdown() {

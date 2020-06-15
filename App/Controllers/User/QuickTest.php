@@ -3,12 +3,10 @@
 namespace App\Controllers\User;
 
 use App\Controllers\Authentication;
-
-use App\Models\User;
 use App\Models\Question;
 use App\Models\Topic;
+use App\Models\User;
 use \Core\View;
-
 
 class QuickTest extends \Core\Controller
 {
@@ -20,16 +18,16 @@ class QuickTest extends \Core\Controller
      */
     protected function before()
     {
-        if(array_key_exists('uid', $_COOKIE)){
+        if (array_key_exists('uid', $_COOKIE)) {
             $user = User::getUser($_COOKIE['uid']);
-            if($user == NULL){
+            if ($user == null) {
                 Authentication::indexAction();
-                return false; 
+                return false;
             }
         } else {
             Authentication::indexAction();
-            return false; 
-        } ;
+            return false;
+        };
     }
 
     public function indexAction()
@@ -44,10 +42,10 @@ class QuickTest extends \Core\Controller
 
     public function doTestAction()
     {
-        $nQuestions = $_POST["nQuestions"];
-        $topic = $_POST["topic"];
+        $nQuestions = (int) $_POST["nQuestions"];
+        $topic = (int) $_POST["topic"];
 
-        if ($topic == '-1') {
+        if ($topic == -1) {
             $questions = Question::getRandomQuestion2($nQuestions);
         } else {
             $questions = Question::getRandomQuestionsByTopicId($topic, $nQuestions);
