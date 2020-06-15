@@ -44,10 +44,14 @@ class User extends \Core\Model
             $stmt = $db->query("SELECT id, email, username, password, role FROM user WHERE email = '$email' LIMIT 1");
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            $hashPass = $result[0]['password'];
+            if($result != null) {
+                $hashPass = $result[0]['password'];
 
-            if (password_verify($password, $hashPass)) {
-                return $result;
+                if (password_verify($password, $hashPass)) {
+                    return $result;
+                } else {
+                    return null;
+                }
             } else {
                 return null;
             }
@@ -153,6 +157,19 @@ class User extends \Core\Model
             $db = static::getDB();
 
             $sql = "UPDATE user SET username = '$username', password = '$password' WHERE id = $id";
+            $db->exec($sql);
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function editUserName($id, $username) 
+    {
+        try {
+            $db = static::getDB();
+
+            $sql = "UPDATE user SET username = '$username' WHERE id = $id";
             $db->exec($sql);
 
         } catch (PDOException $e) {

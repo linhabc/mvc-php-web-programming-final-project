@@ -38,8 +38,12 @@ class ManageUserSetting extends \Core\Controller
         $uid = (int) $this->getValueFromCookie('uid');
         $username = htmlentities($_POST['username']);
         $password = htmlentities($_POST['password']);
-
-        User::editUser($uid, $username, $password);
+        if ("" == $password) {
+            User::editUserName($uid, $username);
+        } else {
+            $password = password_hash($password, PASSWORD_BCRYPT);
+            User::editUser($uid, $username, $password);
+        }
 
         $users = User::getUser($uid);
 
