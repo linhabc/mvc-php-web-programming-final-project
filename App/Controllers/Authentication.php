@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Controllers\User\Users;
 use App\Models\Comment;
 use App\Models\Question;
 use App\Models\Test;
@@ -34,11 +33,29 @@ class Authentication extends \Core\Controller
         if (array_key_exists('email', $_POST) && array_key_exists('password', $_POST) && array_key_exists('userName', $_POST)) {
             $email = htmlentities($_POST['email']);
             $password = htmlentities($_POST['password']);
+            $password = password_hash($password, PASSWORD_BCRYPT);
             $userName = htmlentities($_POST['userName']);
 
-            $user = User::createUser($email, $userName, $password);
+            $uid = User::createUser($email, $userName, $password);
+            $mUser = (User::getUser($uid))[0];
 
-            Users::indexAction();
+            $questions = Question::getAllQuestion();
+            $topics = Topic::getAllTopic();
+            $tests = Test::getAllTest();
+            $comments = Comment::getAll();
+            $user = array();
+            $user["id"] = $mUser["id"];
+            $user["email"] = $mUser["email"];
+            $user["username"] = $mUser["username"];
+            $user["role"] = $mUser["role"];
+
+            View::render('User/index.html', [
+                'questions' => $questions,
+                'topics' => $topics,
+                'tests' => $tests,
+                'comments' => $comments,
+                'user' => $user,
+            ]);
 
         } else {
             Authentication::indexAction();
