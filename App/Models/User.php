@@ -159,4 +159,17 @@ class User extends \Core\Model
             echo $e->getMessage();
         }
     }
+
+    public static function editUserName($id, $username) 
+    {
+        try {
+            $db = static::getDB();
+
+            $sql = "UPDATE user SET username = '$username' WHERE id = $id";
+            $db->exec($sql);
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 }
