@@ -41,10 +41,16 @@ class User extends \Core\Model
         try {
             $db = static::getDB();
 
-            $stmt = $db->query("SELECT id, email, username, password, role FROM user WHERE email = '$email' and password = '$password'");
+            $stmt = $db->query("SELECT id, email, username, password, role FROM user WHERE email = '$email' LIMIT 1");
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            return $result;
+            $hashPass = $result[0]['password'];
+
+            if (password_verify($password, $hashPass)) {
+                return $result;
+            } else {
+                return null;
+            }
 
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -102,6 +108,10 @@ class User extends \Core\Model
 
             $sql = "INSERT INTO user (id, email, username, password) VALUES (NULL, '$email', '$username', '$password')";
             $db->exec($sql);
+
+            $last_id = $db->lastInsertId();
+
+            return $last_id;
 
         } catch (PDOException $e) {
             echo $e->getMessage();
