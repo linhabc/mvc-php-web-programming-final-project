@@ -3,7 +3,8 @@
 - PHP
 - MySql
 - Html
-- Twig
+- Css
+- Javascript
 
 ## Setting
 
